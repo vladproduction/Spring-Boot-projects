@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Chinook page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Full Name</th>
+        <th>Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${employees}">
+        <td th:text="${e.id}"></td>
+        <td th:text="${e.fullName}"></td>
+        <td th:text="${e.title}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

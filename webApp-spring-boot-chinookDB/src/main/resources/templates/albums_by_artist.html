@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Albums by Artist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/dist/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1 th:text="${artist.name}"></h1>
+
+<table class="table table-striped table-bordered table-sm table-hover">
+    <thead class="table-dark">
+    <tr>
+        <th>#</th>
+        <th>Album title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="a : ${artist.albums}">
+        <td th:text="${a.id}"></td>
+        <td th:text="${a.title}"></td>
+    </tr>
+    </tbody>
+</table>
+<form method="post" action="/add_album">
+    <input type="hidden" name="a_id" th:value="${artist.id}">
+    <label for="title">New album title:</label>
+    <input id="title" type="text" name="title" class="text-input">
+    <input type="submit" value="Add" class="btn btn-primary">
+</form>
+
+<script th:src="@{webjars/jquery/3.7.0/dist/jquery.js}"></script>
+<script th:src="@{webjars/popperjs__core/2.11.8/dist/umd/popper.js}"></script>
+<script th:src="@{webjars/bootstrap/5.3.0/dist/js/bootstrap.bundle.js}"></script>
+</body>
+</html>

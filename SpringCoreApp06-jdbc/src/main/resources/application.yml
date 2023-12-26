@@ -1,0 +1,5 @@
+Connection:
+  url: jdbc:mysql://127.0.0.1:3306/spring
+  login: root
+  pass: 11111111
+  driver: com.mysql.cj.jdbc.Driver

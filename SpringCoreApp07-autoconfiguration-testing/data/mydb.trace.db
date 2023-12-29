@@ -1,0 +1,6 @@
+2023-12-29 19:23:43.605794+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PERSONS" not found (this database is empty); SQL statement:
+delete from persons [42104-224]
+2023-12-29 19:23:43.648793+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PERSONS" not found (this database is empty); SQL statement:
+delete from persons [42104-224]

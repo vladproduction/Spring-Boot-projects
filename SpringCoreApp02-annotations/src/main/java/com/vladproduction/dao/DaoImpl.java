@@ -14,15 +14,12 @@ import java.util.List;
 public class DaoImpl implements Dao {
 
     @Value("${Connection.url}")
-
     private String url;
 
     @Value("${Connection.login}")
-
     private String login;
 
     @Value("${Connection.pass}")
-
     private String pass;
 
     //no need constructor

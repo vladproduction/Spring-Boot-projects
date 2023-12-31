@@ -40,8 +40,8 @@ public class MyConfig {
 
     @Bean(initMethod = "init", destroyMethod = "destroy")
     public Processor processor(){
-        return new Processor(dao, xmlConverter());
-//        return new Processor(dao, jsonConverter());
+//        return new Processor(dao, xmlConverter());
+        return new Processor(dao, jsonConverter());
     }
 
 

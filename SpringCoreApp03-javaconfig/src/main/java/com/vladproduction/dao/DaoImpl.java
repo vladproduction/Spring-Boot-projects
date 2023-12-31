@@ -22,9 +22,6 @@ public class DaoImpl implements Dao {
     @Value("${Connection.pass}")
     private String pass;
 
-    //no need constructor
-
-
     @PostConstruct
     public void myInit(){
         System.out.println("dao.init");

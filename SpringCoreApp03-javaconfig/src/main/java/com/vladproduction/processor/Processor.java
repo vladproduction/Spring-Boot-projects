@@ -19,7 +19,6 @@ public class Processor {
 
     private Converter converter;
 
-    //no need any constructor
     public Processor(Dao dao, Converter converter){
         this.dao = dao;
         this.converter = converter;

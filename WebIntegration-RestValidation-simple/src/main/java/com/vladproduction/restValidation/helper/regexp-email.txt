@@ -1,0 +1,20 @@
+Simple example of a regular expression (regex) that matches the email pattern with the following
+requirements:
+
+The regex would be:
+@Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9-]+\\.[A-Za-z]{2,6}$")
+
+Explanation of the regex:
+
+1) "^" and "$" signify the beginning and end of the string respectively;
+2) [A-Za-z0-9+_.-]+ : Matches one or more uppercase or lowercase letters, digits, plus sign,
+    underscore, period, or hyphen for the username part before the "@" symbol;
+3) @ as it is;
+4) [A-Za-z0-9-]+ : Matches one or more uppercase or lowercase letters, digits, or hyphen for the main domain;
+5) \\.: Matches the period (.) before the domain extension;
+6) [A-Za-z]{2,6}: Matches the domain extension, which must be two to six uppercase or lowercase letters;
+
+Overall, this regex pattern ensures that the email address contains one or more characters
+before and after the "@" symbol, followed by a valid domain name.
+Using this regex pattern, the variable email will only accept values that match a valid
+email address format.

@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "40101732-15c3-419d-8b02-c08a6e202bd9",
+		"name": "WebIntegration(basic requests)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27710072"
+	},
+	"item": [
+		{
+			"name": "getUrlMethod",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/web/integration/1/type",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"web",
+						"integration",
+						"1",
+						"type"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRequestMethod",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/web/integration?clientId=1&type=testValue",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"web",
+						"integration"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "1"
+						},
+						{
+							"key": "type",
+							"value": "testValue"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postMethod",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":100,\r\n    \"type\": \"Client-type: user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/web/integration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"web",
+						"integration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postMethod2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":100,\r\n    \"type\": \"Client-type(/postMethod2Example): user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/web/integration/postMethod2Example",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"web",
+						"integration",
+						"postMethod2Example"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putMethod",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":100,\r\n    \"type\": \"Client-type: user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/web/integration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"web",
+						"integration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patchMethod",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":100,\r\n    \"type\": \"Client-type: user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/web/integration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"web",
+						"integration"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

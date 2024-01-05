@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "bca20e2b-71a5-4e59-8e66-1a7ebe906094",
+		"name": "restValidation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27710072"
+	},
+	"item": [
+		{
+			"name": "postValidMethod",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"email\":\"teSt12@email.com\",\r\n    \"password\":\"aaa12aaaA\",\r\n    \"role\":\"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/web/validation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"web",
+						"validation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postValidMethodInnerUserObject",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"email\":\"teSt12@email.com\",\r\n    \"password\":\"aaa12aaaA\",\r\n    \"role\":\"user\",\r\n    \"userObject\":{\r\n        \"name\":\"John\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/web/validation/userObject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"web",
+						"validation",
+						"userObject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postValidMethodUserList",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n    \"id\":1,\r\n    \"email\":\"teSt12@email.com\",\r\n    \"password\":\"aaa12aaaA\",\r\n    \"role\":\"user\",\r\n    \"userObject\":{\r\n        \"name\":\"John\"\r\n    }\r\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/web/validation/userList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"web",
+						"validation",
+						"userList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postValidMethodUserObjectList",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n    \"id\":1,\r\n    \"email\":\"teSt12@email.com\",\r\n    \"password\":\"aaa12aaaA\",\r\n    \"role\":\"user\",\r\n    \"userObject\":{\r\n        \"name\":\"John\"\r\n    },\r\n    \"userObjectList\":[\r\n        {\r\n            \"name\":\"John\"\r\n        }\r\n    ]\r\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/web/validation/userObjectList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"web",
+						"validation",
+						"userObjectList"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

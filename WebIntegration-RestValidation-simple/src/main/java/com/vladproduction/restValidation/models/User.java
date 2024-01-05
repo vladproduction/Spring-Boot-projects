@@ -27,9 +27,10 @@ public class User {
     @NotNull(message = "InnerUserObject userObject; should be not null")
     private InnerUserObject userObject;
 
-    @Valid
+
+    @NotEmpty(message = "InnerUserObject userObjectList; should be not empty")
     @NotNull(message = "InnerUserObject userObjectList; should be not null")
-    private List<InnerUserObject> userObjectList;
+    private List<@Valid InnerUserObject> userObjectList;
 
     public Integer getId() {
         return id;

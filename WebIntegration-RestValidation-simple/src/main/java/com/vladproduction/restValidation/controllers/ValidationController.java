@@ -36,7 +36,7 @@ public class ValidationController {
 
     @PostMapping(path = "/userObjectList")
     public ResponseEntity<Void> postValidMethodUserObjectList(
-            @RequestBody @Valid List<User> userList){
+            @RequestBody List<@Valid User> userList){
         return ResponseEntity.ok().build();
     }
 }

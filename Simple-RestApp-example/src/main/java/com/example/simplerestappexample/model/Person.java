@@ -1,10 +1,17 @@
 package com.example.simplerestappexample.model;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+
 import java.util.Objects;
+
 
 public class Person {
 
+    @NotEmpty
     private String name;
+
+    @Min(Constants.MIN)
     private int age;
 
     public Person(String name, int age) {

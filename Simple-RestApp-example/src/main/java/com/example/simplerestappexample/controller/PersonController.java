@@ -2,6 +2,9 @@ package com.example.simplerestappexample.controller;
 
 import com.example.simplerestappexample.model.Person;
 import com.example.simplerestappexample.service.PersonService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +21,8 @@ public class PersonController {
 
 
     @PostMapping
-    public void addPerson(@RequestBody Person person){
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addPerson(@RequestBody @Valid Person person){
         service.addPerson(person);
     }
 

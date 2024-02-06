@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="Car" class="com.vladproduction.inversionofcontrolexample.exampleGift.Car">
+        <constructor-arg value = "50"/>
+        <constructor-arg value = " Car BMW"/>
+        <constructor-arg value = "150.50"/>
+        <property name ="price" value = "150.5"/>
+    </bean>
+    <bean id="TeddyBear" class="com.vladproduction.inversionofcontrolexample.exampleGift.TeddyBear">
+        <constructor-arg value = "100"/>
+        <constructor-arg value = "gray"/>
+        <constructor-arg value = "250.50"/>
+        <property name ="price" value = "250.5"/>
+    </bean>
+    <bean id="WhiteChocolate" class="com.vladproduction.inversionofcontrolexample.exampleGift.WhiteChocolate">
+        <constructor-arg value = "60"/>
+        <constructor-arg value = "Bounty"/>
+        <constructor-arg value = "90.50"/>
+        <property name ="price" value = "90.5"/>
+    </bean>
+    <bean id="BlackChocolate" class="com.vladproduction.inversionofcontrolexample.exampleGift.BlackChocolate">
+        <constructor-arg value = "80"/>
+        <constructor-arg value = "Ukraine"/>
+        <constructor-arg value = "70"/>
+        <property name ="price" value = "70.0"/>
+    </bean>
+    <bean id="giftCar" class="com.vladproduction.inversionofcontrolexample.exampleGift.NewYearGift">
+        <property name ="list" >
+            <list>
+                <ref bean="WhiteChocolate"/>
+                <ref bean="Car"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="giftTeddyBear" class="com.vladproduction.inversionofcontrolexample.exampleGift.NewYearGift">
+        <property name ="list" >
+            <list>
+                <ref bean="BlackChocolate"/>
+                <ref bean="TeddyBear"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

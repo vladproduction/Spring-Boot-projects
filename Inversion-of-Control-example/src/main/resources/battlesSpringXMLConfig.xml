@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <bean id="austerlitz" class="com.vladproduction.inversionofcontrolexample.battles.Battle">
+        <constructor-arg value="Аустерлиц"/>
+        <constructor-arg value="Наполеон I"/>
+        <constructor-arg value="2 декабря 1805 года"/>
+        <constructor-arg value="Аустерлиц, Австрия"/>
+    </bean>
+
+    <bean id="battle-of-Trafalgar" class="com.vladproduction.inversionofcontrolexample.battles.Battle">
+        <constructor-arg value="Трафальгарское сражение"/>
+        <constructor-arg value="Адмирал Горации Нельсон"/>
+        <constructor-arg value="21 октября 1805 года"/>
+        <constructor-arg value="Трафальгарский пролив, Испания"/>
+    </bean>
+
+    <bean id="battle-of-Borodino" class="com.vladproduction.inversionofcontrolexample.battles.Battle">
+        <constructor-arg value="Бородинская битва"/>
+        <constructor-arg value="Россия"/>
+        <constructor-arg value="26 августа 1812 года"/>
+        <constructor-arg value="Бородинское поле, Россия"/>
+    </bean>
+
+    <bean id="capture-of-Paris" class="com.vladproduction.inversionofcontrolexample.battles.Battle">
+        <constructor-arg value="Взятие Парижа"/>
+        <constructor-arg value="Коалиция"/>
+        <constructor-arg value="31 марта 1814 года"/>
+        <constructor-arg value="Париж, Франция"/>
+    </bean>
+
+    <bean id="battle-of-Waterloo" class="com.vladproduction.inversionofcontrolexample.battles.Battle">
+        <constructor-arg value="Ватерлоо"/>
+        <constructor-arg value="Коалиция"/>
+        <constructor-arg value="8 июня 1815 года"/>
+        <constructor-arg value="Ватерлоо, Бельгия"/>
+    </bean>
+
+
+    <bean id="napoleonicBattles" class="com.vladproduction.inversionofcontrolexample.battles.NapoleonicBattles">
+        <property name ="list" >
+            <list>
+                <ref bean="austerlitz"/>
+                <ref bean="battle-of-Trafalgar"/>
+                <ref bean="battle-of-Borodino"/>
+                <ref bean="capture-of-Paris"/>
+                <ref bean="battle-of-Waterloo"/>
+            </list>
+        </property>
+    </bean>
+
+
+</beans>

@@ -2,10 +2,16 @@ package com.vladproduction.springjmssimple.config;
 
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.Destination;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.command.ActiveMQTopic;
+import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
+import org.springframework.jms.config.JmsListenerContainerFactory;
 
 @Configuration
 public class MyJmsConfig {
@@ -16,7 +22,22 @@ public class MyJmsConfig {
     }
 
     @Bean
-    public Destination helloQueue(){
+    public JmsListenerContainerFactory myTopicFactory(ConnectionFactory connectionFactory){
+        DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory = new DefaultJmsListenerContainerFactory();
+        defaultJmsListenerContainerFactory.setConnectionFactory(connectionFactory);
+        defaultJmsListenerContainerFactory.setPubSubDomain(true);
+        return defaultJmsListenerContainerFactory;
+    }
+
+    @Bean
+    public Queue helloQueue(){
         return new ActiveMQQueue("HelloQueue");
     }
+
+    @Bean
+    public Topic helloTopic(){
+        return new ActiveMQTopic("HelloTopic");
+    }
+
+
 }

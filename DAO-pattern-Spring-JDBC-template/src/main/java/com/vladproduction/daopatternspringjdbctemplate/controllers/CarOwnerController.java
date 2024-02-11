@@ -32,4 +32,13 @@ public class CarOwnerController {
     public Owner getOwnerForCarId(@PathVariable int carId) throws SQLException {
         return this.carOwnerService.getOwnerForCarId(carId);
     }
+    @PutMapping("updateCarForOwnerById/{carId}/{ownerId}")
+    public int updateCarForOwnerById(@PathVariable int carId, @PathVariable int ownerId) throws SQLException {
+        return carOwnerService.updateCarForOwnerById(carId, ownerId);
+    }
+
+    @DeleteMapping("deleteCarForOwnerById/{ownerId}")
+    public int deleteCarForOwnerById(@PathVariable int ownerId) throws SQLException {
+        return carOwnerService.deleteCarForOwnerById(ownerId);
+    }
 }

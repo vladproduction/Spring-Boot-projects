@@ -24,14 +24,13 @@ public class CarOwnerDaoJdbcTemplateImpl implements CarOwnerDao {
     public int assignCarToOwner(int carId, int ownerId) throws SQLException {
         String sql = "INSERT INTO car_owner (car_id, owner_id) VALUES (?, ?)";
         return jdbcTemplate.update(sql, carId, ownerId);
-
-
     }
 
     @Override
     public List<Car> getCarsForOwnerId(int ownerId) throws SQLException {
+        String sql2 = "SELECT c.* FROM car_owner co INNER JOIN car c ON co.car_id = c.id WHERE co.owner_id = ?";
         String sql = "SELECT c.* FROM car c JOIN car_owner co ON c.id = co.car_id WHERE co.owner_id = ?";
-        return jdbcTemplate.query(sql, new Object[] {ownerId}, new CarRowMapper()); //todo query(), or queryForList()???
+        return jdbcTemplate.query(sql2, new Object[] {ownerId}, new CarRowMapper()); //todo query(), or queryForList()???
     }
 
     @Override
@@ -40,4 +39,15 @@ public class CarOwnerDaoJdbcTemplateImpl implements CarOwnerDao {
         return jdbcTemplate.queryForObject(sql, new Object[] {carId}, new OwnerRowMapper());
     }
 
+    @Override
+    public int updateCarForOwnerById(int carId, int ownerId) throws SQLException {
+        String sql = "UPDATE car_owner SET car_id = ? WHERE owner_id = ?";
+        return jdbcTemplate.update(sql, new Object[]{carId, ownerId});
+    }
+
+    @Override
+    public int deleteCarForOwnerById(int ownerId) throws SQLException {
+        String sql = "DELETE FROM car_owner WHERE owner_id = ?";
+        return jdbcTemplate.update(sql, ownerId);
+    }
 }

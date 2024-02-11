@@ -26,8 +26,15 @@ public class CarOwnerService {
         return this.carOwnerDaoJdbc.getCarsForOwnerId(ownerId);
     }
 
-
     public Owner getOwnerForCarId(int carId) throws SQLException {
         return this.carOwnerDaoJdbc.getOwnerForCarId(carId);
+    }
+
+    public int updateCarForOwnerById(int carId, int ownerId) throws SQLException {
+        return carOwnerDaoJdbc.updateCarForOwnerById(carId, ownerId);
+    }
+
+    public int deleteCarForOwnerById(int ownerId) throws SQLException {
+        return carOwnerDaoJdbc.deleteCarForOwnerById(ownerId);
     }
 }

@@ -17,8 +17,8 @@ public class ProducerController {
         this.myProducer = myProducer;
     }
 
-    @GetMapping("/send")
+    @GetMapping("/sendWithHeader")
     public void send(@RequestParam(name = "text") String text) throws JMSException {
-        myProducer.send(text);
+        myProducer.sendWithHeader(text);
     }
 }

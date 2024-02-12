@@ -30,6 +30,10 @@ public class MyJmsConfig {
     }
 
     @Bean
+    public Queue myQueueWithHeader(){
+        return new ActiveMQQueue("HelloWithHeaderQueue");
+    }
+    @Bean
     public Queue helloQueue(){
         return new ActiveMQQueue("HelloQueue");
     }

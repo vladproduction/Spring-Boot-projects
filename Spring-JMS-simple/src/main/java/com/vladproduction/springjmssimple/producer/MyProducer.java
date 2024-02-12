@@ -11,7 +11,7 @@ public class MyProducer {
     private ConnectionFactory connectionFactory;
     private Destination destination;
 
-    public MyProducer(ConnectionFactory connectionFactory, @Qualifier("helloTopic") Destination destination) {
+    public MyProducer(ConnectionFactory connectionFactory, @Qualifier("myQueueWithHeader") Destination destination) {
         this.connectionFactory = connectionFactory;
         this.destination = destination;
     }
@@ -21,6 +21,17 @@ public class MyProducer {
         Session session = connection.createSession();
         MessageProducer producer = session.createProducer(destination);
         TextMessage msg = new ActiveMQTextMessage();
+        msg.setText(text);
+        producer.send(msg);
+    }
+
+    public void sendWithHeader(String text) throws JMSException {
+        Connection connection = connectionFactory.createConnection();
+        Session session = connection.createSession();
+        MessageProducer producer = session.createProducer(destination);
+        TextMessage msg = new ActiveMQTextMessage();
+        msg.setStringProperty("name", "hello");
+        msg.setIntProperty("age", 20);
         msg.setText(text);
         producer.send(msg);
     }

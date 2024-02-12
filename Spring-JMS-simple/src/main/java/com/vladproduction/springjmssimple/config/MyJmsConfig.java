@@ -10,10 +10,13 @@ import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.jms.core.JmsTemplate;
 
 @Configuration
+@EnableJms
 public class MyJmsConfig {
 
     @Bean
@@ -41,6 +44,14 @@ public class MyJmsConfig {
     @Bean
     public Topic helloTopic(){
         return new ActiveMQTopic("HelloTopic");
+    }
+
+    @Bean
+    public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
+        JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory);
+        // Set destination name and other options
+        jmsTemplate.setDefaultDestinationName("myQueue");
+        return jmsTemplate;
     }
 
 

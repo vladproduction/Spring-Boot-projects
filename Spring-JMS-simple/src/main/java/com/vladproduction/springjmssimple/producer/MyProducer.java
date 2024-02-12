@@ -2,7 +2,9 @@ package com.vladproduction.springjmssimple.producer;
 
 import jakarta.jms.*;
 import org.apache.activemq.command.ActiveMQTextMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,6 +12,10 @@ public class MyProducer {
 
     private ConnectionFactory connectionFactory;
     private Destination destination;
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
 
     public MyProducer(ConnectionFactory connectionFactory, @Qualifier("myQueueWithHeader") Destination destination) {
         this.connectionFactory = connectionFactory;
@@ -34,5 +40,9 @@ public class MyProducer {
         msg.setIntProperty("age", 20);
         msg.setText(text);
         producer.send(msg);
+    }
+
+    public void sendMessage(String message) {
+        jmsTemplate.convertAndSend(message);
     }
 }

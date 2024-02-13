@@ -20,12 +20,12 @@ import org.springframework.jms.core.JmsTemplate;
 public class MyJmsConfig {
 
     @Bean
-    public ConnectionFactory connectionFactory(){
+    public ConnectionFactory connectionFactory() {
         return new ActiveMQConnectionFactory();
     }
 
     @Bean
-    public JmsListenerContainerFactory myTopicFactory(ConnectionFactory connectionFactory){
+    public JmsListenerContainerFactory myTopicFactory(ConnectionFactory connectionFactory) {
         DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory = new DefaultJmsListenerContainerFactory();
         defaultJmsListenerContainerFactory.setConnectionFactory(connectionFactory);
         defaultJmsListenerContainerFactory.setPubSubDomain(true);
@@ -33,17 +33,43 @@ public class MyJmsConfig {
     }
 
     @Bean
-    public Queue myQueueWithHeader(){
+    public JmsListenerContainerFactory myDurableTopicFactoryA(ConnectionFactory connectionFactory) {
+        DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory = new DefaultJmsListenerContainerFactory();
+        defaultJmsListenerContainerFactory.setConnectionFactory(connectionFactory);
+        defaultJmsListenerContainerFactory.setPubSubDomain(true);
+        defaultJmsListenerContainerFactory.setSubscriptionDurable(true);
+        defaultJmsListenerContainerFactory.setClientId("durableA");
+        return defaultJmsListenerContainerFactory;
+    }
+
+    @Bean
+    public JmsListenerContainerFactory myDurableTopicFactoryB(ConnectionFactory connectionFactory) {
+        DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory = new DefaultJmsListenerContainerFactory();
+        defaultJmsListenerContainerFactory.setConnectionFactory(connectionFactory);
+        defaultJmsListenerContainerFactory.setPubSubDomain(true);
+        defaultJmsListenerContainerFactory.setSubscriptionDurable(true);
+        defaultJmsListenerContainerFactory.setClientId("durableB");
+        return defaultJmsListenerContainerFactory;
+    }
+
+    @Bean
+    public Queue myQueueWithHeader() {
         return new ActiveMQQueue("HelloWithHeaderQueue");
     }
+
     @Bean
-    public Queue helloQueue(){
+    public Queue helloQueue() {
         return new ActiveMQQueue("HelloQueue");
     }
 
     @Bean
-    public Topic helloTopic(){
+    public Topic helloTopic() {
         return new ActiveMQTopic("HelloTopic");
+    }
+
+    @Bean
+    public Topic helloDurableTopic() {
+        return new ActiveMQTopic("HelloDurableTopic");
     }
 
     @Bean

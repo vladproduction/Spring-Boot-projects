@@ -1,0 +1,119 @@
+***By default, all endpoints are switched on, except 'shutdown'
+To enable endpoint, use such property in application.properties:
+    management.endpoint.<code><</code>id<code>></code>.enabled
+----------------
+***access to endpoint available only through JMX, but not via HTTP;
+to switch endpoint 'shutdown' we have to:
+    management.endpoint.shutdown.enabled=true
+----------------
+***we can switch off all endpoints by default, and ON only what we need; by the next configuration all endpoints will be
+disabled except 'info':
+    management.endpoints.enabled-by-default=false
+    management.endpoint.info.enabled=true
+----------------
+***Access to endpoints through HTTP:
+ localhost:8080/actuator
+----------------
+***Access to concrete endpoints settings:
+*if we want to get access by web (http) to other endpoints, we have to write in application.properties:
+management.endpoints.web.exposure.include=<list of endpoints><a href="http://localhost:8080/actuator"></a>
+for example:
+management.endpoints.web.exposure.include= health,info,env
+----------------
+***Access to ALL endpoints: we use '*'
+management.endpoints.web.exposure.include=*
+----------------
+***Access to ALL endpoints but except some: for example 'env'
+management.endpoints.web.exposure.include=*
+management.endpoints.web.exposure.exclude=env
+----------------
+***Disable all HTTP endpoints:
+*If you don't want to expose endpoints over HTTP, you can do so by configuring in the file application.properties:
+    management.server.port=-1
+    or
+    management.endpoints.web.exposure.exclude=*
+----------------
+***Setting up URLs to access endpoint:
+By default, all endpoints are accessible via the /actuator URL with addresses like /actuator/{id}.
+However, it is possible to change the /actuator base path using the following property in application.properties.
+    management.endpoints.web.base-path
+For example, if you wanted to make the base URL as /monitor instead of /actuator it could be done like this:
+    management.endpoints.web.base-path=/monitor
+This will make all endpoints available as /monitor/{id} instead of /actuator/{id}
+--------------------------------------------------------------
+
+/health:
+management.endpoint.health.show-details=never  //no additional information
+management.endpoint.health.show-details=always  //additional information available to all users
+management.endpoint.health.show-details=when-authorized  //additional information only for authorized users
+management.endpoint.health.roles  //can be set authorization
+----------------
+***Pre-configured indicators:
+By default, the final application status is determined by the HealthAggregator, which simply sorts the list of statuses
+provided by each HealthIndicator. The first status in the sorted list is used as the final status of the application.
+
+***Disable all pre-configured indicators:
+    management.health.defaults.enabled=false
+***Disabling an individual indicator:
+    management.health.diskspace.enabled=false
+
+***The identifier of any HealthIndicator will be the name of the bean without the HealthIndicator suffix.
+For example:
+DiskSpaceHealthIndicator --- diskspace
+MongoHealthIndicator  --- mongo
+CassandraHealthIndicator  --- cassandra
+DataSourceHealthIndicator  --- datasource
+----------------
+***Customer indicators (HealthIndicator):
+We create Class that implements the HealthIndicator interface, implement its health() method and return Health as a
+response with the appropriate information:
+    http://localhost:8080/actuator/health
+If we want to see only the disk status, we can use the following URL:
+    http://localhost:8080/actuator/health/diskSpace
+
+--------------------------------------------------------------
+/info
+The info endpoint provides general information about the application, which it obtains from files such as
+build-info.properties or git.properties, or from properties specified in application.properties.
+(there is no such file, the answer will be empty)
+
+--------------------------------------------------------------
+/beans
+shows all the beans defined in the Spring container with the following information about each bean:
+aliases : names of all aliases
+scope : scope
+type : full bean name
+resource : resource (class) in which the bean is defined
+dependencies : names of dependent beans
+
+-------------------------------------------------------------
+/configprops
+The configProps endpoint shows all beans annotated with @ConfigurationProperties.
+
+
+-------------------------------------------------------------
+/env
+The env endpoint provides all environment-related information in the following order:
+*System environment or variables environment --- depends on the operating room systems (depending on platform)
+*Application Level Settings                  --- defined in application.properties
+
+
+-------------------------------------------------------------
+/heapdump
+The heapdump endpoint dumps the application's heap. This endpoint returns binary data in HPROF format.
+Since a lot of data is usually returned, we have to save and analyze it.
+
+-------------------------------------------------------------
+/loggers
+The loggers endpoint provides application loggers with information about their configuredLevel and effectiveLevel.
+If the configured level for a logger and its parent is not specified (null), then the effective level will be the level
+of the root logger.
+The level property specifies which logging levels are supported by the logging framework.
+To get information for a specific logger, pass the logger name (id) in the URL after the /loggers endpoint
+
+-------------------------------------------------------------
+/metrics
+The metrics endpoint shows all the metrics you can track for your application.
+If we need to check some individual metric, we request it by url after /metrics endpoint;
+for example:
+http://localhost:8080/actuator/metrics/jvm.memory.used

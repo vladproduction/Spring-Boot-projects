@@ -1,0 +1,5 @@
+localhost:9000/hello-world
+{"id":1,"content":"Hello, Stranger!"}
+
+localhost:9001/actuator/health
+{"status":"UP"}

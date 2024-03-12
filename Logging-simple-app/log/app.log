@@ -1,0 +1,74 @@
+2024-03-12T12:46:34.508+02:00  INFO 18364 --- [Logging-simple-app] [main] c.v.l.LoggingSimpleAppApplication        : Starting LoggingSimpleAppApplication using Java 17.0.8 with PID 18364 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-simple-app\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-simple-app)
+2024-03-12T12:46:34.511+02:00  INFO 18364 --- [Logging-simple-app] [main] c.v.l.LoggingSimpleAppApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T12:46:35.641+02:00  INFO 18364 --- [Logging-simple-app] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T12:46:35.655+02:00  INFO 18364 --- [Logging-simple-app] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T12:46:35.656+02:00  INFO 18364 --- [Logging-simple-app] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T12:46:35.706+02:00  INFO 18364 --- [Logging-simple-app] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T12:46:35.707+02:00  INFO 18364 --- [Logging-simple-app] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1112 ms
+2024-03-12T12:46:36.109+02:00  INFO 18364 --- [Logging-simple-app] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T12:46:36.119+02:00  INFO 18364 --- [Logging-simple-app] [main] c.v.l.LoggingSimpleAppApplication        : Started LoggingSimpleAppApplication in 2.168 seconds (process running for 2.832)
+2024-03-12T12:46:42.211+02:00  INFO 18364 --- [Logging-simple-app] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T12:46:42.211+02:00  INFO 18364 --- [Logging-simple-app] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T12:46:42.212+02:00  INFO 18364 --- [Logging-simple-app] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-12T12:46:42.324+02:00 DEBUG 18364 --- [Logging-simple-app] [http-nio-8080-exec-2] c.v.l.controller.MyController            : Request Item = Item{a=20, b=15, actionType=MINUS}
+2024-03-12T12:46:42.325+02:00  INFO 18364 --- [Logging-simple-app] [http-nio-8080-exec-2] c.v.l.controller.MyController            : result = 5
+2024-03-12T12:51:24.243+02:00  INFO 18480 --- [Logging-simple-app] [main] c.v.l.LoggingSimpleAppApplication        : Starting LoggingSimpleAppApplication using Java 17.0.8 with PID 18480 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-simple-app\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-simple-app)
+2024-03-12T12:51:24.246+02:00  INFO 18480 --- [Logging-simple-app] [main] c.v.l.LoggingSimpleAppApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T12:51:25.536+02:00  INFO 18480 --- [Logging-simple-app] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T12:51:25.551+02:00  INFO 18480 --- [Logging-simple-app] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T12:51:25.551+02:00  INFO 18480 --- [Logging-simple-app] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T12:51:25.608+02:00  INFO 18480 --- [Logging-simple-app] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T12:51:25.608+02:00  INFO 18480 --- [Logging-simple-app] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1267 ms
+2024-03-12T12:51:25.988+02:00  INFO 18480 --- [Logging-simple-app] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T12:51:25.996+02:00  INFO 18480 --- [Logging-simple-app] [main] c.v.l.LoggingSimpleAppApplication        : Started LoggingSimpleAppApplication in 2.248 seconds (process running for 2.869)
+2024-03-12 12:55:07,696 INFO com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] Starting LoggingSimpleAppApplication using Java 17.0.8 with PID 20840 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-simple-app\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-simple-app)
+2024-03-12 12:55:07,700 INFO com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-03-12 12:55:08,676 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-03-12 12:55:08,689 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-03-12 12:55:08,690 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12 12:55:08,748 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-03-12 12:55:08,749 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 991 ms
+2024-03-12 12:55:09,135 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-03-12 12:55:09,144 INFO com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] Started LoggingSimpleAppApplication in 1.94 seconds (process running for 2.687)
+2024-03-12 12:56:24,399 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12 12:56:24,401 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-03-12 12:56:24,402 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2024-03-12 12:56:24,520 DEBUG com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-1] Request Item = Item{a=25, b=15, actionType=MINUS}
+2024-03-12 12:56:24,521 INFO com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-1] result = 10
+2024-03-12 13:06:37,942 INFO com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] Starting LoggingSimpleAppApplication using Java 17.0.8 with PID 9716 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-simple-app\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-simple-app)
+2024-03-12 13:06:37,944 DEBUG com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] Running with Spring Boot v3.2.3, Spring v6.1.4
+2024-03-12 13:06:37,945 INFO com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-03-12 13:06:39,077 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-03-12 13:06:39,090 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-03-12 13:06:39,091 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12 13:06:39,145 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-03-12 13:06:39,146 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1134 ms
+2024-03-12 13:06:39,543 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-03-12 13:06:39,552 INFO com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] Started LoggingSimpleAppApplication in 2.215 seconds (process running for 2.907)
+2024-03-12 13:07:01,080 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12 13:07:01,080 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-03-12 13:07:01,081 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2024-03-12 13:07:01,176 TRACE com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-1] ===TRACE MSG
+2024-03-12 13:07:01,177 DEBUG com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-1] ===DEBUG MSG
+2024-03-12 13:07:01,177 INFO com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-1] ===INFO MSG
+2024-03-12 13:07:01,177 WARN com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-1] ===WARN MSG
+2024-03-12 13:07:01,177 ERROR com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-1] ===ERROR MSG
+2024-03-12 13:07:01,178 INFO com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-1] result = 10
+2024-03-12 13:08:25,235 INFO com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] Starting LoggingSimpleAppApplication using Java 17.0.8 with PID 14992 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-simple-app\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-simple-app)
+2024-03-12 13:08:25,238 DEBUG com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] Running with Spring Boot v3.2.3, Spring v6.1.4
+2024-03-12 13:08:25,238 INFO com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-03-12 13:08:26,393 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-03-12 13:08:26,406 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-03-12 13:08:26,407 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12 13:08:26,460 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-03-12 13:08:26,460 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1141 ms
+2024-03-12 13:08:26,897 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-03-12 13:08:26,909 INFO com.vladproduction.loggingsimpleapp.LoggingSimpleAppApplication [main] Started LoggingSimpleAppApplication in 2.261 seconds (process running for 3.132)
+2024-03-12 13:08:30,586 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12 13:08:30,587 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2024-03-12 13:08:30,588 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2024-03-12 13:08:30,693 DEBUG com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-2] ===DEBUG MSG
+2024-03-12 13:08:30,693 INFO com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-2] ===INFO MSG
+2024-03-12 13:08:30,693 WARN com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-2] ===WARN MSG
+2024-03-12 13:08:30,693 ERROR com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-2] ===ERROR MSG
+2024-03-12 13:08:30,694 INFO com.vladproduction.loggingsimpleapp.controller.MyController [http-nio-8080-exec-2] result = 10

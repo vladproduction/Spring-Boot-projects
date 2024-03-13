@@ -1,0 +1,6 @@
+2024-03-13 19:40:34.139099+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table [*]order (id bigint not null, customer_name varchar(255), total_price float(53) not null, primary key (id))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, customer_name varchar(255), total_price float(53) not null, primary key (id)) [42001-224]
+2024-03-13 19:41:46.971462+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select o1_0.id,o1_0.customer_name,o1_0.total_price from [*]order o1_0 where o1_0.id=?"; expected "identifier"; SQL statement:
+select o1_0.id,o1_0.customer_name,o1_0.total_price from order o1_0 where o1_0.id=? [42001-224]

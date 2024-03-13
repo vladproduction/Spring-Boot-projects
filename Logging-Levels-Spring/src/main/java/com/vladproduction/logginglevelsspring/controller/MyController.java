@@ -1,9 +1,14 @@
 package com.vladproduction.logginglevelsspring.controller;
 
 import com.vladproduction.logginglevelsspring.model.Employee;
+import com.vladproduction.logginglevelsspring.model.Order;
+import com.vladproduction.logginglevelsspring.model.Product;
+import com.vladproduction.logginglevelsspring.service.OrderService;
+import com.vladproduction.logginglevelsspring.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,6 +19,12 @@ import org.springframework.web.bind.annotation.*;
 public class MyController {
 
     private final Logger logger = LoggerFactory.getLogger(MyController.class);
+
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private OrderService orderService;
 
 
 
@@ -49,7 +60,7 @@ public class MyController {
 
 
     ////////////////////////    Conditional Logging:   ////////////////////////////
-    /*@GetMapping("/products/{id}")
+    @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable Long id) {
         Product product = productService.findById(id);
         if (product != null) {
@@ -59,19 +70,22 @@ public class MyController {
             logger.warn("Product with ID {} not found", id);
             return ResponseEntity.notFound().build();
         }
-    }*/
+    }
 
+    //todo
     ////////////////////////    Logging Exceptions:   ////////////////////////////
-    /*@PostMapping("/orders")
+    @PostMapping("/orders")
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
         try {
             orderService.createOrder(order);
             logger.info("Order created successfully");
+            logger.debug(order.toString());
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             logger.error("Error creating order", e);
             return ResponseEntity.badRequest().build();
         }
-    }*/
+    }
+
 
 }

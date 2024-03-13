@@ -1,0 +1,239 @@
+2024-03-12T22:10:03.850+02:00  INFO 9632 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T22:10:03.861+02:00  INFO 9632 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T22:10:03.861+02:00  INFO 9632 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T22:10:03.895+02:00  INFO 9632 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T22:10:03.896+02:00  INFO 9632 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 689 ms
+2024-03-12T22:10:04.148+02:00  INFO 9632 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T22:10:28.083+02:00  INFO 9632 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T22:10:28.084+02:00  INFO 9632 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T22:10:28.085+02:00  INFO 9632 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-03-12T22:12:18.099+02:00  INFO 20108 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T22:12:18.108+02:00  INFO 20108 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T22:12:18.109+02:00  INFO 20108 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T22:12:18.142+02:00  INFO 20108 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T22:12:18.142+02:00  INFO 20108 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 639 ms
+2024-03-12T22:12:18.388+02:00  INFO 20108 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T22:12:24.623+02:00  INFO 20108 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T22:12:24.623+02:00  INFO 20108 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T22:12:24.624+02:00  INFO 20108 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-12T22:12:24.649+02:00 ERROR 20108 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.EmployeeController      : ===ERROR=== 
+2024-03-12T22:13:23.331+02:00  INFO 11808 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T22:13:23.341+02:00  INFO 11808 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T22:13:23.341+02:00  INFO 11808 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T22:13:23.375+02:00  INFO 11808 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T22:13:23.376+02:00  INFO 11808 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 607 ms
+2024-03-12T22:13:23.624+02:00  INFO 11808 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T22:13:42.123+02:00  INFO 11808 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T22:13:42.124+02:00  INFO 11808 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T22:13:42.124+02:00  INFO 11808 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-03-12T22:13:42.148+02:00 ERROR 11808 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] c.v.l.controller.EmployeeController      : ===ERROR=== 
+2024-03-12T22:16:36.405+02:00  INFO 9364 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T22:16:36.415+02:00  INFO 9364 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T22:16:36.415+02:00  INFO 9364 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T22:16:36.450+02:00  INFO 9364 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T22:16:36.450+02:00  INFO 9364 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 652 ms
+2024-03-12T22:16:36.708+02:00  INFO 9364 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T22:16:48.271+02:00  INFO 9364 --- [Logging-Levels-Spring] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T22:16:48.272+02:00  INFO 9364 --- [Logging-Levels-Spring] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T22:16:48.272+02:00  INFO 9364 --- [Logging-Levels-Spring] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-03-12T22:16:48.298+02:00  WARN 9364 --- [Logging-Levels-Spring] [http-nio-8080-exec-3] c.v.l.controller.EmployeeController      : ===WARN=== 
+2024-03-12T22:16:48.299+02:00 ERROR 9364 --- [Logging-Levels-Spring] [http-nio-8080-exec-3] c.v.l.controller.EmployeeController      : ===ERROR=== 
+2024-03-12T22:28:20.838+02:00  INFO 19140 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Starting LoggingLevelsSpringApplication using Java 17.0.8 with PID 19140 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring)
+2024-03-12T22:28:20.841+02:00  INFO 19140 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T22:28:21.458+02:00  INFO 19140 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T22:28:21.466+02:00  INFO 19140 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T22:28:21.467+02:00  INFO 19140 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T22:28:21.501+02:00  INFO 19140 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T22:28:21.501+02:00  INFO 19140 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 623 ms
+2024-03-12T22:28:21.774+02:00  INFO 19140 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T22:28:21.780+02:00  INFO 19140 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Started LoggingLevelsSpringApplication in 1.245 seconds (process running for 1.59)
+2024-03-12T22:28:33.341+02:00  INFO 19140 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T22:28:33.342+02:00  INFO 19140 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T22:28:33.342+02:00  INFO 19140 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-03-12T22:28:33.368+02:00  INFO 19140 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.EmployeeController      : ===INFO=== 
+2024-03-12T22:28:33.368+02:00  WARN 19140 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.EmployeeController      : ===WARN=== 
+2024-03-12T22:28:33.368+02:00 ERROR 19140 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.EmployeeController      : ===ERROR=== 
+2024-03-12T22:30:42.355+02:00  INFO 1548 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Starting LoggingLevelsSpringApplication using Java 17.0.8 with PID 1548 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring)
+2024-03-12T22:30:42.356+02:00  INFO 1548 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T22:30:43.092+02:00  INFO 1548 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T22:30:43.102+02:00  INFO 1548 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T22:30:43.102+02:00  INFO 1548 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T22:30:43.139+02:00  INFO 1548 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T22:30:43.139+02:00  INFO 1548 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 734 ms
+2024-03-12T22:30:43.429+02:00  INFO 1548 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T22:30:43.435+02:00  INFO 1548 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Started LoggingLevelsSpringApplication in 1.418 seconds (process running for 1.815)
+2024-03-12T22:30:48.378+02:00  INFO 1548 --- [Logging-Levels-Spring] [http-nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T22:30:48.379+02:00  INFO 1548 --- [Logging-Levels-Spring] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T22:30:48.380+02:00  INFO 1548 --- [Logging-Levels-Spring] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-12T22:30:48.414+02:00  INFO 1548 --- [Logging-Levels-Spring] [http-nio-8080-exec-4] c.v.l.controller.EmployeeController      : ===INFO=== 
+2024-03-12T22:30:48.415+02:00  WARN 1548 --- [Logging-Levels-Spring] [http-nio-8080-exec-4] c.v.l.controller.EmployeeController      : ===WARN=== 
+2024-03-12T22:30:48.415+02:00 ERROR 1548 --- [Logging-Levels-Spring] [http-nio-8080-exec-4] c.v.l.controller.EmployeeController      : ===ERROR=== 
+2024-03-12T22:32:10.985+02:00  INFO 14528 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Starting LoggingLevelsSpringApplication using Java 17.0.8 with PID 14528 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring)
+2024-03-12T22:32:10.986+02:00 DEBUG 14528 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Running with Spring Boot v3.2.3, Spring v6.1.4
+2024-03-12T22:32:10.987+02:00  INFO 14528 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T22:32:11.681+02:00  INFO 14528 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T22:32:11.692+02:00  INFO 14528 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T22:32:11.693+02:00  INFO 14528 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T22:32:11.731+02:00  INFO 14528 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T22:32:11.731+02:00  INFO 14528 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 703 ms
+2024-03-12T22:32:12.020+02:00  INFO 14528 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T22:32:12.026+02:00  INFO 14528 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Started LoggingLevelsSpringApplication in 1.322 seconds (process running for 1.691)
+2024-03-12T22:32:17.508+02:00  INFO 14528 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T22:32:17.508+02:00  INFO 14528 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T22:32:17.509+02:00  INFO 14528 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-12T22:32:17.535+02:00 DEBUG 14528 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] c.v.l.controller.EmployeeController      : ===DEBUG=== 
+2024-03-12T22:32:17.535+02:00  INFO 14528 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] c.v.l.controller.EmployeeController      : ===INFO=== 
+2024-03-12T22:32:17.535+02:00  WARN 14528 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] c.v.l.controller.EmployeeController      : ===WARN=== 
+2024-03-12T22:32:17.535+02:00 ERROR 14528 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] c.v.l.controller.EmployeeController      : ===ERROR=== 
+2024-03-12T22:35:48.593+02:00  INFO 3192 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Starting LoggingLevelsSpringApplication using Java 17.0.8 with PID 3192 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring)
+2024-03-12T22:35:48.594+02:00 DEBUG 3192 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Running with Spring Boot v3.2.3, Spring v6.1.4
+2024-03-12T22:35:48.595+02:00  INFO 3192 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T22:35:49.224+02:00  INFO 3192 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T22:35:49.232+02:00  INFO 3192 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T22:35:49.232+02:00  INFO 3192 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T22:35:49.267+02:00  INFO 3192 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T22:35:49.267+02:00  INFO 3192 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 632 ms
+2024-03-12T22:35:49.526+02:00  INFO 3192 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T22:35:49.532+02:00  INFO 3192 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Started LoggingLevelsSpringApplication in 1.24 seconds (process running for 1.583)
+2024-03-12T22:35:52.370+02:00  INFO 3192 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T22:35:52.371+02:00  INFO 3192 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T22:35:52.371+02:00  INFO 3192 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-03-12T22:35:52.401+02:00  INFO 3192 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.EmployeeController      : ===INFO=== 
+2024-03-12T22:35:52.401+02:00  WARN 3192 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.EmployeeController      : ===WARN=== 
+2024-03-12T22:35:52.401+02:00 ERROR 3192 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.EmployeeController      : ===ERROR=== 
+2024-03-12T22:36:38.700+02:00  INFO 12464 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Starting LoggingLevelsSpringApplication using Java 17.0.8 with PID 12464 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring)
+2024-03-12T22:36:38.701+02:00 DEBUG 12464 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Running with Spring Boot v3.2.3, Spring v6.1.4
+2024-03-12T22:36:38.702+02:00  INFO 12464 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T22:36:39.332+02:00  INFO 12464 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T22:36:39.341+02:00  INFO 12464 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T22:36:39.341+02:00  INFO 12464 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T22:36:39.375+02:00  INFO 12464 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T22:36:39.375+02:00  INFO 12464 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 635 ms
+2024-03-12T22:36:39.632+02:00  INFO 12464 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T22:36:39.638+02:00  INFO 12464 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Started LoggingLevelsSpringApplication in 1.236 seconds (process running for 1.591)
+2024-03-12T22:36:48.000+02:00  INFO 12464 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T22:36:48.001+02:00  INFO 12464 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T22:36:48.001+02:00  INFO 12464 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-03-12T22:36:48.025+02:00  INFO 12464 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.EmployeeController      : ===INFO=== 
+2024-03-12T22:36:48.025+02:00  WARN 12464 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.EmployeeController      : ===WARN=== 
+2024-03-12T22:36:48.025+02:00 ERROR 12464 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.EmployeeController      : ===ERROR=== 
+2024-03-12T22:55:46.775+02:00  INFO 9752 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Starting LoggingLevelsSpringApplication using Java 17.0.8 with PID 9752 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring)
+2024-03-12T22:55:46.776+02:00 DEBUG 9752 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Running with Spring Boot v3.2.3, Spring v6.1.4
+2024-03-12T22:55:46.777+02:00  INFO 9752 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T22:55:47.396+02:00  INFO 9752 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T22:55:47.405+02:00  INFO 9752 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T22:55:47.405+02:00  INFO 9752 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T22:55:47.439+02:00  INFO 9752 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T22:55:47.440+02:00  INFO 9752 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 625 ms
+2024-03-12T22:55:47.559+02:00  WARN 9752 --- [Logging-Levels-Spring] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invalid mapping on handler class [com.vladproduction.logginglevelsspring.controller.MyController]: public java.lang.String com.vladproduction.logginglevelsspring.controller.MyController.sayHello(java.lang.String)
+2024-03-12T22:55:47.561+02:00  INFO 9752 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-03-12T22:55:47.569+02:00  INFO 9752 --- [Logging-Levels-Spring] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-03-12T22:55:47.584+02:00 ERROR 9752 --- [Logging-Levels-Spring] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invalid mapping on handler class [com.vladproduction.logginglevelsspring.controller.MyController]: public java.lang.String com.vladproduction.logginglevelsspring.controller.MyController.sayHello(java.lang.String)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959) ~[spring-context-6.1.4.jar:6.1.4]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.4.jar:6.1.4]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.3.jar:3.2.3]
+	at com.vladproduction.logginglevelsspring.LoggingLevelsSpringApplication.main(LoggingLevelsSpringApplication.java:10) ~[classes/:na]
+Caused by: java.lang.IllegalStateException: Invalid mapping on handler class [com.vladproduction.logginglevelsspring.controller.MyController]: public java.lang.String com.vladproduction.logginglevelsspring.controller.MyController.sayHello(java.lang.String)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$1(AbstractHandlerMethodMapping.java:287) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.core.MethodIntrospector.lambda$selectMethods$0(MethodIntrospector.java:74) ~[spring-core-6.1.4.jar:6.1.4]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:366) ~[spring-core-6.1.4.jar:6.1.4]
+	at org.springframework.core.MethodIntrospector.selectMethods(MethodIntrospector.java:72) ~[spring-core-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:280) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:239) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.4.jar:6.1.4]
+	... 16 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'name' in value "/hello/${name}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180) ~[spring-core-6.1.4.jar:6.1.4]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126) ~[spring-core-6.1.4.jar:6.1.4]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239) ~[spring-core-6.1.4.jar:6.1.4]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210) ~[spring-core-6.1.4.jar:6.1.4]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:200) ~[spring-context-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:921) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.beans.factory.config.EmbeddedValueResolver.resolveStringValue(EmbeddedValueResolver.java:54) ~[spring-beans-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.resolveEmbeddedValuesInPatterns(RequestMappingHandlerMapping.java:472) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.createRequestMappingInfo(RequestMappingHandlerMapping.java:423) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.createRequestMappingInfo(RequestMappingHandlerMapping.java:363) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.getMappingForMethod(RequestMappingHandlerMapping.java:317) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.getMappingForMethod(RequestMappingHandlerMapping.java:84) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$1(AbstractHandlerMethodMapping.java:283) ~[spring-webmvc-6.1.4.jar:6.1.4]
+	... 26 common frames omitted
+
+2024-03-12T23:00:09.814+02:00  INFO 1536 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Starting LoggingLevelsSpringApplication using Java 17.0.8 with PID 1536 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring)
+2024-03-12T23:00:09.816+02:00 DEBUG 1536 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Running with Spring Boot v3.2.3, Spring v6.1.4
+2024-03-12T23:00:09.817+02:00  INFO 1536 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T23:00:10.631+02:00  INFO 1536 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T23:00:10.644+02:00  INFO 1536 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T23:00:10.644+02:00  INFO 1536 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T23:00:10.685+02:00  INFO 1536 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T23:00:10.685+02:00  INFO 1536 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 821 ms
+2024-03-12T23:00:10.987+02:00  INFO 1536 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T23:00:10.994+02:00  INFO 1536 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Started LoggingLevelsSpringApplication in 1.509 seconds (process running for 1.853)
+2024-03-12T23:01:23.357+02:00  INFO 1536 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T23:01:23.358+02:00  INFO 1536 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T23:01:23.359+02:00  INFO 1536 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-12T23:01:23.373+02:00  INFO 1536 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.MyController            : Get request received for '/hello'
+2024-03-12T23:02:52.455+02:00  INFO 14560 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Starting LoggingLevelsSpringApplication using Java 17.0.8 with PID 14560 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring)
+2024-03-12T23:02:52.456+02:00 DEBUG 14560 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Running with Spring Boot v3.2.3, Spring v6.1.4
+2024-03-12T23:02:52.457+02:00  INFO 14560 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T23:02:53.078+02:00  INFO 14560 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T23:02:53.087+02:00  INFO 14560 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T23:02:53.088+02:00  INFO 14560 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T23:02:53.120+02:00  INFO 14560 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T23:02:53.120+02:00  INFO 14560 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 626 ms
+2024-03-12T23:02:53.374+02:00  INFO 14560 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T23:02:53.380+02:00  INFO 14560 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Started LoggingLevelsSpringApplication in 1.223 seconds (process running for 1.568)
+2024-03-12T23:03:03.187+02:00  INFO 14560 --- [Logging-Levels-Spring] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T23:03:03.187+02:00  INFO 14560 --- [Logging-Levels-Spring] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T23:03:03.187+02:00  INFO 14560 --- [Logging-Levels-Spring] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-03-12T23:03:03.206+02:00  INFO 14560 --- [Logging-Levels-Spring] [http-nio-8080-exec-3] c.v.l.controller.MyController            : Get request received for '/hello' - info
+2024-03-12T23:03:29.336+02:00  INFO 8240 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Starting LoggingLevelsSpringApplication using Java 17.0.8 with PID 8240 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring)
+2024-03-12T23:03:29.338+02:00 DEBUG 8240 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Running with Spring Boot v3.2.3, Spring v6.1.4
+2024-03-12T23:03:29.339+02:00  INFO 8240 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T23:03:30.333+02:00  INFO 8240 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T23:03:30.345+02:00  INFO 8240 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T23:03:30.346+02:00  INFO 8240 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T23:03:30.390+02:00  INFO 8240 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T23:03:30.390+02:00  INFO 8240 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 994 ms
+2024-03-12T23:03:30.713+02:00  INFO 8240 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T23:03:30.720+02:00  INFO 8240 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Started LoggingLevelsSpringApplication in 1.809 seconds (process running for 2.334)
+2024-03-12T23:03:33.976+02:00  INFO 8240 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T23:03:33.977+02:00  INFO 8240 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T23:03:33.977+02:00  INFO 8240 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-03-12T23:03:33.996+02:00  INFO 8240 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] c.v.l.controller.MyController            : Get request received for '/hello' - info
+2024-03-12T23:03:33.997+02:00 DEBUG 8240 --- [Logging-Levels-Spring] [http-nio-8080-exec-1] c.v.l.controller.MyController            : Get request received for '/hello' - debug
+2024-03-12T23:21:20.528+02:00  INFO 3300 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Starting LoggingLevelsSpringApplication using Java 17.0.8 with PID 3300 (C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring\target\classes started by admin in C:\Users\admin\Desktop\GitHub-Repo\Spring\Logging-Levels-Spring)
+2024-03-12T23:21:20.530+02:00  INFO 3300 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T23:21:21.399+02:00  INFO 3300 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-12T23:21:21.410+02:00  INFO 3300 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-12T23:21:21.410+02:00  INFO 3300 --- [Logging-Levels-Spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-12T23:21:21.450+02:00  INFO 3300 --- [Logging-Levels-Spring] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-12T23:21:21.451+02:00  INFO 3300 --- [Logging-Levels-Spring] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 857 ms
+2024-03-12T23:21:21.742+02:00  INFO 3300 --- [Logging-Levels-Spring] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-12T23:21:21.749+02:00  INFO 3300 --- [Logging-Levels-Spring] [main] c.v.l.LoggingLevelsSpringApplication     : Started LoggingLevelsSpringApplication in 1.597 seconds (process running for 2.007)
+2024-03-12T23:23:31.740+02:00  INFO 3300 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12T23:23:31.741+02:00  INFO 3300 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-12T23:23:31.742+02:00  INFO 3300 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-03-12T23:23:31.831+02:00  INFO 3300 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.MyController            : @PostMapping(/employee) creating started
+2024-03-12T23:23:31.832+02:00 DEBUG 3300 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.MyController            : Creating Employee with firstName: Jack, lastName: Black, age: 23, hiringDate: 2023-10-24T21:00:00Z, role: DEVELOPER
+2024-03-12T23:23:31.833+02:00  INFO 3300 --- [Logging-Levels-Spring] [http-nio-8080-exec-2] c.v.l.controller.MyController            : @PostMapping(/employee) creating finished

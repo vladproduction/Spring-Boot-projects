@@ -1,0 +1,33 @@
+The logging levels are used to control the amount and type of information added to the log statements.
+
+*ALL
+used to turn on all levels of logging. Once this is configured, other levels are not considered at all, including custom levels.
+
+*TRACE
+was introduced in version 1.2 and adds even more information to debug level logs.
+At this level, the amount of logs generated can be overwhelming so be careful.
+
+*DEBUG
+is used to log the fine-grained informational events that are most useful to debug an application.
+This level is turned off in the production environment, until it needs to be turned on to debug critical production
+issues that are not reproducible in the development environment.
+
+*INFO
+is the most used level in production and logs informational messages that highlight the progress of the application
+at coarse-grained level.
+In real-time, system administrators watch the info logs to ensure what’s happening on the system right now,
+and if there is any problem everything is alright in the system.
+
+*WARN
+suggests that the application might be continued, but we should take extra caution.
+Generally, the applications can tolerate warning messages, but they should always be justified and examined.
+
+*ERROR
+shouts at us that something had gone terribly wrong, and we must investigate immediately. It simply means that the application
+has met really undesired state. For example database unavailability, or unexpected formatted input etc.
+
+*FATAL
+signals very bad news the ERROR, even the application crash.
+
+*OFF
+Simple enough. NO LOGGING !!!

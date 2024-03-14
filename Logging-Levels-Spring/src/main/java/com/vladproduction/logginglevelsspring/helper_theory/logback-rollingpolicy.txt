@@ -1,0 +1,19 @@
+The property logging.logback.rollingpolicy.clean-history-on-start=true is used in conjunction with Logback,
+a popular logging framework for Java applications.
+
+Here's a breakdown of what it does:
+*logging.logback.rollingpolicy: This part specifies that the property is related to Logback's rolling policy configuration.
+*rollingpolicy: A rolling policy determines how log files are managed when they reach a certain size or age. It can trigger
+actions like creating a new log file, compressing old ones, or deleting them.
+*clean-history-on-start: This specific property instructs the rolling policy to delete existing archived log files when the
+application starts.
+*=true: Sets the clean-history-on-start property to true, enabling the deletion of archived logs on startup.
+
+In simpler terms, with this property set to true, whenever your application starts, Logback will automatically remove any
+previously archived log files associated with the rolling policy. This can be useful for:
+-Starting fresh: Ensures you begin with a clean log set for each application run.
+-Disk space management: Helps prevent log files from accumulating and consuming excessive storage space.
+
+Things to keep in mind:
+This property only works with rolling policies that support archive deletion.
+Ensure you have a backup strategy in place if you need to access historical logs.

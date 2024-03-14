@@ -1,6 +1,9 @@
 package com.vladproduction.logginglevelsspring.model;
 
 
+import jakarta.validation.constraints.NotBlank;
+import org.springframework.lang.NonNull;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * Created by vladproduction on 13-Mar-24
@@ -10,6 +13,7 @@ package com.vladproduction.logginglevelsspring.model;
 public class Order {
 
     private Long id;
+    @NotBlank(message = "customerName; should be set")
     private String customerName;
     private double totalPrice;
 
@@ -20,6 +24,7 @@ public class Order {
     }
 
     public Order() {
+
 
     }
 

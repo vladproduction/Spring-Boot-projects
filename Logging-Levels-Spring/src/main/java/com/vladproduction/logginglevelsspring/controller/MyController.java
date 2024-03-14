@@ -5,6 +5,7 @@ import com.vladproduction.logginglevelsspring.model.Order;
 import com.vladproduction.logginglevelsspring.model.Product;
 import com.vladproduction.logginglevelsspring.service.OrderService;
 import com.vladproduction.logginglevelsspring.service.ProductService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,17 +73,17 @@ public class MyController {
         }
     }
 
-    //todo
+
     ////////////////////////    Logging Exceptions:   ////////////////////////////
     @PostMapping("/orders")
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    public ResponseEntity<Order> createOrder(@RequestBody @Valid Order order) {
         try {
             orderService.createOrder(order);
             logger.info("Order created successfully");
             logger.debug(order.toString());
             return ResponseEntity.ok().build();
         } catch (Exception e) {
-            logger.error("Error creating order", e);
+            logger.error("Error creating order", e); //todo: try to catch exception and see error logger message
             return ResponseEntity.badRequest().build();
         }
     }

@@ -1,0 +1,16 @@
+ACID in Java Applications:
+
+Java applications interact with databases to perform CRUD (Create, Read, Update, Delete) operations.
+To achieve ACID guarantees, developers rely on the underlying DBMS features:
+-1-JDBC (Java Database Connectivity) API:
+Provides methods for interacting with databases but doesn't enforce ACID itself.
+-2-Transactions in DBMS: Developers initiate transactions using the specific database's mechanisms
+(e.g., SQL statements like BEGIN TRANSACTION, COMMIT, and ROLLBACK). The DBMS manages the ACID properties.
+
+Some Frameworks and techniques:
+
+-#- Object-Relational Mapping (ORM) frameworks like Hibernate or JPA can simplify transaction management by
+    abstracting the underlying database interactions.
+
+-#- Java Transaction API (JTA): Provides a standardized way to manage transactions across multiple resources,
+    including databases.

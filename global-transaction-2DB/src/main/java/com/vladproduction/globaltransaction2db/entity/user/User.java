@@ -1,4 +1,4 @@
-package com.vladproduction.globaltransaction2db.entity;
+package com.vladproduction.globaltransaction2db.entity.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,12 +10,13 @@ import jakarta.persistence.Id;
  */
 
 @Entity
-public class Person {
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private int age;
+    private String userName;
+    private int userAge;
 
     public Long getId() {
         return id;
@@ -25,19 +26,19 @@ public class Person {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public int getAge() {
-        return age;
+    public int getUserAge() {
+        return userAge;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setUserAge(int userAge) {
+        this.userAge = userAge;
     }
 }

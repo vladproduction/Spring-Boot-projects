@@ -1,7 +1,7 @@
 package com.vladproduction.globaltransaction2db.service;
 
-import com.vladproduction.globaltransaction2db.entity.Person;
-import com.vladproduction.globaltransaction2db.entity.User;
+import com.vladproduction.globaltransaction2db.entity.person.Person;
+import com.vladproduction.globaltransaction2db.entity.user.User;
 import com.vladproduction.globaltransaction2db.repository.PersonRepository;
 import com.vladproduction.globaltransaction2db.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class MyService {
 
     @Autowired
     private PersonRepository personRepository;
-    @Autowired
+//    @Autowired
     private UserRepository userRepository;
 
     public void process(){

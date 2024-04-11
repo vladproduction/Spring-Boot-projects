@@ -14,12 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional
 public class MyService {
 
     @Autowired
     private PersonRepository personRepository;
-//    @Autowired
+
+    @Autowired
     private UserRepository userRepository;
 
     public void process(){

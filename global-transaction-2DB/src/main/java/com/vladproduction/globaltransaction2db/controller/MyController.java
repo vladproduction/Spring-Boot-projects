@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("api/global-transaction-2DB")
 public class MyController {
 
     @Autowired
     private MyService myService;
 
-    @GetMapping("action")
-    public void doAction(){
+    @GetMapping("/doProcess")
+    public void doProcess(){
+
         myService.process();
     }
 

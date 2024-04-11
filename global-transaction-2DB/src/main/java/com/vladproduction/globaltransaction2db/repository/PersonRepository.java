@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,9 +16,13 @@ import org.springframework.stereotype.Repository;
 public class PersonRepository {
 
     @Autowired
-    private EntityManagerFactory personEntityManager;
+    @Qualifier("personEntityManagerFactory")
+    private EntityManagerFactory personEntityManagerFactory;
 
     public void save(Person person){
-//        personEntityManager.persist(person);
+        EntityManager entityManager = personEntityManagerFactory.createEntityManager();
+        entityManager.persist(person);
+        entityManager.flush();
+        entityManager.close();
     }
 }

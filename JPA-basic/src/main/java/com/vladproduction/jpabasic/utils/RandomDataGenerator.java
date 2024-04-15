@@ -15,7 +15,7 @@ public class RandomDataGenerator {
 
     public static String uniqueContactPhone(String base){
         StringBuilder sb = new StringBuilder();
-        sb.append("+38(").append(base).append(")");
+        sb.append("38(").append(base).append(")");
         sb.append(new Random().nextInt(100, 999)).append("-");
         sb.append(new Random().nextInt(10, 99)).append("-");
         sb.append(new Random().nextInt(10, 99));

@@ -5,12 +5,9 @@ import com.vladproduction.jpabasic.entity.Student;
 import com.vladproduction.jpabasic.mapper.StudentMapper;
 import com.vladproduction.jpabasic.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,35 +22,93 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    //=====Save Student REST API=====
+
     @PostMapping("/saveStudent")
-    public ResponseEntity<StudentDto> saveStudent(@RequestBody Student student){
-        return ResponseEntity.ok(studentService.saveStudent(student)); //expected status: 200
+    public ResponseEntity<StudentDto> saveStudent(
+            @RequestBody StudentDto studentDto) {
+        Student student = StudentMapper.mapToStudent(studentDto);
+        Student saveStudent = studentService.saveStudent(student);
+        StudentDto saveStudentDto = StudentMapper.mapToStudentDto(saveStudent);
+        return ResponseEntity.ok(saveStudentDto); //expected status: 200
     }
-//    @PostMapping("/saveStudent")
-//    public ResponseEntity<StudentDto> saveStudent(@RequestBody StudentDto studentDto){
-//        return new ResponseEntity<>(studentService.saveStudent(studentDto), HttpStatus.CREATED); //expected status: 201
-//    }
 
-    //=====FindAll Students REST API=====
     @GetMapping("/findAllStudents")
-    public ResponseEntity<List<StudentDto>> findAllStudents(){
-        return ResponseEntity.ok(studentService.findAllStudents());
+    public ResponseEntity<List<StudentDto>> findAllStudents() {
+        List<Student> students = studentService.findAllStudents();
+        List<StudentDto> studentDtoList = StudentMapper.mapToStudentsDto(students);
+        return ResponseEntity.ok(studentDtoList);
     }
 
-    //=====Find StudentById REST API=====
     @GetMapping("/findStudentById/{studentId}")
-    public ResponseEntity<Optional<StudentDto>> findStudentById(@PathVariable Long studentId){
-        Optional<StudentDto> studentById = studentService.findStudentById(studentId);
-        return ResponseEntity.ok(studentById);
+    public ResponseEntity<Optional<StudentDto>> findStudentById(
+            @PathVariable Long studentId) {
+        Optional<Student> studentById = studentService.findStudentById(studentId);
+        if (studentById.isPresent()) {
+            Student student = studentById.get();
+            StudentDto studentDto = StudentMapper.mapToStudentDto(student);
+            return ResponseEntity.ok(Optional.of(studentDto));
+        }
+        return ResponseEntity.notFound().build();
     }
 
-    //=====Find StudentByEmail REST API=====
     @GetMapping("/findStudentByEmail")
-    public ResponseEntity<StudentDto> findStudentByEmail(@RequestParam String email){
-        return ResponseEntity.ok(studentService.findStudentByEmail(email));
+    public ResponseEntity<Optional<StudentDto>> findStudentByStudentEmail(
+            @RequestParam String studentEmail) {
+        Optional<Student> studentByEmail = studentService.findStudentByStudentEmail(studentEmail);
+        if (studentByEmail.isPresent()){
+            Student student = studentByEmail.get();
+            StudentDto studentDto = StudentMapper.mapToStudentDto(student);
+            return ResponseEntity.ok(Optional.of(studentDto));
+        }
+        return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/findStudentByLastName")
+    public ResponseEntity<Optional<StudentDto>> findStudentByLastName(
+            @RequestParam String lastName) {
+        Optional<Student> studentByLastName = studentService.findStudentByLastName(lastName);
+        if(studentByLastName.isPresent()){
+            Student student = studentByLastName.get();
+            StudentDto studentDto = StudentMapper.mapToStudentDto(student);
+            return ResponseEntity.ok(Optional.of(studentDto));
+        }
+        return ResponseEntity.notFound().build();
+    }
 
+//    @GetMapping("/findStudentsByDegree_Doctor")
+//    public ResponseEntity<Optional<List<StudentDto>>> findStudentsByAcademicPerformanceDegree_Doctor() {
+//        Optional<List<Student>> studentsDoctor = studentService
+//                .findStudentsByAcademicPerformanceDegree_Doctor();
+//        if(studentsDoctor.isPresent()){
+//            List<Student> students = studentsDoctor.get();
+//            List<StudentDto> studentDtoList = StudentMapper.mapToStudentsDto(students);
+//            return ResponseEntity.ok(Optional.of(studentDtoList));
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
+//
+//    @GetMapping("/findStudentsByDegree_Master")
+//    public ResponseEntity<Optional<List<StudentDto>>> findStudentsByAcademicPerformanceDegree_Master() {
+//        Optional<List<Student>> studentsMaster = studentService
+//                .findStudentsByAcademicPerformanceDegree_Master();
+//        if(studentsMaster.isPresent()){
+//            List<Student> students = studentsMaster.get();
+//            List<StudentDto> studentDtoList = StudentMapper.mapToStudentsDto(students);
+//            return ResponseEntity.ok(Optional.of(studentDtoList));
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
+//
+//    @GetMapping("/findStudentsByDegree_Bachelor")
+//    public ResponseEntity<Optional<List<StudentDto>>> findStudentsByAcademicPerformanceDegree_Bachelor() {
+//        Optional<List<Student>> studentsBachelor = studentService
+//                .findStudentsByAcademicPerformanceDegree_Bachelor();
+//        if(studentsBachelor.isPresent()){
+//            List<Student> students = studentsBachelor.get();
+//            List<StudentDto> studentDtoList = StudentMapper.mapToStudentsDto(students);
+//            return ResponseEntity.ok(Optional.of(studentDtoList));
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
 
 }

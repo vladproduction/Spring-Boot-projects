@@ -27,6 +27,9 @@ import lombok.NoArgsConstructor;
 })
 public class AcademicPerformance {
 
+    @Enumerated(
+            value = EnumType.STRING
+    )
     private Degree degree;
     private double value;
 }

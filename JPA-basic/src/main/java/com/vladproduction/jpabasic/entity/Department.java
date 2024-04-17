@@ -17,8 +17,8 @@ import lombok.*;
         name = "tbl_department",
         uniqueConstraints = {
                 @UniqueConstraint(
-                        name = "department_contact_phone",
-                        columnNames = "contact_phone"
+                        name = "department_phone",
+                        columnNames = "department_phone"
                 )
         }
 )
@@ -45,21 +45,19 @@ public class Department {
             nullable = false,
             columnDefinition = "TEXT"
     )
-    private String name;
+    private String departmentName;
 
     @Column(
-            name = "contact_phone",
+            name = "department_phone",
             nullable = false,
             columnDefinition = "VARCHAR(255)"
     )
-    private String contactPhone;
+    private String departmentPhone;
 
     @Column(
             name = "location",
             nullable = false,
             columnDefinition = "TEXT"
     )
-    private String location;
-
-    //defining relations:
+    private String departmentLocation;
 }

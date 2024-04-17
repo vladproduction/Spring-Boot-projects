@@ -24,28 +24,66 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @PostMapping("/saveDepartment")
-    public ResponseEntity<DepartmentDto> saveDepartment(@RequestBody Department department){
-        return ResponseEntity.ok(departmentService.saveDepartment(department));
+    public ResponseEntity<DepartmentDto> saveDepartment(
+            @RequestBody DepartmentDto departmentDto){
+        Department department = DepartmentMapper.mapToDepartment(departmentDto);
+        Department saveDepartment = departmentService.saveDepartment(department);
+        return ResponseEntity.ok(DepartmentMapper.mapToDepartmentDto(saveDepartment));
     }
 
     @GetMapping("/findAllDepartments")
     public ResponseEntity<List<DepartmentDto>> findAllDepartments(){
-        return ResponseEntity.ok(departmentService.findAllDepartments());
+        List<Department> allDepartments = departmentService.findAllDepartments();
+        List<DepartmentDto> departmentDtoList = DepartmentMapper.mapToDepartmentsDto(allDepartments);
+        return ResponseEntity.ok(departmentDtoList);
     }
 
     @GetMapping("/findDepartmentById/{departmentId}")
-    public ResponseEntity<Optional<DepartmentDto>> findDepartmentById(@PathVariable Long departmentId){
-        Optional<DepartmentDto> departmentById = departmentService.findDepartmentById(departmentId);
-        return ResponseEntity.ok(departmentById);
+    public ResponseEntity<Optional<DepartmentDto>> findDepartmentById(
+            @PathVariable Long departmentId){
+        Optional<Department> departmentById = departmentService.findDepartmentById(departmentId);
+        if (departmentById.isPresent()){
+            Department department = departmentById.get();
+            DepartmentDto departmentDto = DepartmentMapper.mapToDepartmentDto(department);
+            return ResponseEntity.ok(Optional.of(departmentDto));
+        }
+        return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/findByContactPhone")
-    public ResponseEntity<DepartmentDto> findByContactPhone(@RequestParam String contactPhone){
-        return ResponseEntity.ok(departmentService.findByContactPhone(contactPhone));
+    @GetMapping("/findDepartmentByLocation")
+    public ResponseEntity<Optional<DepartmentDto>> findDepartmentByDepartmentLocation(
+            @RequestParam String departmentLocation){
+        Optional<Department> departmentOptional = departmentService.findDepartmentByDepartmentLocation(departmentLocation);
+        if (departmentOptional.isPresent()){
+            Department department = departmentOptional.get();
+            DepartmentDto departmentDto = DepartmentMapper.mapToDepartmentDto(department);
+            return ResponseEntity.ok(Optional.of(departmentDto));
+        }
+        return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/findDepartmentByName")
-    public ResponseEntity<DepartmentDto> findDepartmentByName(@RequestParam String department){
-        return ResponseEntity.ok(departmentService.findDepartmentByName(department));
+    @GetMapping("/findByDepartmentPhone")
+    public ResponseEntity<Optional<DepartmentDto>> findByDepartmentPhone(
+            @RequestParam String departmentPhone){
+        Optional<Department> optionalDepartment = departmentService.findByDepartmentPhone(departmentPhone);
+        if (optionalDepartment.isPresent()){
+            Department department = optionalDepartment.get();
+            DepartmentDto departmentDto = DepartmentMapper.mapToDepartmentDto(department);
+            return ResponseEntity.ok(Optional.of(departmentDto));
+        }
+        return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/findByDepartmentName")
+    public ResponseEntity<Optional<DepartmentDto>> findByDepartmentName(
+            @RequestParam String departmentName){
+        Optional<Department> optionalDepartment = departmentService.findByDepartmentName(departmentName);
+        if (optionalDepartment.isPresent()){
+            Department department = optionalDepartment.get();
+            DepartmentDto departmentDto = DepartmentMapper.mapToDepartmentDto(department);
+            return ResponseEntity.ok(Optional.of(departmentDto));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }

@@ -1,11 +1,10 @@
 package com.vladproduction.jpabasic.repository;
 
-import com.vladproduction.jpabasic.dto.StudentDto;
 import com.vladproduction.jpabasic.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -15,5 +14,13 @@ import java.util.Optional;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    StudentDto findStudentByEmail(String email);
+    Optional<Student> findStudentByStudentEmail(String studentEmail);
+
+    Optional<Student> findStudentByLastName(String lastName);
+
+//    Optional<List<Student>> findStudentsByAcademicPerformanceDegree_Doctor();
+//
+//    Optional<List<Student>> findStudentsByAcademicPerformanceDegree_Master();
+//
+//    Optional<List<Student>> findStudentsByAcademicPerformanceDegree_Bachelor();
 }

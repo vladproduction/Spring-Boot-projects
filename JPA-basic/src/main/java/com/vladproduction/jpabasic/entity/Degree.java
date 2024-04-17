@@ -5,9 +5,9 @@ package com.vladproduction.jpabasic.entity;
  */
 
 public enum Degree {
-    BACHELOR("Bachelor's Degree"),
-    MASTER("Master's Degree"),
-    DOCTOR("Doctoral Degree");
+    BACHELOR("Bachelor's Degree"), //<30
+    MASTER("Master's Degree"), //>=30
+    DOCTOR("Doctoral Degree"); // >=60
 
     private final String fullName;
 

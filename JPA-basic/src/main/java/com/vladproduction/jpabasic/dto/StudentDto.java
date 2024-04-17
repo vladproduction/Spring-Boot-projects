@@ -16,8 +16,8 @@ public class StudentDto {
 
     private String firstName;
     private String lastName;
-    private String email;
-    private int age;
+    private String studentEmail;
+    private int studentAge;
     private AcademicPerformance academicPerformance;
 
 }

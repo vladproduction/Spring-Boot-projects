@@ -1,13 +1,10 @@
 package com.vladproduction.jpabasic.service;
 
-import com.vladproduction.jpabasic.dto.StudentDto;
 import com.vladproduction.jpabasic.entity.Student;
-import com.vladproduction.jpabasic.mapper.StudentMapper;
 import com.vladproduction.jpabasic.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,33 +18,45 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public StudentDto saveStudent(Student student){
-        Student savedStudent = studentRepository.save(student);
-        return StudentMapper.mapToStudentDto(savedStudent);
+    public Student saveStudent(Student student) {
+        return studentRepository
+                .save(student);
     }
 
-    public List<StudentDto> findAllStudents(){
-        List<Student> students = studentRepository.findAll();
-        List<StudentDto> studentDtoList = new ArrayList<>();
-        for (Student student : students) {
-            studentDtoList.add(StudentMapper.mapToStudentDto(student));
-        }
-        return studentDtoList;
+    public List<Student> findAllStudents() {
+        return studentRepository
+                .findAll();
     }
 
-    public Optional<StudentDto> findStudentById(Long studentId){
-        Optional<Student> studentOptional = studentRepository.findById(studentId);
-        if(studentOptional.isPresent()){
-            Student student = studentOptional.get();
-            StudentDto studentDto = StudentMapper.mapToStudentDto(student);
-            return Optional.of(studentDto);
-        }
-        return Optional.empty();
+    public Optional<Student> findStudentById(Long studentId) {
+        return studentRepository
+                .findById(studentId);
     }
 
-    public StudentDto findStudentByEmail(String email){
-
-        return studentRepository.findStudentByEmail(email);
+    public Optional<Student> findStudentByStudentEmail(String studentEmail) {
+        return studentRepository
+                .findStudentByStudentEmail(studentEmail);
     }
+
+    public Optional<Student> findStudentByLastName(String lastName) {
+        return studentRepository
+                .findStudentByLastName(lastName);
+    }
+
+//    public Optional<List<Student>> findStudentsByAcademicPerformanceDegree_Doctor() {
+//        return studentRepository
+//                .findStudentsByAcademicPerformanceDegree_Doctor();
+//    }
+//
+//    public Optional<List<Student>> findStudentsByAcademicPerformanceDegree_Master() {
+//        return studentRepository
+//                .findStudentsByAcademicPerformanceDegree_Master();
+//    }
+//
+//    public Optional<List<Student>> findStudentsByAcademicPerformanceDegree_Bachelor() {
+//        return studentRepository
+//                .findStudentsByAcademicPerformanceDegree_Bachelor();
+//    }
+
 
 }

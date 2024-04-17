@@ -18,7 +18,7 @@ import lombok.*;
         uniqueConstraints = {
                 @UniqueConstraint(
                         name = "student_email_unique",
-                        columnNames = "email"
+                        columnNames = "student_email"
                 )
         }
 )
@@ -56,18 +56,18 @@ public class Student {
     private String lastName;
 
     @Column(
-            name = "email",
+            name = "student_email",
             nullable = false,
             columnDefinition = "VARCHAR(255)"
     )
-    private String email;
+    private String studentEmail;
 
     @Column(
             name = "age",
             nullable = false,
             columnDefinition = "INT"
     )
-    private Integer age;
+    private Integer studentAge;
 
     @Embedded
     private AcademicPerformance academicPerformance;

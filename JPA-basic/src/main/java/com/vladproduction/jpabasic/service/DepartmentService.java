@@ -1,16 +1,10 @@
 package com.vladproduction.jpabasic.service;
 
-import com.vladproduction.jpabasic.dto.DepartmentDto;
-import com.vladproduction.jpabasic.dto.StudentDto;
 import com.vladproduction.jpabasic.entity.Department;
-import com.vladproduction.jpabasic.entity.Student;
-import com.vladproduction.jpabasic.mapper.DepartmentMapper;
-import com.vladproduction.jpabasic.mapper.StudentMapper;
 import com.vladproduction.jpabasic.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,38 +18,37 @@ public class DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    public DepartmentDto saveDepartment(Department department){
-        Department savedDepartment = departmentRepository.save(department);
-        return DepartmentMapper.mapToDepartmentDto(savedDepartment);
+
+    public Department saveDepartment(Department department) {
+        return departmentRepository
+                .save(department);
     }
 
-    public List<DepartmentDto> findAllDepartments(){
-        List<Department> departments = departmentRepository.findAll();
-        List<DepartmentDto> departmentDtoList = new ArrayList<>();
-        for (Department department: departments) {
-            departmentDtoList.add(DepartmentMapper.mapToDepartmentDto(department));
-        }
-        return departmentDtoList;
+    public List<Department> findAllDepartments() {
+        return departmentRepository
+                .findAll();
     }
 
-    public Optional<DepartmentDto> findDepartmentById(Long departmentId){
-        Optional<Department> departmentOptional = departmentRepository.findById(departmentId);
-        if(departmentOptional.isPresent()){
-            Department department = departmentOptional.get();
-            DepartmentDto departmentDto = DepartmentMapper.mapToDepartmentDto(department);
-            return Optional.of(departmentDto);
-        }
-        return Optional.empty();
-    }
-
-    public DepartmentDto findByContactPhone(String contactPhone){
-
-        return departmentRepository.findByContactPhone(contactPhone);
+    public Optional<Department> findDepartmentById(Long departmentId) {
+        return departmentRepository
+                .findById(departmentId);
     }
 
 
-    public DepartmentDto findDepartmentByName(String department){
-
-        return departmentRepository.findByName(department);
+    public Optional<Department> findDepartmentByDepartmentLocation(String departmentLocation) {
+        return departmentRepository
+                .findDepartmentByDepartmentLocation(departmentLocation);
     }
+
+
+    public Optional<Department> findByDepartmentPhone(String departmentPhone) {
+        return departmentRepository
+                .findByDepartmentPhone(departmentPhone);
+    }
+
+    public Optional<Department> findByDepartmentName(String departmentName) {
+        return departmentRepository
+                .findByDepartmentName(departmentName);
+    }
+
 }

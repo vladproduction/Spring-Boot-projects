@@ -13,8 +13,8 @@ import lombok.Data;
 @Builder
 public class DepartmentDto {
 
-    private String name;
-    private String contactPhone;
-    private String location;
+    private String departmentName;
+    private String departmentPhone;
+    private String departmentLocation;
 
 }

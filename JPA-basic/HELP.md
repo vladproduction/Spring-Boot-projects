@@ -15,6 +15,7 @@ Sections:
 * 8 - @OneToMany Relationship
 * 9 - @ManyToMany Relationship
 * 10 - @Transactions
+* 11 - @Validation
 
 
 #### notes:

@@ -3,8 +3,11 @@ package com.vladproduction.jpabasic.service;
 import com.vladproduction.jpabasic.entity.Student;
 import com.vladproduction.jpabasic.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,20 +46,51 @@ public class StudentService {
                 .findStudentByLastName(lastName);
     }
 
-//    public Optional<List<Student>> findStudentsByAcademicPerformanceDegree_Doctor() {
-//        return studentRepository
-//                .findStudentsByAcademicPerformanceDegree_Doctor();
-//    }
-//
-//    public Optional<List<Student>> findStudentsByAcademicPerformanceDegree_Master() {
-//        return studentRepository
-//                .findStudentsByAcademicPerformanceDegree_Master();
-//    }
-//
-//    public Optional<List<Student>> findStudentsByAcademicPerformanceDegree_Bachelor() {
-//        return studentRepository
-//                .findStudentsByAcademicPerformanceDegree_Bachelor();
-//    }
+    public List<Student> getStudentsByDegreeLevelDoctor(String degreeLevel) {
+        List<Student> students = studentRepository
+                .findAll();
+        List<Student> doctors = new ArrayList<>();
+        for (Student student : students) {
+            if (student.getAcademicPerformance().getDegree().name().equals(degreeLevel)) {
+                doctors.add(student);
+            }
+        }
+        return doctors;
+    }
+
+    public List<Student> getStudentsByDegreeLevelMaster(String degreeLevel) {
+        List<Student> students = studentRepository
+                .findAll();
+        List<Student> doctors = new ArrayList<>();
+        for (Student student : students) {
+            if (student.getAcademicPerformance().getDegree().name().equals(degreeLevel)) {
+                doctors.add(student);
+            }
+        }
+        return doctors;
+    }
+
+    public List<Student> getStudentsByDegreeLevelBachelor(String degreeLevel) {
+        List<Student> students = studentRepository
+                .findAll();
+        List<Student> doctors = new ArrayList<>();
+        for (Student student : students) {
+            if (student.getAcademicPerformance().getDegree().name().equals(degreeLevel)) {
+                doctors.add(student);
+            }
+        }
+        return doctors;
+    }
+
+    public Page<Student> findAllStudentsWithPagination(Pageable pageable) {
+        return studentRepository
+                .findAllStudentsWithPagination(pageable);
+    }
+
+    public Page<Student> findAllStudentsWithPagination(String curseName, Pageable pageable) {
+        return studentRepository
+                .findAllStudentsWithPagination(curseName, pageable);
+    }
 
 
 }

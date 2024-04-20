@@ -1,9 +1,6 @@
 package com.vladproduction.jpabasic.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.vladproduction.jpabasic.dto.DepartmentDto;
 import com.vladproduction.jpabasic.entity.Department;
-import com.vladproduction.jpabasic.mapper.DepartmentMapper;
 import com.vladproduction.jpabasic.service.DepartmentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +17,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
 import static com.vladproduction.jpabasic.utils.JsonUtils.toJson;
 import static com.vladproduction.jpabasic.utils.RandomDataGenerator.uniqueContactPhone;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -62,7 +56,7 @@ class DepartmentControllerTest {
                 .departmentPhone(uniqueContactPhone(baseContactPhone))
                 .build();
 
-        mockMvc.perform(MockMvcRequestBuilders
+        var res = mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/jpa-basic/saveDepartment")
                         .contentType("application/json")
                         .content(toJson(department))
@@ -70,8 +64,10 @@ class DepartmentControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.departmentName").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.departmentPhone").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.departmentLocation").exists());
+                .andExpect(MockMvcResultMatchers.jsonPath("$.departmentLocation").exists())
+                .andReturn();
 
+        System.out.println("res = " + res.getResponse().getContentAsString());
     }
 
     @Test

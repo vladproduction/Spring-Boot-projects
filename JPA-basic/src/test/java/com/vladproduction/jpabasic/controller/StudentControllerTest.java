@@ -20,7 +20,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static com.vladproduction.jpabasic.utils.JsonUtils.toJson;
 import static com.vladproduction.jpabasic.utils.RandomDataGenerator.uniqueEmail;
@@ -228,7 +227,7 @@ class StudentControllerTest {
 
         Student student = Student.builder()
                 .firstName("firstName")
-                .lastName("lastName")
+                .lastName("lastName1")
                 .studentEmail(uniqueEmail(baseEmailName, baseEmailExtend))
                 .studentAge(33)
                 .academicPerformance(AcademicPerformance.builder()

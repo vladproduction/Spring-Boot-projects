@@ -1,5 +1,6 @@
 package com.vladproduction.jpabasic.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.vladproduction.jpabasic.dto.DepartmentDto;
 import com.vladproduction.jpabasic.dto.InstructorDto;
 import com.vladproduction.jpabasic.dto.StudentDto;
@@ -89,7 +90,6 @@ class InstructorControllerTest {
 
         System.out.println("savedDepartment = " + savedDepartment.getResponse().getContentAsString());
         System.out.println("savedInstructor = " + savedInstructor.getResponse().getContentAsString());
-
 
         assertThat(savedInstructor.getResponse().getContentAsString())
                 .isEqualTo(toJson(instructor));
@@ -195,11 +195,48 @@ class InstructorControllerTest {
         assertThat(savedInstructorsDtoResponse.getResponse().getContentAsString())
                 .isEqualTo(toJson(savedInstructorsDtoFromInstructorService));
 
-
     }
 
     @Test
-    void findInstructorById() {
+    void findInstructorByIdTest() throws Exception {
+        /**1)save content*/
+        Instructor instructor = instructorService.saveInstructor(Instructor.builder()
+                .instructorId(45L) //have to past some to compile, but by DB is sequence
+                .firstName("John")
+                .lastName("Dow")
+                .instructorPhone("456")
+                .experience(23)
+                .department(Department.builder()
+                        .departmentId(23L)
+                        .departmentName("CS")
+                        .departmentPhone("236987")
+                        .departmentLocation("Ohio")
+                        .build())
+                .build());
+        /**2)took id for [GET] request as path variable value*/
+        Long instructorId = instructor.getInstructorId();
+
+        var result = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/jpa-basic/findInstructorById/{instructorId}", instructorId)
+                        .contentType("application/json")
+                        .accept("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        //just print resul to see what has been saved
+        System.out.println("result = " + result.getResponse().getContentAsString());
+
+        /**3)assertion: took from service potentially saved id and equals to id wanted to be saved*/
+        Optional<Instructor> instructorOptional = instructorService.findInstructorById(instructorId);
+        Instructor instructorSaved = instructorOptional.get();
+        Long savedInstructorId = instructorSaved.getInstructorId();
+        assertThat(instructorId).isEqualTo(savedInstructorId);
+        System.out.println("instructorId = " + instructorId);
+        System.out.println("savedInstructorId = " + savedInstructorId);
+
+        /**4)assertion: saved Instructor has to be same as response result by endpoint*/
+        InstructorDto instructorDtoSaved = InstructorMapper.mapToInstructorDto(instructorSaved);
+        assertThat(result.getResponse().getContentAsString()).isEqualTo(toJson(instructorDtoSaved));
+
     }
 
     @Test

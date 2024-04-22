@@ -19,13 +19,13 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static com.vladproduction.jpabasic.utils.JsonUtils.toJson;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -240,146 +240,182 @@ class InstructorControllerTest {
     }
 
     @Test
-    void findByExperience() {
+    void findByExperience() throws Exception {
+        /**1)save content*/
+        Instructor instructor = instructorService.saveInstructor(Instructor.builder()
+                .instructorId(43L)
+                .firstName("Jack")
+                .lastName("Dow")
+                .instructorPhone("45987")
+                .experience(89)
+                .department(Department.builder()
+                        .departmentId(21L)
+                        .departmentName("DS")
+                        .departmentPhone("457287")
+                        .departmentLocation("Ohio")
+                        .build())
+                .build());
+
+        /**2)took experience for [GET] request as path variable value*/
+        Integer experience = instructor.getExperience();
+        var result = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/jpa-basic/findByExperience/{experience}", experience)
+                        .contentType("application/json")
+                        .accept("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        //just print resul to see what has been saved
+        System.out.println("result = " + result.getResponse().getContentAsString());
+
+        /**3)assertion: took from service potentially saved experience and equals to experience wanted to be saved*/
+        Optional<List<Instructor>> instructorOptional = instructorService.findByExperience(experience);
+        List<Instructor> instructors = instructorOptional.get();
+        Integer savedExperience = instructors.stream().findFirst().get().getExperience();
+        assertThat(experience).isEqualTo(savedExperience);
+        System.out.println("experience = " + experience);
+        System.out.println("savedExperience = " + savedExperience);
+
+        /**4)assertion: saved Instructor has to be same as response result by endpoint(by experience)*/
+        List<InstructorDto> instructorsDtoSaved = InstructorMapper.mapToInstructorsDto(instructors);
+        assertThat(result.getResponse().getContentAsString()).isEqualTo(toJson(instructorsDtoSaved));
+
     }
 
     @Test
-    void findByFirstNameAndLastName() {
+    void findByFirstNameAndLastName() throws Exception {
+        /**1)save content*/
+        Instructor instructor = instructorService.saveInstructor(Instructor.builder()
+                .instructorId(35L)
+                .firstName("Jenny")
+                .lastName("Dow")
+                .instructorPhone("34576")
+                .experience(200)
+                .department(Department.builder()
+                        .departmentId(63L)
+                        .departmentName("CompScience")
+                        .departmentPhone("2362332")
+                        .departmentLocation("Ohio")
+                        .build())
+                .build());
+        /**2)took firstName and lastName for [GET] request as path variable values*/
+        String firstName = instructor.getFirstName();
+        String lastName = instructor.getLastName();
+
+        var result = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/jpa-basic/findByFirstNameAndLastName")
+                        .param("firstName",firstName)
+                        .param("lastName", lastName)
+                        .contentType("application/json")
+                        .accept("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        //just print resul to see what has been saved
+        System.out.println("result = " + result.getResponse().getContentAsString());
+
+        /**3)assertion: took from service potentially saved id and equals to id wanted to be saved*/
+        Optional<Instructor> instructorOptional = instructorService.findByFirstNameAndLastName(firstName, lastName);
+        Instructor instructorSaved = instructorOptional.get();
+        String savedInstructorFirstName = instructorSaved.getFirstName();
+        String savedInstructorLastName = instructorSaved.getLastName();
+        assertThat(firstName).isEqualTo(savedInstructorFirstName);
+        assertThat(lastName).isEqualTo(savedInstructorLastName);
+        System.out.println("firstName = " + firstName);
+        System.out.println("lastName = " + lastName);
+        System.out.println("savedInstructorFirstName = " + savedInstructorFirstName);
+        System.out.println("savedInstructorLastName = " + savedInstructorLastName);
+
+        /**4)assertion: saved Instructor has to be same as response result by endpoint: findByFirstNameAndLastName*/
+        InstructorDto instructorDtoSaved = InstructorMapper.mapToInstructorDto(instructorSaved);
+        assertThat(result.getResponse().getContentAsString()).isEqualTo(toJson(instructorDtoSaved));
     }
 
     @Test
-    void findByInstructorPhone() {
+    void findByInstructorPhone() throws Exception {
+        /**1)save content*/
+        Instructor instructor = instructorService.saveInstructor(Instructor.builder()
+                .instructorId(55L)
+                .firstName("Frank")
+                .lastName("Dow")
+                .instructorPhone("98076")
+                .experience(29)
+                .department(Department.builder()
+                        .departmentId(63L)
+                        .departmentName("ComputerScience")
+                        .departmentPhone("23622222")
+                        .departmentLocation("Ohio")
+                        .build())
+                .build());
+        /**2)took instructorPhone for [GET] request as path variable value*/
+        String instructorPhone = instructor.getInstructorPhone();
+
+        var result = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/jpa-basic/findByInstructorPhone")
+                        .param("instructorPhone",instructorPhone)
+                        .contentType("application/json")
+                        .accept("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        //just print resul to see what has been saved
+        System.out.println("result = " + result.getResponse().getContentAsString());
+
+        /**3)assertion: took from service potentially saved id and equals to id wanted to be saved*/
+        Optional<Instructor> instructorOptional = instructorService.findByInstructorPhone(instructorPhone);
+        Instructor instructorSaved = instructorOptional.get();
+        String savedInstructorPhone = instructorSaved.getInstructorPhone();
+
+        assertThat(instructorPhone).isEqualTo(savedInstructorPhone);
+        System.out.println("instructorPhone = " + instructorPhone);
+        System.out.println("savedInstructorPhone = " + savedInstructorPhone);
+
+
+        /**4)assertion: saved Instructor has to be same as response result by endpoint: findByInstructorPhone*/
+        InstructorDto instructorDtoSaved = InstructorMapper.mapToInstructorDto(instructorSaved);
+        assertThat(result.getResponse().getContentAsString()).isEqualTo(toJson(instructorDtoSaved));
     }
 
     @Test
-    void findInstructorByDepartmentDepartmentName() {
+    void findInstructorByDepartmentDepartmentName() throws Exception {
+        /**1)save content*/
+        Instructor instructor = instructorService.saveInstructor(Instructor.builder()
+                .instructorId(15L)
+                .firstName("Bob")
+                .lastName("Dow")
+                .instructorPhone("9823376")
+                .experience(323)
+                .department(Department.builder()
+                        .departmentId(43L)
+                        .departmentName("CScience")
+                        .departmentPhone("23655222")
+                        .departmentLocation("Ohio")
+                        .build())
+                .build());
+        /**2)took departmentName for [GET] request as path variable value*/
+        String departmentName = instructor.getDepartment().getDepartmentName();
+
+        var result = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/jpa-basic/findInstructorByDepartmentName")
+                        .param("departmentName",departmentName)
+                        .contentType("application/json")
+                        .accept("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        //just print resul to see what has been saved
+        System.out.println("result = " + result.getResponse().getContentAsString());
+
+        /**3)assertion: took from service potentially saved departmentName and equals to departmentName wanted to be saved*/
+        Optional<Instructor> instructorOptional = instructorService.findInstructorByDepartmentDepartmentName(departmentName);
+        Instructor instructorSaved = instructorOptional.get();
+        String savedInstructorDepartmentName = instructorSaved.getDepartment().getDepartmentName();
+
+        assertThat(departmentName).isEqualTo(savedInstructorDepartmentName);
+        System.out.println("departmentName = " + departmentName);
+        System.out.println("savedInstructorDepartmentName = " + savedInstructorDepartmentName);
+
+
+        /**4)assertion: saved Instructor has to be same as response result by endpoint: findByInstructorPhone*/
+        InstructorDto instructorDtoSaved = InstructorMapper.mapToInstructorDto(instructorSaved);
+        assertThat(result.getResponse().getContentAsString()).isEqualTo(toJson(instructorDtoSaved));
     }
+
+
 }
-
-/**creating content:
-//        Department department = Department.builder()
-//                .departmentName("TestDepartment")
-//                .departmentPhone("12345")
-//                .departmentLocation("TestLocation")
-//                .build();
-String baseContactPhone = "050";
-
-Department department = Department.builder()
-        .departmentName("Java")
-        .departmentLocation("Ohio")
-        .departmentPhone(uniqueContactPhone(baseContactPhone))
-        .build();
-
-        mockMvc.perform(MockMvcRequestBuilders
-                                .post("/api/jpa-basic/saveDepartment")
-                        .contentType("application/json")
-                        .content(toJson(department))
-        .accept("application/json"))
-        .andExpect(MockMvcResultMatchers.status().isOk());
-
-Instructor instructor1 = Instructor.builder()
-        .firstName("first1")
-        .lastName("last1")
-        .instructorPhone("test-phone-111")
-        .experience(100)
-        .department(department)
-        .build();
-Instructor instructor2 = Instructor.builder()
-        .firstName("first2")
-        .lastName("last2")
-        .instructorPhone("test-phone-112")
-        .experience(100)
-        .department(department)
-        .build();
-Instructor instructor3 = Instructor.builder()
-        .firstName("first3")
-        .lastName("last3")
-        .instructorPhone("test-phone-113")
-        .experience(100)
-        .department(department)
-        .build();
-
-//save content
-        mockMvc.perform(MockMvcRequestBuilders
-                                .post("/api/jpa-basic/saveInstructor")
-                        .contentType("application/json")
-                        .content(toJson(instructor1))
-        .accept("application/json"))
-        .andExpect(MockMvcResultMatchers.status().isOk());
-
-        mockMvc.perform(MockMvcRequestBuilders
-                                .post("/api/jpa-basic/saveInstructor")
-                        .contentType("application/json")
-                        .content(toJson(instructor2))
-        .accept("application/json"))
-        .andExpect(MockMvcResultMatchers.status().isOk());
-
-        mockMvc.perform(MockMvcRequestBuilders
-                                .post("/api/jpa-basic/saveInstructor")
-                        .contentType("application/json")
-                        .content(toJson(instructor3))
-        .accept("application/json"))
-        .andExpect(MockMvcResultMatchers.status().isOk());
-
-//        List<Instructor> instructors = instructorRepository.saveAll(List.of(instructor1, instructor2, instructor3));
-//        List<InstructorDto> instructorDtoList = InstructorMapper.mapToInstructorsDto(instructors);
-
-//check for saving is done
-List<Instructor> instructorList = new ArrayList<>();
-        instructorList.add(instructor1);
-        instructorList.add(instructor2);
-        instructorList.add(instructor3);
-
-List<InstructorDto> instructorDtoList = InstructorMapper.mapToInstructorsDto(instructorList);
-
-//        List<Instructor> allInstructors = instructorRepository.findAll();
-//        assertThat(allInstructors).isNotNull();
-
-//[GET] response
-var result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/jpa-basic/findAllInstructors")
-                .contentType("application/json")
-                .content(instructorList.toString())
-                .accept("application/json"))
-        .andExpect(MockMvcResultMatchers.status().isOk())
-        .andReturn();
-
-assertThat(result.getResponse().getContentAsString())
-        .isEqualTo(toJson(instructorList));*/
-
-/** DepartmentDto department = DepartmentDto.builder()
- .departmentName("TestDepartment")
- .departmentPhone("123")
- .departmentLocation("TestLocation")
- .build();
- var savedDepartment = mockMvc.perform(MockMvcRequestBuilders
- .post("/api/jpa-basic/saveDepartment")
- .contentType("application/json")
- .content(toJson(department))
- .accept("application/json"))
- .andExpect(MockMvcResultMatchers.status().isOk())
- .andReturn();
- Optional<Department> optionalDepartment = departmentService.findByDepartmentName(department.getDepartmentName());
-
- Department departmentActual = optionalDepartment.get();
- DepartmentDto departmentDto = DepartmentMapper.mapToDepartmentDto(departmentActual);
-
-
-
- Instructor instructor = Instructor.builder()
- .firstName("first")
- .lastName("last")
- .instructorPhone("test-phone-111")
- .experience(100)
- .department(departmentActual)
- .build();
- var savedInstructor = mockMvc.perform(MockMvcRequestBuilders
- .post("/api/jpa-basic/saveInstructor")
- .contentType("application/json")
- .content(toJson(instructor))
- .accept("application/json"))
- .andExpect(MockMvcResultMatchers.status().isOk())
- .andReturn();
-
- System.out.println("savedDepartment = " + savedDepartment.getResponse().getContentAsString());
- System.out.println("savedInstructor = " + savedInstructor.getResponse().getContentAsString());*/

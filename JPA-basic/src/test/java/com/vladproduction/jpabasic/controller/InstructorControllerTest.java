@@ -2,8 +2,11 @@ package com.vladproduction.jpabasic.controller;
 
 import com.vladproduction.jpabasic.dto.DepartmentDto;
 import com.vladproduction.jpabasic.dto.InstructorDto;
+import com.vladproduction.jpabasic.dto.StudentDto;
 import com.vladproduction.jpabasic.entity.Department;
+import com.vladproduction.jpabasic.entity.Instructor;
 import com.vladproduction.jpabasic.mapper.DepartmentMapper;
+import com.vladproduction.jpabasic.mapper.InstructorMapper;
 import com.vladproduction.jpabasic.service.DepartmentService;
 import com.vladproduction.jpabasic.service.InstructorService;
 import org.junit.jupiter.api.Test;
@@ -19,6 +22,8 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static com.vladproduction.jpabasic.utils.JsonUtils.toJson;
@@ -98,46 +103,97 @@ class InstructorControllerTest {
 
     @Test
     void findAllInstructors() throws Exception {
+        //need to return List<InstructorDto>
 
-//        Department department = Department.builder()
-//                .departmentName("TestDepartment")
-//                .departmentPhone("123")
-//                .departmentLocation("TestLocation")
-//                .build();
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/api/jpa-basic/saveDepartment")
-//                        .contentType("application/json")
-//                        .content(toJson(department))
-//                        .accept("application/json"))
-//                .andExpect(MockMvcResultMatchers.status().isOk());
-//
-//        Instructor instructor = Instructor.builder()
-//                .firstName("first")
-//                .lastName("last")
-//                .instructorPhone("test-phone-111")
-//                .experience(100)
-//                .department(department)
-//                .build();
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/api/jpa-basic/saveInstructor")
-//                        .contentType("application/json")
-//                        .content(toJson(instructor))
-//                        .accept("application/json"))
-//                .andExpect(MockMvcResultMatchers.status().isOk());
-//
-//        var result = mockMvc.perform(MockMvcRequestBuilders
-//                        .get("/api/jpa-basic/findAllInstructors")
-//                        .contentType("application/json")
-////                        .content(toJson(instructor))
-//                        .accept("application/json"))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andReturn();
-//
-//        System.out.println("result = " + result.getResponse().getContentAsString());
-//
+        //1)create department and save+
+        //2)create instructors and save+
+        //3)check using assertThat savedDepartment(response) is equal from departmentService.findByDepartmentName(...)+
+        //4)find all saved instructors from mockMvc+
+        //5)assertThat response and using instructorService.findAllInstructors are equal
 
+        /**1)create department and save*/
+        DepartmentDto departmentDto = DepartmentDto.builder()
+                .departmentName("AI")
+                .departmentPhone("111")
+                .departmentLocation("Ohio")
+                .build();
+        var savedDepartment = mockMvc.perform(MockMvcRequestBuilders
+                        .post("/api/jpa-basic/saveDepartment")
+                        .contentType("application/json")
+                        .content(toJson(departmentDto))
+                        .accept("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        Optional<Department> optionalDepartment = departmentService.findByDepartmentName(departmentDto.getDepartmentName());
+        Department departmentOpt = optionalDepartment.get();
+        DepartmentDto departmentDtoSaved = DepartmentMapper.mapToDepartmentDto(departmentOpt);
 
+        /**2)create instructors and save*/
+        //instructor1
+        InstructorDto instructor1 = InstructorDto.builder()
+                .firstName("First-Inst1")
+                .lastName("Last-Inst1")
+                .instructorPhone("test-phone-101")
+                .experience(100)
+                .departmentDto(departmentDtoSaved)
+                .build();
+        var savedInstructor1 = mockMvc.perform(MockMvcRequestBuilders
+                        .post("/api/jpa-basic/saveInstructor")
+                        .contentType("application/json")
+                        .content(toJson(instructor1))
+                        .accept("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
 
+        //instructor2
+        InstructorDto instructor2 = InstructorDto.builder()
+                .firstName("First-Inst2")
+                .lastName("Last-Inst2")
+                .instructorPhone("test-phone-102")
+                .experience(100)
+                .departmentDto(departmentDtoSaved)
+                .build();
+        var savedInstructor2 = mockMvc.perform(MockMvcRequestBuilders
+                        .post("/api/jpa-basic/saveInstructor")
+                        .contentType("application/json")
+                        .content(toJson(instructor2))
+                        .accept("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        /**3)check using assertThat savedDepartment(response) is equal from departmentService.findByDepartmentName(...)*/
+        System.out.println("savedDepartment = " + savedDepartment.getResponse().getContentAsString());
+        String depName = departmentDtoSaved.getDepartmentName();
+        //for instructor1
+        assertThat(toJson(depName))
+                .isEqualTo(toJson(instructor1.getDepartmentDto().getDepartmentName()));
+        //for instructor2
+        assertThat(toJson(depName))
+                .isEqualTo(toJson(instructor2.getDepartmentDto().getDepartmentName()));
+        System.out.println("depName = " + depName);
+
+        /**4)find all saved instructors from mockMvc*/
+        //create list of instructorDtoList been saved, and paste it in content of response
+        List<InstructorDto> instructorDtoList = new ArrayList<>();
+        instructorDtoList.add(instructor1);
+        instructorDtoList.add(instructor2);
+
+        var savedInstructorsDtoResponse = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/jpa-basic/findAllInstructors")
+                        .contentType("application/json")
+                        .content(instructorDtoList.toString())
+                        .accept("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        /**5)assertThat response and using instructorService.findAllInstructors are equal*/
+        //just print response
+        System.out.println("savedInstructorsDtoResponse = " + savedInstructorsDtoResponse.getResponse().getContentAsString());
+        //making assertion
+        List<Instructor> allInstructors = instructorService.findAllInstructors();
+        List<InstructorDto> savedInstructorsDtoFromInstructorService = InstructorMapper.mapToInstructorsDto(allInstructors);
+        assertThat(savedInstructorsDtoResponse.getResponse().getContentAsString())
+                .isEqualTo(toJson(savedInstructorsDtoFromInstructorService));
 
 
     }

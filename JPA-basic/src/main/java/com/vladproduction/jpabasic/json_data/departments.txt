@@ -1,0 +1,57 @@
+[
+    {
+        "firstName": "Carlo",
+        "lastName": "Anchelotti",
+        "instructorPhone": "111-01",
+        "experience": 100,
+        "departmentDto": {
+            "departmentName": "Java",
+            "departmentPhone": "38(050)100-20-31",
+            "departmentLocation": "221B St., London, England"
+        }
+    },
+    {
+        "firstName": "Sean",
+        "lastName": "Dyche",
+        "instructorPhone": "111-02",
+        "experience": 80,
+        "departmentDto": {
+            "departmentName": "Computer Science",
+            "departmentPhone": "38(050)100-20-30",
+            "departmentLocation": "125 Av., Ohio, USA"
+        }
+    },
+    {
+        "firstName": "Jurgen",
+        "lastName": "Klopp",
+        "instructorPhone": "111-03",
+        "experience": 97,
+        "departmentDto": {
+            "departmentName": "Python",
+            "departmentPhone": "38(050)100-20-32",
+            "departmentLocation": "Bernabeo St., Madrid, Spain"
+        }
+    },
+    {
+        "firstName": "Aime",
+        "lastName": "Jacquet",
+        "instructorPhone": "111-04",
+        "experience": 87,
+        "departmentDto": {
+            "departmentName": "GO",
+            "departmentPhone": "38(050)100-20-33",
+            "departmentLocation": "Silicon Valley, California, USA"
+        }
+    },
+    {
+        "firstName": "Jose",
+        "lastName": "Mourinho",
+        "instructorPhone": "111-05",
+        "experience": 98,
+        "departmentDto": {
+            "departmentName": "AI",
+            "departmentPhone": "38(050)100-20-34",
+            "departmentLocation": "Silicon Valley, California, USA"
+        }
+    }
+]

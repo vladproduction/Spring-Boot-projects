@@ -1,0 +1,162 @@
+[
+    {
+        "firstName": "Patrick",
+        "lastName": "Vieira",
+        "studentEmail": "Vieira@gmail.com",
+        "studentAge": 21,
+        "academicPerformance": {
+            "degree": "BACHELOR",
+            "value": 7.0
+        }
+    },
+    {
+        "firstName": "Bixente",
+        "lastName": "Lizarazu",
+        "studentEmail": "Lizarazu@gmail.com",
+        "studentAge": 28,
+        "academicPerformance": {
+            "degree": "MASTER",
+            "value": 32.0
+        }
+    },
+    {
+        "firstName": "Vincent",
+        "lastName": "Candela",
+        "studentEmail": "Candela@gmail.com",
+        "studentAge": 24,
+        "academicPerformance": {
+            "degree": "BACHELOR",
+            "value": 10.0
+        }
+    },
+    {
+        "firstName": "Laurent",
+        "lastName": "Blanc",
+        "studentEmail": "Blanc@gmail.com",
+        "studentAge": 32,
+        "academicPerformance": {
+            "degree": "DOCTOR",
+            "value": 68.0
+        }
+    },
+    {
+        "firstName": "Youri",
+        "lastName": "Djorkaeff",
+        "studentEmail": "Djorkaeff@gmail.com",
+        "studentAge": 30,
+        "academicPerformance": {
+            "degree": "MASTER",
+            "value": 37.0
+        }
+    },
+    {
+        "firstName": "Didier",
+        "lastName": "Deschamps",
+        "studentEmail": "Deschamps@gmail.com",
+        "studentAge": 29,
+        "academicPerformance": {
+            "degree": "DOCTOR",
+            "value": 69.0
+        }
+    },
+    {
+        "firstName": "Marcel",
+        "lastName": "Desailly",
+        "studentEmail": "Desailly@gmail.com",
+        "studentAge": 29,
+        "academicPerformance": {
+            "degree": "MASTER",
+            "value": 41.0
+        }
+    },
+    {
+        "firstName": "Zinedine",
+        "lastName": "Zidane",
+        "studentEmail": "Zidane@gmail.com",
+        "studentAge": 25,
+        "academicPerformance": {
+            "degree": "MASTER",
+            "value": 33.0
+        }
+    },
+    {
+        "firstName": "Lilian",
+        "lastName": "Thuram",
+        "studentEmail": "Thuram@gmail.com",
+        "studentAge": 26,
+        "academicPerformance": {
+            "degree": "MASTER",
+            "value": 32.0
+        }
+    },
+    {
+        "firstName": "Fabien",
+        "lastName": "Barthez",
+        "studentEmail": "Barthez@gmail.com",
+        "studentAge": 26,
+        "academicPerformance": {
+            "degree": "BACHELOR",
+            "value": 12.0
+        }
+    },
+    {
+        "firstName": "Emmanuel",
+        "lastName": "Petit",
+        "studentEmail": "Petit@gmail.com",
+        "studentAge": 27,
+        "academicPerformance": {
+            "degree": "BACHELOR",
+            "value": 17.0
+        }
+    },
+    {
+        "firstName": "Christian",
+        "lastName": "Karembeu",
+        "studentEmail": "Karembeu@gmail.com",
+        "studentAge": 27,
+        "academicPerformance": {
+            "degree": "MASTER",
+            "value": 31.0
+        }
+    },
+    {
+        "firstName": "Marcos",
+        "lastName": "Cafu",
+        "studentEmail": "Cafu@gmail.com",
+        "studentAge": 28,
+        "academicPerformance": {
+            "degree": "DOCTOR",
+            "value": 64.0
+        }
+    },
+    {
+        "firstName": "Roberto",
+        "lastName": "Carlos",
+        "studentEmail": "Carlos@gmail.com",
+        "studentAge": 25,
+        "academicPerformance": {
+            "degree": "MASTER",
+            "value": 46.0
+        }
+    },
+    {
+        "firstName": "Carlos",
+        "lastName": "Dunga",
+        "studentEmail": "Dunga@gmail.com",
+        "studentAge": 34,
+        "academicPerformance": {
+            "degree": "DOCTOR",
+            "value": 84.0
+        }
+    },
+    {
+        "firstName": "Luís",
+        "lastName": "Ronaldo",
+        "studentEmail": "Ronaldo@gmail.com",
+        "studentAge": 21,
+        "academicPerformance": {
+            "degree": "MASTER",
+            "value": 37.0
+        }
+    }
+]

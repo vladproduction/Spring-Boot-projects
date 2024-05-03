@@ -26,7 +26,7 @@ public class User implements UserDetails {
     private String firstName;
     private String lastName;
     private String email;
-    private String pass;
+    private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -37,7 +37,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return pass;
+        return password;
     }
 
     @Override

@@ -32,9 +32,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
-        if(authHeader == null || authHeader.startsWith("Bearer")){
+        if(authHeader == null || !authHeader.startsWith("Bearer")){
             filterChain.doFilter(request,response);
-            return; //don`t want to rest execution
+            return; //don`t want to continue the rest execution
         }
 
         //2)extract header of token

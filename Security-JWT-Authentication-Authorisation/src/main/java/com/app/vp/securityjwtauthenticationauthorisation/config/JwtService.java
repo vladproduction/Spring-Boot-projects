@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -28,8 +29,11 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    //1:09
-    //method if we want to use only userDetails
+    //method if we want to use only userDetails for generate token
+    public String generateToken(UserDetails userDetails){
+
+        return generateToken(new HashMap<>(), userDetails);
+    }
 
     //method to help generate a token
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
@@ -39,8 +43,27 @@ public class JwtService {
                 .setIssuedAt(new Date(System.currentTimeMillis())) //if token still valid or not
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) //how long this token should be valid (24h)
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256) //algorithm
-                .compact(); //compact & return token
+                .compact(); //generate & return token
+    }
 
+    //method that can validate token, if token belong to userDetails
+    public boolean isTokenValid(String token, UserDetails userDetails){
+        final String username = extractUsername(token);
+        //check if username by token is same as got from userDetails
+        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+
+    }
+
+    //method that check the expiration date
+    private boolean isTokenExpired(String token) {
+        //return the value of compare the date of expiration and new date
+        return extractExpiration(token).before(new Date());
+    }
+
+    //method to take expiration from token
+    private Date extractExpiration(String token) {
+
+        return extractClaim(token, Claims::getExpiration);
     }
 
     //method to extract all claims

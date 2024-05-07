@@ -24,8 +24,6 @@ public class MyJwtController {
         int n = "Bearer ".length();
         String token = header.substring(n);
         return jwtService.extractUserName(token);
-
-
     }
 
 }

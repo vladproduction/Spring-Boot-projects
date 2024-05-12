@@ -77,8 +77,7 @@ public class MyJwtService {
      * */
     public String extractUserName(String token){
         Claims claims = extractAllClaims(token);
-        String subject_userName = claims.getSubject(); //getting username from claims
-        return subject_userName;
+        return claims.getSubject();
     }
 
     /**
@@ -89,8 +88,7 @@ public class MyJwtService {
      * */
     public Date extractExpiration(String token){
         Claims claims = extractAllClaims(token);
-        Date expiration = claims.getExpiration();
-        return expiration;
+        return claims.getExpiration();
     }
 
 }

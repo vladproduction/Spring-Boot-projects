@@ -14,17 +14,19 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+/**
+ * Configuration for api context enrolling and declaring a new data based on security for user
+ * (by authentication and authorization)
+ * */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig{
 
+    //we need UserDetailsService for creating authentication provider
     @Autowired
-    private UserDetailsService userDetailsService; //can take info from db
-
-//    @Autowired
-//    private JwtFilter jwtFilter;
-
+    private UserDetailsService userDetailsService; //can take info about user from db through DataSource
 
         @Bean //configuring chain for http request as security among app context
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -32,7 +34,7 @@ public class SecurityConfig{
                     .csrf()
                     .disable()
                     .authorizeHttpRequests()
-                    .requestMatchers("/api/signup", "/api/tokenController/generateToken") //open
+                    .requestMatchers("/api/signup", "/api/tokenController/generateToken") //open for this urls
                     .permitAll()
                     .anyRequest()
                     .authenticated()
@@ -40,27 +42,38 @@ public class SecurityConfig{
                     .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
-                    .authenticationProvider(authenticationProvider());
+                    .authenticationProvider(authenticationProvider()); //from @Bean authenticationProvider()
 //                    .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
             return http.build();
         }
 
     //creating bean for authentication provider (responsible to take all inform for providing authentication)
+    //so basically for we check matching username and password  we are using that authenticating provider
+    /**
+     * AuthenticationProvider responsible for check matching username and password that we paste by Postman
+     * in request; and this data compare with db data for existing user
+     * */
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         //for authProvider we need to specify two properties:
-        //1)where to take info for user
-        authProvider.setUserDetailsService(userDetailsService);
-        //2)how to encode password
-        authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setUserDetailsService(userDetailsService);//1)logic based on how we take info for user (in this class)
+        authProvider.setPasswordEncoder(passwordEncoder()); //2)logic of how to encode password
         return authProvider;
     }
 
+    /**
+     * 1)we do not using any encoder here;
+     * 2)encrypting
+     * */
     @Bean
     public PasswordEncoder passwordEncoder(){
+        //1)no encrypting
             return NoOpPasswordEncoder.getInstance();
+        //2)encrypting
+//        return new BCryptPasswordEncoder();
+
     }
 
 

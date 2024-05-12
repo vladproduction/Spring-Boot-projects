@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
+
+/**
+ * That controller responsible for:
+ * creating new user and save in db;
+ */
 @RestController
 @RequestMapping("api/signup")
 public class SignUpController {
@@ -22,9 +27,5 @@ public class SignUpController {
         userService.createUser(user);
     }
 
-    /**
-     * 1)request log, pass
-     * 2)response token
-     * */
 
 }

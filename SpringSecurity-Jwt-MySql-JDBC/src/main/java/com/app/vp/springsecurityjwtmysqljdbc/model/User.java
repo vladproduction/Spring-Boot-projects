@@ -1,5 +1,10 @@
 package com.app.vp.springsecurityjwtmysqljdbc.model;
 
+
+/**
+ * This class define basic model of the project we are using;
+ * -based on data of user we could create token and authentication logic for security
+ * */
 public class User {
 
     private String name;

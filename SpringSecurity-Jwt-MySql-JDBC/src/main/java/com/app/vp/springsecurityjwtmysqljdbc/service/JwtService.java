@@ -9,6 +9,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Service responsible for creating token mechanism;
+ * -generateToken;
+ * -createToken;
+ * -and extracting claims;
+ * */
 @Service
 public class JwtService {
 
@@ -16,12 +22,11 @@ public class JwtService {
     private final String SECRET = "BarcelonaBarcelonaBarcelonaBarcelonaBarcelona";
 
     /**
-     * Method for generate token
-     * Map<String, Object> map holds all generated tokens for users
-     * @param userName String (for that user)
-     * @param password String
-     *
-     * @return generated token for user (using private method 'createToken')
+     * Method for generate token;
+     * Map<String, Object> map holds all generated tokens for users;
+     * @param userName String (for that user);
+     * @param password String;
+     * @return generated token for user (using private method 'createToken');
      * */
     public String generateToken(String userName, String password){
         Map<String, Object> map = new HashMap<>();
@@ -30,11 +35,10 @@ public class JwtService {
     }
 
     /**
-     *Method for creating token (setting meta inform for token)
-     * @param userName String
-     * @param claims Map<String, Object> claims (specific values that can be needed)
-     *
-     * @return String value of created token
+     *Method for creating token (setting meta inform for token);
+     * @param userName String;
+     * @param claims Map<String, Object> claims (specific values that can be needed);
+     * @return String value of created token;
      * */
     private String createToken(String userName, Map<String, Object> claims){
         return Jwts.builder()
@@ -47,44 +51,37 @@ public class JwtService {
     }
 
     /**
-     *Method to get all claims based on SECRET key and token by parsing
-     * @param token String token
-     *
-     * @return Claims: object representing as map (as result of parsing)
+     *Method to get all claims based on SECRET key and token by parsing;
+     * @param token String token;
+     * @return Claims: object representing as map (as result of parsing);
      * */
     private Claims extractAllClaims(String token){
-
         return Jwts
                 .parser()
                 .setSigningKey(SECRET)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-
     }
 
     /**
-     *Method to get username from current token given as param
-     * @param token String
-     *
-     * @return username String
+     *Method to get username from current token given as param;
+     * @param token String;
+     * @return username String;
      * */
     public String extractUserName(String token){
         Claims claims = extractAllClaims(token);
-        String subject_userName = claims.getSubject(); //getting username from claims
-        return subject_userName;
+        return claims.getSubject();
     }
 
     /**
-     *Method to get expiration date from current token given as param
-     * @param token String
-     *
-     * @return expiration Date
+     *Method to get expiration date from current token given as param;
+     * @param token String;
+     * @return expiration Date;
      * */
     public Date extractExpiration(String token){
         Claims claims = extractAllClaims(token);
-        Date expiration = claims.getExpiration();
-        return expiration;
+        return claims.getExpiration();
     }
 
 }

@@ -1,5 +1,12 @@
 package com.app.vp.springsecurityjwtmysqljdbc.model;
 
+
+/**
+ * This class is responsible for:
+ * -creating the model of AuthRequest 'request';
+ * -has username and password;
+ * -using for matching with existing user in db (which has as well: name and password)
+ * */
 public class AuthRequest {
 
     private String username;

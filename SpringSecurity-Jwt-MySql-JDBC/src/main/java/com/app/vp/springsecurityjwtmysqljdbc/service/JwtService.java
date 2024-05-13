@@ -3,6 +3,7 @@ package com.app.vp.springsecurityjwtmysqljdbc.service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -45,7 +46,7 @@ public class JwtService {
                 .addClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60*60))
                 .signWith(SignatureAlgorithm.HS256, SECRET)
                 .compact();
     }
@@ -82,6 +83,31 @@ public class JwtService {
     public Date extractExpiration(String token){
         Claims claims = extractAllClaims(token);
         return claims.getExpiration();
+    }
+
+    /***/
+    public String extractPassword(String token){
+        Claims claims = extractAllClaims(token);
+        String password = claims.get("password") + "";
+        return password;
+    }
+
+    /**
+     *
+     * */
+    public boolean validateToken(String token, UserDetails userDetails){
+        String userName = extractUserName(token);
+        if(!userName.equals(userDetails.getUsername())){
+            return false;
+        }
+        String password = extractPassword(token);
+        System.out.println("password = " + password);
+        System.out.println("userDetails.password = " + userDetails.getPassword());
+        if(!password.equals(userDetails.getPassword())){
+            return false;
+        }
+
+        return true;
     }
 
 }

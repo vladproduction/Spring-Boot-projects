@@ -1,24 +1,23 @@
 package com.app.vp.springsecurityjwtmysqljdbc.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String author;
 
-    public Book(Long id, String author) {
-        this.id = id;
+    private String author;
+    private String title;
+
+    public Book(String author, String title) {
         this.author = author;
+        this.title = title;
     }
 
     public Book() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getAuthor() {
@@ -29,11 +28,19 @@ public class Book {
         this.author = author;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + id +
-                ", author='" + author + '\'' +
+                "author=" + author +
+                ", title='" + title + '\'' +
                 '}';
     }
 }

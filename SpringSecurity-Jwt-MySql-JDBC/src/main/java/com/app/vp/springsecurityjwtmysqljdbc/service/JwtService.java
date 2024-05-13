@@ -36,7 +36,7 @@ public class JwtService {
     }
 
     /**
-     *Method for creating token (setting meta inform for token);
+     * Method for creating token (setting meta inform for token);
      * @param userName String;
      * @param claims Map<String, Object> claims (specific values that can be needed);
      * @return String value of created token;
@@ -46,13 +46,13 @@ public class JwtService {
                 .addClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60*60))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
                 .signWith(SignatureAlgorithm.HS256, SECRET)
                 .compact();
     }
 
     /**
-     *Method to get all claims based on SECRET key and token by parsing;
+     * Method to get all claims based on SECRET key and token by parsing;
      * @param token String token;
      * @return Claims: object representing as map (as result of parsing);
      * */
@@ -66,7 +66,7 @@ public class JwtService {
     }
 
     /**
-     *Method to get username from current token given as param;
+     * Method to get username from current token given as param;
      * @param token String;
      * @return username String;
      * */
@@ -76,7 +76,7 @@ public class JwtService {
     }
 
     /**
-     *Method to get expiration date from current token given as param;
+     * Method to get expiration date from current token given as param;
      * @param token String;
      * @return expiration Date;
      * */
@@ -85,15 +85,22 @@ public class JwtService {
         return claims.getExpiration();
     }
 
-    /***/
+    /**
+     * Method to get password of user from current token given as param;
+     * @param token String;
+     * @return password as String value;
+     * */
     public String extractPassword(String token){
         Claims claims = extractAllClaims(token);
-        String password = claims.get("password") + "";
-        return password;
+        return claims.get("password") + "";
     }
 
     /**
-     *
+     * Method to validate our token in case of matching userName and password extracted from token,
+     * and data for user from db (userDetails);
+     * @param token String;
+     * @param userDetails UserDetails;
+     * @return true as boolean value if both match;
      * */
     public boolean validateToken(String token, UserDetails userDetails){
         String userName = extractUserName(token);
@@ -101,12 +108,11 @@ public class JwtService {
             return false;
         }
         String password = extractPassword(token);
-        System.out.println("password = " + password);
-        System.out.println("userDetails.password = " + userDetails.getPassword());
+        System.out.println("password = " + password);//password from token (request in Postman)
+        System.out.println("userDetails.password = " + userDetails.getPassword()); //password from db attach to user
         if(!password.equals(userDetails.getPassword())){
             return false;
         }
-
         return true;
     }
 

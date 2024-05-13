@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -32,6 +33,9 @@ public class SecurityConfig{
 
     @Autowired
     private JwtFilter jwtFilter;
+
+
+
 
         @Bean //configuring chain for http request as security among app context
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -75,9 +79,9 @@ public class SecurityConfig{
     @Bean
     public PasswordEncoder passwordEncoder(){
         //1)no encrypting
-            return NoOpPasswordEncoder.getInstance();
+//            return NoOpPasswordEncoder.getInstance();
         //2)encrypting
-//        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder();
 
     }
 

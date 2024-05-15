@@ -1,6 +1,8 @@
 package com.app.vp.springsecurityjwtmysqljdbc.controller;
 
 import com.app.vp.springsecurityjwtmysqljdbc.model.AuthRequest;
+import com.app.vp.springsecurityjwtmysqljdbc.model.User;
+import com.app.vp.springsecurityjwtmysqljdbc.repository.UserRepository;
 import com.app.vp.springsecurityjwtmysqljdbc.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -26,6 +28,9 @@ public class TokenController {
     @Autowired
     private AuthenticationProvider authenticationProvider;
 
+    @Autowired
+    private UserRepository userRepository;
+
     /**
      * we generate token based on AuthRequest request where we have username and password;
      * so basically were generating token only for authorized user,
@@ -41,8 +46,10 @@ public class TokenController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        User user = userRepository.findByUsername(request.getUsername());
+
         //return generated token
-        return jwtService.generateToken(request.getUsername(), request.getPassword());
+        return jwtService.generateToken(request.getUsername(), user.getPassword());
 
     }
 

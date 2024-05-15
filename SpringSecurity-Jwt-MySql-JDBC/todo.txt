@@ -1,8 +1,5 @@
 1-refactoring
 2-block-schema
-+3-encoder
-4-roles
-+5-SECRET_KEY
-6-endpoints in tokenController for jwtService
-7-all @Bean should be well commented
-+8-book as entity (table in db)
+3-roles
+4-endpoints in tokenController for jwtService
+

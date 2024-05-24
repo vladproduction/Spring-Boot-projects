@@ -25,8 +25,7 @@ public class Employee {
 
     private Integer salary;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date doh;
 
     @Enumerated(value = EnumType.STRING)

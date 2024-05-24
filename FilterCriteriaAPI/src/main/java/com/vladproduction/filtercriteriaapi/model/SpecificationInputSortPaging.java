@@ -9,9 +9,14 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SpecificationInput {
+public class SpecificationInputSortPaging {
 
     private String columnName;
     private String value;
+    private String sortColumn;
+    private String sortOrder;
+    private Integer pageNumber;
+    private Integer pageSize;
+
 
 }

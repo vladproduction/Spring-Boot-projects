@@ -1,8 +1,10 @@
 package com.vladproduction.filtercriteriaapi.controller;
 
-import com.vladproduction.filtercriteriaapi.exception.NoValuesFoundForDatesException;
+
 import com.vladproduction.filtercriteriaapi.model.Employee;
 import com.vladproduction.filtercriteriaapi.model.SpecificationInput;
+import com.vladproduction.filtercriteriaapi.model.SpecificationInputSort;
+import com.vladproduction.filtercriteriaapi.model.SpecificationInputSortPaging;
 import com.vladproduction.filtercriteriaapi.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,23 +22,45 @@ public class EmployeeController {
 
     @GetMapping("/byName")
     public List<Employee> getByName(){
-        return employeeService.getEmployeeByName();
+        return employeeService
+                .getEmployeeByNameHardCoded();
     }
 
-    //byEquals_name; byEquals_salary; byEquals_skill; byEquals_doh
     @GetMapping("/byEquals")
-    public List<Employee> getByEquals(@RequestBody SpecificationInput specificationInput){
-        return employeeService.getEmployeeData(specificationInput);
+    public List<Employee> getByEquals(@RequestBody SpecificationInput specificationInput) throws ParseException {
+        return employeeService
+                .getEmployeeData(specificationInput);
     }
 
     @GetMapping("/byBetweenDates")
-    List<Employee> getByBetweenDates(@RequestBody SpecificationInput specificationInput) throws NoValuesFoundForDatesException {
-        return employeeService.getEmployeesBetweenDates(specificationInput);
+    List<Employee> getByBetweenDates(@RequestBody SpecificationInput specificationInput) throws ParseException {
+        return employeeService
+                .getEmployeesBetweenDates(specificationInput);
+    }
+
+    @GetMapping("/byBetweenDatesSorted")
+    List<Employee> getByBetweenDatesSorted(@RequestBody SpecificationInputSort specificationInputSort) throws ParseException {
+        return employeeService
+                .getEmployeesBetweenDatesSorted(specificationInputSort);
+    }
+
+    @GetMapping("/byBetweenDatesSortedPaging")
+    List<Employee> getByBetweenDatesSortedPaging(@RequestBody SpecificationInputSortPaging specificationInputSortPaging)
+            throws ParseException {
+        return employeeService
+                .getEmployeesBetweenDatesSortedPaging(specificationInputSortPaging);
     }
 
     @GetMapping("/byLike")
-    List<Employee> getByLikeOperation(@RequestBody SpecificationInput specificationInput) {
-        return employeeService.getEmployeeByLike(specificationInput);
+    List<Employee> getByLikeOperation(@RequestBody SpecificationInput specificationInput){
+        return employeeService
+                .getEmployeeByLike(specificationInput);
+    }
+
+    @GetMapping("/byGreaterThanOrEqualTo")
+    List<Employee> getByGreaterThanOrEqualTo(@RequestBody SpecificationInput specificationInput){
+        return employeeService
+                .getGreaterThan(specificationInput);
     }
 
 

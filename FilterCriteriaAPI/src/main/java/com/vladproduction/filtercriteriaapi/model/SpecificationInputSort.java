@@ -9,9 +9,12 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SpecificationInput {
+public class SpecificationInputSort {
 
     private String columnName;
     private String value;
+    private String sortColumn;
+    private String sortOrder;
+
 
 }

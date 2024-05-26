@@ -378,5 +378,7 @@ public class EmployeeService {
     /**Idea: to create one more entity,
      * so it will be possible to modelling scenario of joining tables of this entities */
 
-    //stopped at 08:35
+    /** -Address model added;
+     *  -Saved (using repository);
+     *  -@OneToOne relation defined (one employee has one address); */
 }

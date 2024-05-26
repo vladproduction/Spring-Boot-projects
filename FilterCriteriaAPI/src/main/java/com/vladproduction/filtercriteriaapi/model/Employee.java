@@ -31,4 +31,8 @@ public class Employee {
     @Enumerated(value = EnumType.STRING)
     private Subject skill;
 
+    @OneToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
 }

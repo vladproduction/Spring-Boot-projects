@@ -1,0 +1,150 @@
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "clubs", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
+public class Club {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long club_id;
+    @Column(nullable = false, unique = true)
+    private String title;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Country country;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private League league;
+    //were added:
+    // Define the relationship
+        @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Player> players = new ArrayList<>();
+}
+
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "players",uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+public class Player {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long player_id;
+    @Column(nullable = false)
+    private String nationality;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private int age;
+    @Column(nullable = false, unique = true)
+    private String email;
+    @Column(nullable = false)
+    private double salary;
+    @Column(nullable = false)
+    private String debutYear;
+    //were added:
+    // Reference to the club
+        @ManyToOne
+        @JoinColumn(name = "club_id", nullable = false)
+        private Club club;  // Foreign key reference to Club
+}
+
+1)how to relate this tables? (in case many players could be associated with one club);
+You can achieve this by adding a foreign key column in the Player entity to reference the Club.
+
+2)and we have to join column form table club (title) to table players;
+In the updated Player class:
+* The @ManyToOne annotation indicates that many players can be associated with one club.
+* The @JoinColumn(name = "club_id", nullable = false) annotation specifies the foreign key column in the players table,
+  which will reference the primary key (club_id) in the clubs table.
+* The nullable = false attribute ensures that every player must be associated with a club.
+
+//now we need to modify dto classes (reflected for requests):
+//no changes for ClubDto
+@Schema(description = "ClubDto model information")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class ClubDto {
+    private Long club_id;// It's typically better to use @JsonProperty for clarity but depending on your framework's default handling it might be okay.
+    @Schema(description = "Club title")
+    @NotEmpty(message = "title should not be null or empty; unique value expected")
+    private String title;
+    @Schema(description = "Club country")
+    @NotEmpty(message = "country should be chosen")
+    private Country country;
+    @Schema(description = "Club League")
+    @NotEmpty(message = "league should be chosen")
+    private League league;
+}
+//update for PlayerDto
+@Schema(description = "PlayerDto model information")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class PlayerDto {
+    private Long player_id;
+    @Schema(description = "Player Nationality")
+    @NotEmpty(message = "nationality should not be null or empty")
+    private String nationality;
+    @Schema(description = "Player Name")
+    @NotEmpty(message = "name should not be null or empty")
+    private String name;
+    @Schema(description = "Player Age")
+    @NotEmpty(message = "age should not be null or empty")
+    private int age;
+    @Schema(description = "Player email")
+    @NotEmpty(message = "email should not be null or empty; unique value expected")
+    private String email;
+    @Schema(description = "Player salary")
+    @NotEmpty(message = "salary should not be null or empty")
+    private double salary;
+    @Schema(description = "Player debutYear")
+    @NotEmpty(message = "debutYear should not be null or empty")
+    private String debutYear;
+    //were added:
+    @Schema(description = "The club the player belongs to")
+        @NotNull(message = "club must be specified")
+        private ClubDto club; // A reference to ClubDto
+}
+
+1) modify dto classes accordingly of the above context;
+private ClubDto club; // A reference to ClubDto were add
+2) modify example of json for test in swagger to save club and player:
+//for save club json (modify if needed): no need any modifications
+{
+  "club_id": 1,
+  "title": "Arsenal",
+  "country": "ENGLAND",
+  "league": "ENGLISH_PREMIER_LEAGUE"
+}
+
+//for save player json (modification need):
+//To create a player, we now need to include the club details in the request. Here's the modified JSON for saving a player:
+//was:
+{
+  "player_id": 1,
+  "nationality": "Brasil",
+  "name": "Gabriel",
+  "age": 24,
+  "email": "agbriel@arsenal.com",
+  "salary": 45000.00,
+  "debutYear": "2018"
+}
+//modified:
+{
+  "player_id": 1,
+  "nationality": "Brasil",
+  "name": "Gabriel",
+  "age": 24,
+  "email": "gabriel@arsenal.com",
+  "salary": 45000.00,
+  "debutYear": "2018",
+  "club": {
+    "club_id": 4
+  }
+}

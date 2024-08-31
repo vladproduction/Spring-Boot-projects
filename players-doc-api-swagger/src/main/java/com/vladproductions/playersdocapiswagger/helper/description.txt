@@ -1,0 +1,14 @@
+* have to save a club first;
+* player could not be without club associated;
+* assume the club title is unique;
+* assume the player email is unique;
+* Country and League are both enum type for the Club;
+* salary - per week (data is completely fake);
+* debutYear - when first prof-contract been signed;
+
+
+///////////options:///////////
+* have to think if we need to have update club endpoint at all (for club title to change)
+* need to think the case when club is deleted, all associated players go to 'free-agent-club'
+
+//have to change when test : create player or club - id should be added but not change if we put existing id

@@ -1,0 +1,20 @@
+This updatePlayer method can handle both full and partial updates, offering flexibility for clients.
+PUT requests, ensure that you always validate all fields before updating;
+PATCH requests, only provide fields to update.
+
+Key Considerations:
+
+*Partial Updates:
+The method checks each field to decide whether to update them, accommodating for PATCH-like behavior where
+not all fields need to be updated.
+Default values (like 0 for integers) are typically used to check if a field was provided.
+Depending on DTO design, might consider using Integer instead of int or add more robust checks.
+
+*Club Association:
+If the Club information is updated, it verifies if the club exists before setting the reference in the Player.
+
+*Error Handling:
+An PlayerNotExistException/ClubDoesNotExistException is thrown if the player or club is not found.
+
+Mapping DTOs:
+Used third-partial library (mapstruct) to mapping entity into dto and vise versa

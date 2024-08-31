@@ -12,3 +12,8 @@
 * need to think the case when club is deleted, all associated players go to 'free-agent-club'
 
 //have to change when test : create player or club - id should be added but not change if we put existing id
+
+//trying to add validation:
+ ClubDto and ClubController, ++++
+ PlayerDto and PlayerController,
+ email (Payer`s field)

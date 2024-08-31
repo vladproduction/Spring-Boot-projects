@@ -5,9 +5,11 @@ import com.vladproductions.playersdocapiswagger.service.ClubService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/clubs")
+@Validated
 public class ClubController {
 
     private ClubService clubService;
@@ -33,7 +36,7 @@ public class ClubController {
     )
     // [POST]: createClub REST API
     @PostMapping
-    public ResponseEntity<ClubDto> createClub(@RequestBody ClubDto clubDto){
+    public ResponseEntity<ClubDto> createClub(@RequestBody @Valid ClubDto clubDto){
         ClubDto club = clubService.createClub(clubDto);
         return new ResponseEntity<>(club, HttpStatus.CREATED);
     }

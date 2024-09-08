@@ -1,0 +1,2 @@
+1)docker build -t vladbogdadocker/players-clubs:latest .
+2)docker push vladbogdadocker/players-clubs:latest

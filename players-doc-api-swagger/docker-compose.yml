@@ -1,6 +1,7 @@
 version: "3.8"
 
 services:
+
   mysql:
     container_name: mysql
     image: mysql:5.7
@@ -8,28 +9,25 @@ services:
       MYSQL_ROOT_PASSWORD: 11111111
       MYSQL_DATABASE: players_clubs_management
     networks:
-      players-clubs-service:
+      players-doc-api-swagger-service:
     healthcheck:
       test: ["CMD-SHELL", "mysql --user=root --password=11111111 --execute 'show databases;' || exit 1"]
       interval: 15s
       retries: 5
 
-
-  players-clubs:
-    container_name: players-clubs
+  players-doc-api-swagger:
+    container_name: players-doc-api-swagger
     depends_on:
       - mysql
-#    image: players-clubs:3.0
-    image: vladbogdadocker/players-clubs:latest
+    image: vladbogdadocker/players-doc-api-swagger:latest
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/players_clubs_management
     ports:
-      - "8084:8084"
+      - "8084:8084" #browser:local
     networks:
-      players-clubs-service:
+      players-doc-api-swagger-service:
     restart: on-failure
 
 networks:
-  players-clubs-service:
+  players-doc-api-swagger-service:
 
-#browser:local

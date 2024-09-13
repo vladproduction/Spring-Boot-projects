@@ -17,3 +17,10 @@
  ClubDto and ClubController, ++++
  PlayerDto and PlayerController,
  email (Payer`s field)
+
+ -spring-boot project
+ -swagger ui
+ -mysql
+ -crud operations
+ -Dockerfile
+ -docker-compose.yml

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 
 @Configurable
@@ -31,8 +32,15 @@ public class ApplicationConfig {
     }
 
     @Bean
+    @Profile("!dev") //not dev profile (so, it is prod profile)
     public TimeService timeService(){
         return new TimeService(true);
+    }
+
+    @Bean
+    @Profile("dev") //dev profile
+    public TimeService devTimeService12(){
+        return new TimeService(false);
     }
 
     @Bean

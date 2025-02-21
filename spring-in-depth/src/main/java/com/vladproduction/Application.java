@@ -16,5 +16,8 @@ public class Application {
             Thread.sleep(1000);
         }
 
+        //08:21:48 PM Hej Tom (dev 12hours)
+        //20:22:23 Hello Partner (prod 24hours)
+
     }
 }

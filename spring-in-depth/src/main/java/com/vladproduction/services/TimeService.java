@@ -1,26 +1,30 @@
 package com.vladproduction.services;
 
-import java.time.LocalTime;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Service
 public class TimeService {
 
-    private static final String HH_MM_SS_24 = "HH:mm:ss"; // 24-hour format
-    private static final String hh_mm_ss_12 = "hh:mm:ss a"; // 12-hour format with AM/PM
-    private final boolean is24Hour;
+    private static final DateTimeFormatter FORMATTER_24 = DateTimeFormatter.ofPattern("HH:mm:ss"); // 24-hour format
+    private static final DateTimeFormatter FORMATTER_12 = DateTimeFormatter.ofPattern("hh:mm:ss a"); // 12-hour format with AM/PM
 
-    public TimeService(boolean is24Hour) {
-        this.is24Hour = is24Hour;
+    @Value("#{new Boolean(environment['spring.profiles.active']!='dev')}")
+    private boolean is24Hour;
+
+    public TimeService() {
+        super();
     }
 
     public String getCurrentTime() {
-        DateTimeFormatter formatter;
+        LocalDateTime now = LocalDateTime.now();
+
         if (is24Hour) {
-            formatter = DateTimeFormatter.ofPattern(HH_MM_SS_24);
+            return FORMATTER_24.format(now);
         }
-        else {
-            formatter = DateTimeFormatter.ofPattern(hh_mm_ss_12);
-        }
-        return LocalTime.now().format(formatter);
+        return FORMATTER_12.format(now);
     }
 }

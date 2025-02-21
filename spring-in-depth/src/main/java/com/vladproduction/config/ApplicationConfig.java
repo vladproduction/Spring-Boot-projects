@@ -20,6 +20,9 @@ public class ApplicationConfig {
     @Value("${app.name}")
     private String name;
 
+    @Value("#{new Boolean(environment['spring.profiles.active'] != 'dev')}")
+    private boolean is24hours;
+
     @Autowired
     private GreetingService greetingService;
 
@@ -32,6 +35,11 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public TimeService timeService(){
+        return new TimeService(is24hours);
+    }
+
+    /*@Bean
     @Profile("!dev") //not dev profile (so, it is prod profile)
     public TimeService timeService(){
         return new TimeService(true);
@@ -41,7 +49,7 @@ public class ApplicationConfig {
     @Profile("dev") //dev profile
     public TimeService devTimeService12(){
         return new TimeService(false);
-    }
+    }*/
 
     @Bean
     public OutputService outputService(){

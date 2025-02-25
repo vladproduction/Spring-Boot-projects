@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Concepts Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2C3E50;
+        }
+        h2 {
+            color: #2980B9;
+        }
+        ul {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>This example demonstrates several key Spring concepts:</h1>
+
+<h2>1. Effective Use of Prototype Scope</h2>
+<p>The Order bean is defined with prototype scope, meaning Spring creates a new instance every time the bean is requested. This is useful for:</p>
+<ul>
+    <li>Creating unique orders with different IDs and timestamps</li>
+    <li>Ensuring each order can be modified independently</li>
+    <li>Avoiding the need to manually clone or reset a shared singleton</li>
+</ul>
+
+<h2>2. Extending Existing Classes</h2>
+<p>The example shows how to extend functionality without modifying core interfaces:</p>
+<ul>
+    <li>The OrderProcessor interface remains unchanged</li>
+    <li>StandardOrderProcessor provides the default implementation</li>
+    <li>RushOrderProcessor extends the standard processor and overrides methods for specialized behavior</li>
+    <li>Clients can work with either processor through the common interface</li>
+</ul>
+
+<h2>3. Dependency Injection Patterns</h2>
+<p>The example demonstrates:</p>
+<ul>
+    <li>Constructor injection of the ApplicationContext to access prototype beans</li>
+    <li>Method override pattern where the subclass calls the superclass method and then enhances the result</li>
+    <li>Bean definition flexibility where multiple implementations of the same interface can be configured</li>
+</ul>
+
+<h2>4. Benefits</h2>
+<p>This approach offers several advantages:</p>
+<ul>
+    <li>Modularity: New order types can be added without changing core interfaces</li>
+    <li>Reusability: The prototype Order bean can be used in multiple contexts</li>
+    <li>Testability: Components can be tested in isolation with mock dependencies</li>
+    <li>Flexibility: The system can handle different processing requirements through extension</li>
+</ul>
+
+<p>This pattern is particularly useful in enterprise applications where core entities (like orders, users, or transactions) need to be created dynamically but processed through standardized workflows that might have specialized variations.</p>
+
+</body>
+</html>

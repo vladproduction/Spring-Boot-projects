@@ -1,0 +1,20 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+server:
+  port: 8000
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+server:
+  port: 9000
+
+#  prod profile is on port 8080 (default)
+
+#  settings for run configuration (environment variables):
+#  --spring.profiles.active=prod 8080
+#  --spring.profiles.active=dev  8000
+#  --spring.profiles.active=test 9000

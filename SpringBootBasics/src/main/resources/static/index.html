@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Learning Spring Boot Basics Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Welcome to Learning Spring Boot Basics Application!</h1>
+<p>This page shows the current local time and some demo information.</p>
+
+<h2>Current Local Time:</h2>
+<div id="time"></div>
+
+<h2>Demo Information:</h2>
+<p>This is some example text to demonstrate the HTML structure.</p>
+<ul>
+    <li>Demo Item 1</li>
+    <li>Demo Item 2</li>
+    <li>Demo Item 3</li>
+</ul>
+
+<script>
+    function updateTime() {
+        const now = new Date();
+        const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        document.getElementById('time').innerHTML = now.toLocaleTimeString([], options);
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000); // Update the time every second
+</script>
+
+</body>
+</html>

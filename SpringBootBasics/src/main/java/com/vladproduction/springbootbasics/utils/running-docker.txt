@@ -1,0 +1,19 @@
+steps:
+
+    SpringBootBasics> docker build -t hello-sb-basic .
+
+    SpringBootBasics> docker run -p 8080:8080 -d hello-sb-basic
+
+    4670bf61769083
+
+    http://localhost:8080/
+
+    SpringBootBasics> docker ps
+    CONTAINER ID   IMAGE            COMMAND               CREATED         STATUS         PORTS                    NAMES
+    3c01defdcbd9   hello-sb-basic   "java -jar app.jar"   3 minutes ago   Up 3 minutes   0.0.0.0:8080->8080/tcp   musing_antonelli
+
+    SpringBootBasics> docker stop 3c01defdcbd9
+
+
+
+

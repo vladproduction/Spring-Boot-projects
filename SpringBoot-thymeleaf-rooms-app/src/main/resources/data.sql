@@ -54,15 +54,3 @@ INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO)
 VALUES ('Manchester', 'M3', '1K');
 INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO)
 VALUES ('Manchester', 'M4', '1K');
-
-INSERT INTO EMPLOYEE (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, POSITION)
-VALUES ('1A2B3C4D-5E6F-7A8B-9C0D-E1F2G3H4I5J6', 'John', 'Doe', 'Software Engineer'),
-       ('2A3B4C5D-6E7F-8A9B-0C1D-E2F3G4H5I6J7', 'Jane', 'Smith', 'Project Manager'),
-       ('3A4B5C6D-7E8F-9A0B-C1D2-E3F4G5H6I7J8', 'Alice', 'Johnson', 'Data Analyst'),
-       ('4A5B6C7D-8E9F-0A1B-C2D3-E4F5G6H7I8J9', 'Bob', 'Brown', 'UX Designer'),
-       ('5A6B7C8D-9E0F-1A2B-C3D4-E5F6G7H8I9J0', 'Emily', 'Davis', 'Marketing Specialist'),
-       ('6A7B8C9D-0E1F-2A3B-D4C5-E6F7G8H9I0J1', 'Michael', 'Wilson', 'Sales Executive'),
-       ('7A8B9C0D-1E2F-3A4B-E5D6-F7G8H9I0J1K2', 'Sarah', 'Taylor', 'HR Manager'),
-       ('8A9B0C1D-2E3F-4A5B-F6D7-G8H9I0J1K2L3', 'David', 'Anderson', 'IT Support'),
-       ('9A0B1C2D-3E4F-5A6B-G7D8-H9I0J1K2L3M4', 'Jessica', 'Thomas', 'Accountant'),
-       ('0A1B2C3D-4E5F-6A7B-H8D9-I0J1K2L3M4N5', 'William', 'Martinez', 'Operations Manager');

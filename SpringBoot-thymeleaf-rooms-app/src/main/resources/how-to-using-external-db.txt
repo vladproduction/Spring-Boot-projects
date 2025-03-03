@@ -1,3 +1,15 @@
-Steps to use external DB (MySql):
+Steps to use external DB (MySql): base approach to have a result, so it works
 
 1)modify application.properties:
+add db properties;
+add hibernate properties;
+
+2) sql scripts:
+schema.sql and data.sql placed in resources folder;
+have been changed script to "create if not exists"
+
+3) modify pom.xml:
+instead all h2 dependencies --> add MySql
+
+4) created database BY desktop MYSQL as script: 'CREATE DATABASE rooms_service'
+

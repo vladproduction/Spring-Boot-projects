@@ -1,0 +1,34 @@
+Steps to create repository:
+
+1)Add to application.properties:
+# we do not need to create schemas by hibernate, since we use h2
+  spring.jpa.hibernate.ddl-auto=none
+
+2)As soon as we have schema.sql and connection to h2:
+making entity from our class 'Room'
+@Entity
+@Table, etc.
+
+3)Creating Interface RoomRepository which extends from JpaRepository:
+parameters are set from Entity class (JpaRepository<Room, Long>)
+
+4)Injecting this Repository into our RoomService:
+by creating constructor and passing variable RoomRepository as a parameter:
+
+    private final RoomRepository roomRepository;
+
+    public RoomService(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
+    }
+
+5)Now we are ready to use our repository methods which comes from interface:
+roomRepository.findAll()
+by executing this we return List<Room> from database;
+
+6)Modifying Controllers (both) by injecting service by creating constructor:
+-same procedure as were done for service;
+-updating for both @GetMapping requests (we should not use any static data now);
+
+7) endpoints are:
+- localhost:8080/rooms   --> for view controller return rooms.html page
+- localhost:8080/api/rooms   --> for rest controller return json of existing rooms

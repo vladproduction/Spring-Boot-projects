@@ -1,0 +1,17 @@
+https://grafana.com/grafana/download?platform=windows
+
+after server started on port 3000: localhost:3000 (starting page welcome on grafana)
+
+on the welcome page setting up data source: prometheus with port 9090
+
+after testing data source added to our grafana
+
+now we creating dashboard: go to create dashboards and add some of prometheus queries for our data source than save it
+we can add to this dashboard more panels and place them how we need
+
+after we create we can config json of our dashboard and save, so anyone can use our dashboard just to import it
+
+we can also import other dashboards into our system by json and use it
+for this: https://grafana.com/grafana/dashboards/12900-springboot-apm-dashboard/ take this as example
+download json link, ones is done go to our grafana page and import it from downloads folder into our system
+import json and add data source for it which we set before: like Prometheus

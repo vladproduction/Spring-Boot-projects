@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Embedded Databases</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Spring Data Overview</h1>
+    <nav>
+        <a href="repository-pattern">Repository Pattern</a>
+        <a href="spring-data-introduction">Introduction to Spring Data</a>
+        <a href="embedded-databases">Embedded Databases</a>
+        <a href="spring-data-repository">Spring Data Repository</a>
+        <a href="external-databases">External Databases</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Building Embedded Databases</h1>
+    <p>Embedded databases are lightweight databases that are integrated into an application. They are suitable for development purposes, testing, or lightweight applications where a full-fledged server database is not necessary.</p>
+
+    <h2>Popular Choices for Embedded Databases</h2>
+    <ul>
+        <li><strong>H2:</strong> A fast, open-source, lightweight relational database.</li>
+        <li><strong>HSQLDB:</strong> A relational database management system written in Java.</li>
+        <li><strong>SQLite:</strong> A C-language library that implements a small, fast, self-contained SQL database engine.</li>
+    </ul>
+
+    <h2>Getting Started with H2 Database</h2>
+    <p>To use H2 as an embedded database in a Spring Boot application, follow these steps:</p>
+
+    <h3>1. Add Dependencies</h3>
+    <pre>
+    # In your pom.xml, include the H2 dependency:
+    <dependencies>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+    </dependencies>
+    </pre>
+
+    <h3>2. Configure the Data Source</h3>
+    <p>Add the following configuration to your <code>application.properties</code> file:</p>
+    <pre>
+    spring.datasource.url=jdbc:h2:mem:testdb
+    spring.datasource.driverClassName=org.h2.Driver
+    spring.datasource.username=sa
+    spring.datasource.password=
+    spring.h2.console.enabled=true
+    spring.jpa.hibernate.ddl-auto=update
+    </pre>
+
+    <h3>3. Accessing the H2 Console</h3>
+    <p>To access the H2 console for database management, navigate to <code>http://localhost:8080/h2-console</code> in your web browser. You can use the following credentials:</p>
+    <ul>
+        <li><strong>JDBC URL:</strong> jdbc:h2:mem:testdb</li>
+        <li><strong>User Name:</strong> sa</li>
+        <li><strong>Password:</strong> (leave blank)</li>
+    </ul>
+
+    <h2>Example Entity and Repository</h2>
+    <p>Define an entity class and a corresponding repository:</p>
+    <pre>
+    import javax.persistence.Entity;
+    import javax.persistence.GeneratedValue;
+    import javax.persistence.Id;
+
+    @Entity
+    public class User {
+        @Id
+        @GeneratedValue
+        private Long id;
+        private String name;
+
+        // Getters and Setters
+    }
+
+    import org.springframework.data.jpa.repository.JpaRepository;
+
+    public interface UserRepository extends JpaRepository< User, Long> {
+        User findByName(String name);
+    }
+    </pre>
+
+    <h2>Advantages of Using Embedded Databases</h2>
+    <ul>
+        <li>Simple setup with no external installations.</li>
+        <li>Ideal for testing and development environments.</li>
+        <li>Can be bundled with applications for easy distribution.</li>
+    </ul>
+
+    <p>If you need to use a different embedded database, the steps are generally similar: add the dependency, configure the datasource, and create your entities.</p>
+</main>
+
+<footer>
+    <p>&copy; 2025 Spring Data Tutorials</p>
+</footer>
+
+</body>
+</html>

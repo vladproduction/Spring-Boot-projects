@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Repository Pattern</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Spring Data Overview</h1>
+    <nav>
+        <a href="repository-pattern">Repository Pattern</a>
+        <a href="spring-data-introduction">Introduction to Spring Data</a>
+        <a href="embedded-databases">Embedded Databases</a>
+        <a href="spring-data-repository">Spring Data Repository</a>
+        <a href="external-databases">External Databases</a>
+    </nav>
+</header>
+
+<main>
+    <h2>The Repository Pattern</h2>
+    <p><strong>Definition:</strong> The Repository Pattern is a structural pattern that abstracts the data layer, allowing developers to manage the access and manipulation of data while separating the application's domain logic from data access logic.</p>
+    <p><strong>Purpose:</strong> This pattern promotes a more testable and maintainable codebase by decoupling the data access code from the business logic.</p>
+
+    <h2>Example Implementation</h2>
+    <pre>
+    public interface UserRepository {
+        User findById(Long id);
+        List< User> findAll();
+        void save(User user);
+        void delete(Long id);
+    }
+    </pre>
+
+    <h2>Benefits</h2>
+    <ul>
+        <li>Separation of concerns</li>
+        <li>Increased testability</li>
+        <li>Easier to switch data sources</li>
+    </ul>
+</main>
+
+<footer>
+    <p>&copy; 2025 Spring Data Tutorials</p>
+</footer>
+
+</body>
+</html>

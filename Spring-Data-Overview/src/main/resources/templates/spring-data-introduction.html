@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Spring Data</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Spring Data Overview</h1>
+    <nav>
+        <a href="repository-pattern">Repository Pattern</a>
+        <a href="spring-data-introduction">Introduction to Spring Data</a>
+        <a href="embedded-databases">Embedded Databases</a>
+        <a href="spring-data-repository">Spring Data Repository</a>
+        <a href="external-databases">External Databases</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Introduction to Spring Data</h1>
+    <p>Spring Data is a part of the Spring Framework that provides a unified approach to data access, supporting various data sources both relational and non-relational. It aims to simplify data access while providing rich features and capabilities for developers.</p>
+
+    <h2>Key Features</h2>
+    <ul>
+        <li><strong>Repository Abstraction:</strong> Automatically implements data access layers using interfaces.</li>
+        <li><strong>Query Derivation:</strong> Simplifies the creation of queries through method naming conventions.</li>
+        <li><strong>Pagination and Sorting:</strong> Built-in support for paginated queries and ordering results.</li>
+        <li><strong>Support for Multiple Databases:</strong> Integration with various databases such as JPA, MongoDB, Redis, and more.</li>
+    </ul>
+
+    <h2>Key Components</h2>
+    <p>Spring Data consists of several modules:</p>
+    <ol>
+        <li><strong>Spring Data JPA:</strong> Emphasizes JPA for relational databases.</li>
+        <li><strong>Spring Data MongoDB:</strong> Provides features specific to MongoDB.</li>
+        <li><strong>Spring Data JDBC:</strong> For direct access to relational databases without ORM.</li>
+        <li><strong>Spring Data Redis:</strong> Enables interaction with Redis data stores.</li>
+    </ol>
+
+    <h2>Getting Started</h2>
+    <p>To quickly get started with Spring Data JPA, you can set up a new Spring Boot application:</p>
+    <pre>
+    # Add the following dependencies in your pom.xml:
+    < dependencies>
+        < dependency>
+            < groupId>org.springframework.boot< /groupId>
+            < artifactId>spring-boot-starter-data-jpa< /artifactId>
+        < /dependency>
+        < dependency>
+            < groupId>com.h2database< /groupId>
+            < artifactId>h2< /artifactId>
+            < scope>runtime< /scope>
+        < /dependency>
+    < /dependencies>
+    </pre>
+    <p>Then add configurations in your <code>application.properties</code> file:</p>
+    <pre>
+    spring.datasource.url=jdbc:h2:mem:testdb
+    spring.datasource.driverClassName=org.h2.Driver
+    spring.datasource.username=sa
+    spring.datasource.password=
+    spring.h2.console.enabled=true
+    spring.jpa.hibernate.ddl-auto=update
+    </pre>
+
+    <h2>Further Learning</h2>
+    <p>Explore the official Spring Data documentation for comprehensive guides and tutorials:</p>
+    <p><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#reference">Spring Data JPA Documentation</a></p>
+</main>
+
+<footer>
+    <p>&copy; 2025 Spring Data Tutorials</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Spring Data Repository</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Spring Data Overview</h1>
+    <nav>
+        <a href="repository-pattern">Repository Pattern</a>
+        <a href="spring-data-introduction">Introduction to Spring Data</a>
+        <a href="embedded-databases">Embedded Databases</a>
+        <a href="spring-data-repository">Spring Data Repository</a>
+        <a href="external-databases">External Databases</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Building a Spring Data Repository</h1>
+    <p>A repository in Spring Data is a mechanism for encapsulating storage, retrieval, and search behavior, emulating a collection of objects. This simplifies data access and promotes a cleaner architecture by separating data access logic from business logic.</p>
+
+    <h2>Creating a Repository Interface</h2>
+    <p>To create a repository, define an interface that extends either <code>JpaRepository</code> or <code>CrudRepository</code>. This allows your repository to inherit several methods for working with the entity class.</p>
+
+    <h3>Example UserRepository</h3>
+    <pre>
+    import org.springframework.data.jpa.repository.JpaRepository;
+
+    public interface UserRepository extends JpaRepository< User, Long> {
+        User findByUsername(String username);
+    }
+    </pre>
+
+    <h2>Entity Class Definition</h2>
+    <p>Here's an example of a simple entity class:</p>
+    <pre>
+    import javax.persistence.Entity;
+    import javax.persistence.GeneratedValue;
+    import javax.persistence.Id;
+
+    @Entity
+    public class User {
+        @Id
+        @GeneratedValue
+        private Long id;
+        private String username;
+        private String password;
+
+        // Getters and Setters
+    }
+    </pre>
+
+    <h2>Integrating Repository into a Service</h2>
+    <p>Once you've created the repository interface, you can integrate it into your service layer to perform data operations:</p>
+    <pre>
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Service;
+
+    @Service
+    public class UserService {
+        @Autowired
+        private UserRepository userRepository;
+
+        public User createUser(User user) {
+            return userRepository.save(user);
+        }
+
+        public User findUserByUsername(String username) {
+            return userRepository.findByUsername(username);
+        }
+
+        public void deleteUser(Long id) {
+            userRepository.deleteById(id);
+        }
+    }
+    </pre>
+
+    <h2>Benefits of Using Spring Data Repositories</h2>
+    <ul>
+        <li>Reduces boilerplate code by providing built-in methods for common data access operations.</li>
+        <li>Supports query derivation by using method name conventions.</li>
+        <li>Easily integrates with Spring's dependency injection features.</li>
+    </ul>
+
+    <h2>Custom Query Methods</h2>
+    <p>You can also define custom query methods in your repository by following naming conventions:</p>
+    <pre>
+    public interface UserRepository extends JpaRepository< User, Long> {
+        List< User> findByPassword(String password);
+    }
+    </pre>
+
+    <h2>Conclusion</h2>
+    <p>Spring Data repositories significantly reduce development time by providing a simple and efficient way to interact with data. By just defining interfaces, you can achieve complex data interactions without needing to write a lot of boilerplate code.</p>
+</main>
+
+<footer>
+    <p>&copy; 2025 Spring Data Tutorials</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connecting to External Databases</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Spring Data Overview</h1>
+    <nav>
+        <a href="repository-pattern">Repository Pattern</a>
+        <a href="spring-data-introduction">Introduction to Spring Data</a>
+        <a href="embedded-databases">Embedded Databases</a>
+        <a href="spring-data-repository">Spring Data Repository</a>
+        <a href="external-databases">External Databases</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Connecting to External Databases</h1>
+    <p>Spring Data allows you to connect to various external databases, such as MySQL, PostgreSQL, and MongoDB, among others. Here, we will explore the steps required to connect a Spring Boot application to an external database.</p>
+
+    <h2>Prerequisites</h2>
+    <p>Make sure you have the following before setting up your Spring Data application:</p>
+    <ul>
+        <li>Spring Boot application set up.</li>
+        <li>The external database installed and running (e.g., MySQL).</li>
+        <li>The necessary JDBC driver for the database added to your project dependencies.</li>
+    </ul>
+
+    <h2>Connecting to MySQL Database</h2>
+    <p>To connect to a MySQL database, follow these steps:</p>
+
+    <h3>1. Add Dependencies</h3>
+    <pre>
+    # In your pom.xml, include the MySQL dependency:
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+    </dependencies>
+    </pre>
+
+    <h3>2. Configure the Data Source</h3>
+    <p>Add the following configuration to your <code>application.properties</code> file:</p>
+    <pre>
+    spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+    spring.datasource.username=root
+    spring.datasource.password=yourpassword
+    spring.jpa.hibernate.ddl-auto=update
+    spring.jpa.show-sql=true
+    </pre>
+
+    <h3>3. Entity and Repository Implementation</h3>
+    <p>Define an entity class that maps to your database table:</p>
+    <pre>
+    import javax.persistence.Entity;
+    import javax.persistence.GeneratedValue;
+    import javax.persistence.Id;
+
+    @Entity
+    public class Product {
+        @Id
+        @GeneratedValue
+        private Long id;
+        private String name;
+        private Double price;
+
+        // Getters and Setters
+    }
+    </pre>
+
+    <p>Create a repository interface for the entity:</p>
+    <pre>
+    import org.springframework.data.jpa.repository.JpaRepository;
+
+    public interface ProductRepository extends JpaRepository< Product, Long> {
+        List< Product> findByName(String name);
+    }
+    </pre>
+
+    <h2>Connecting to PostgreSQL Database</h2>
+    <p>Connecting to PostgreSQL is similar to MySQL. Just follow these steps:</p>
+
+    <h3>1. Add Dependencies</h3>
+    <pre>
+    <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+    </dependencies>
+    </pre>
+
+    <h3>2. Configure the Data Source</h3>
+    <pre>
+    spring.datasource.url=jdbc:postgresql://localhost:5432/mydb
+    spring.datasource.username=postgres
+    spring.datasource.password=yourpassword
+    spring.jpa.hibernate.ddl-auto=update
+    spring.jpa.show-sql=true
+    </pre>
+
+    <h2>Testing the Connection</h2>
+    <p>To ensure your application connects to the external database successfully, run your Spring Boot application and verify that there are no connection errors. You can also use a database management tool or the command line to check the data stored in your database.</p>
+
+    <h2>Conclusion</h2>
+    <p>Spring Data makes it straightforward to connect to external databases. By simply adjusting your configuration files and ensuring you have the necessary dependencies, you can easily integrate various database systems into your Spring applications.</p>
+
+    <p>If you encounter any issues during the connection process, check the following:</p>
+    <ul>
+        <li>Ensure the database server is running and accessible.</li>
+        <li>Verify your JDBC URL, username, and password.</li>
+        <li>Make sure that the necessary JDBC driver is included in your dependencies.</li>
+    </ul>
+
+    <footer>
+        <p>&copy; 2025 Spring Data Tutorials</p>
+    </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Message Consumers - Spring Boot Extra Topics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/styles.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+<a href="/" class="return-button">
+    <i class="fas fa-arrow-left"></i> Return to Home
+</a>
+
+<div class="container">
+    <h1>Understanding Spring Message Consumers</h1>
+
+    <div class="description">
+        <p>
+            In this section, we will explore how to implement message consumers in Spring Boot using ActiveMQ.
+            Consumers listen to specified queues to retrieve messages and process them accordingly.
+            This mechanism allows for the decoupling of microservices while enhancing the scalability and reliability of the application.
+        </p>
+    </div>
+
+    <div class="navigation-links">
+        <a href="/messaging" class="btn btn-primary">
+            <i class="fas fa-flask"></i> Try It Out
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>Required Dependencies</h2>
+        <p>Add these dependencies to your <code>pom.xml</code> file:</p>
+        <pre class="code-block"><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-activemq&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Creating the Message Consumer</h2>
+        <p>Implement the consumer class as shown below:</p>
+        <pre class="code-block"><code>package com.example.demo.consumer;
+
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MessageConsumer {
+
+    @JmsListener(destination = "example.queue")
+    public void receiveMessage(String message) {
+        System.out.println("Received message: " + message);
+        // Additional processing logic can be added here
+    }
+}</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Testing the Message Consumer</h2>
+        <p>Once you have set up the message consumer, ensure to send messages to <code>example.queue</code> to verify that your consumer processes them correctly.</p>
+        <ol>
+            <li>
+                <strong>Send a test message</strong> using the messaging endpoint.
+            </li>
+            <li>
+                <strong>Check the server logs</strong> for the message processing confirmation.
+            </li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>Advanced Enhancements</h2>
+        <h3>Logging Messages</h3>
+        <p>Utilize SLF4J or another logging framework to replace <code>System.out.println</code> for better logging:</p>
+        <pre class="code-block"><code>import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Component
+public class MessageConsumer {
+    private static final Logger logger = LoggerFactory.getLogger(MessageConsumer.class);
+
+    @JmsListener(destination = "example.queue")
+    public void receiveMessage(String message) {
+        logger.info("Received message: {}", message);
+        // Further processing logic can be added here
+    }
+}</code></pre>
+
+        <h3>Error Handling</h3>
+        <p>Implement error handling using try-catch blocks in the consumer to gracefully handle any message processing failures.</p>
+    </div>
+</div>
+
+<style>
+    /* Additional styling for theory page */
+    .code-block {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 1rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+        border: 1px solid #e9ecef;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .feature-list li {
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .feature-list li i {
+        color: #28a745;  /* Green color */
+        margin-right: 0.75rem;
+    }
+
+    .steps-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0;
+    }
+
+    .steps-list li {
+        display: flex;
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .step-number {
+        flex-shrink: 0;
+        width: 2rem;
+        height: 2rem;
+        background: #007BFF;  /* Blue color */
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 1rem;
+    }
+
+    .step-content {
+        flex-grow: 1;
+    }
+
+    .step-content h4 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .navigation-links {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    h3 {
+        margin-top: 1.5rem;
+        color: #343a40; /* Darker gray color */
+        font-weight: 600;
+        font-size: 1.4rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+</style>
+</body>
+</html>
+

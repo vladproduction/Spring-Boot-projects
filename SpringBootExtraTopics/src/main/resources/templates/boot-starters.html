@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Spring Boot Starters - Spring Boot Extra Topics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<a href="/" class="return-button">
+    <i class="fas fa-arrow-left"></i> Return to Home
+</a>
+
+<div class="container">
+    <h1>Building Spring Boot Starters</h1>
+
+    <div class="description">
+        <p>
+            Spring Boot Starters are pre-configured templates that simplify dependency management
+            and configuration for various technologies. Learn how to create your own custom starters
+            to encapsulate and share common configurations across projects.
+        </p>
+    </div>
+
+    <div class="navigation-links">
+        <a href="/starters" class="btn btn-primary">
+            <i class="fas fa-rocket"></i> Explore Starters
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>Starter Project Structure</h2>
+        <p>Typical structure for a custom Spring Boot starter:</p>
+        <pre class="code-block"><code>my-custom-starter/
+├── pom.xml
+├── src/main/java
+│   └── com/example/starter
+│       ├── MyCustomAutoConfiguration.java
+│       └── MyCustomProperties.java
+└── src/main/resources
+    └── META-INF
+        └── spring.factories</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Creating a Custom Starter</h2>
+        <p>Sample auto-configuration class:</p>
+        <pre class="code-block"><code>@Configuration
+@ConditionalOnClass(MyCustomService.class)
+@EnableConfigurationProperties(MyCustomProperties.class)
+public class MyCustomAutoConfiguration {
+
+    @Autowired
+    private MyCustomProperties properties;
+
+    @Bean
+    @ConditionalOnMissingBean
+    public MyCustomService myCustomService() {
+        return new MyCustomService(properties);
+    }
+}</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Configuration Properties</h2>
+        <p>Define configurable properties for your starter:</p>
+        <pre class="code-block"><code>@ConfigurationProperties(prefix = "my.custom")
+public class MyCustomProperties {
+    private String defaultValue = "default";
+    private int maxConnections = 10;
+
+    // Getters and setters
+    public String getDefaultValue() {
+        return defaultValue;
+    }
+
+    public void setDefaultValue(String defaultValue) {
+        this.defaultValue = defaultValue;
+    }
+}</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Spring Factories Configuration</h2>
+        <p>Configure auto-configuration in <code>spring.factories</code>:</p>
+        <pre class="code-block"><code>org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.example.starter.MyCustomAutoConfiguration</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Starter Components</h2>
+        <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Auto-configuration class</li>
+            <li><i class="fas fa-check-circle"></i> Configuration properties</li>
+            <li><i class="fas fa-check-circle"></i> Spring factories configuration</li>
+            <li><i class="fas fa-check-circle"></i> Optional dependency management</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Best Practices</h2>
+        <ul class="feature-list">
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Conditional Configuration:</strong> Use Spring Boot's @Conditional annotations
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Sensible Defaults:</strong> Provide default configurations that work out of the box
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Flexible Customization:</strong> Allow easy override of default configurations
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Documentation:</strong> Provide clear, comprehensive documentation for your starter
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Conclusion</h2>
+        <p>
+            Spring Boot Starters simplify configuration and dependency management by providing
+            pre-configured templates. By following best practices and creating well-designed
+            starters, you can easily share and reuse configuration across multiple projects,
+            reducing boilerplate code and improving development efficiency.
+        </p>
+    </div>
+</div>
+<style>
+
+    /* Additional styling for theory page */
+    .navigation-links {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .feature-list li {
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .feature-list li i {
+        /*color: #28a745; !* Green color *!*/
+        color: #4361ee; /* Blue color */
+        margin-right: 0.75rem;
+    }
+
+    .card {
+        background-color: #fff; /* Background color for cards */
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+</style>
+
+
+</body>
+</html>

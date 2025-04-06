@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extending Spring Actuator - Spring Boot Extra Topics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<a href="/" class="return-button">
+    <i class="fas fa-arrow-left"></i> Return to Home
+</a>
+
+<div class="container">
+    <h1>Extending Spring Boot Actuator</h1>
+
+    <div class="description">
+        <p>
+            Extending Spring Boot Actuator allows you to create custom endpoints, health indicators,
+            and metrics to provide deeper insights into your application's specific requirements and behavior.
+        </p>
+    </div>
+
+    <div class="navigation-links">
+        <a href="/actuator-extension" class="btn btn-primary">
+            <i class="fas fa-puzzle-piece"></i> Explore Extensions
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>Creating Custom Endpoints</h2>
+        <p>Implement a custom actuator endpoint:</p>
+        <pre class="code-block"><code>@Component
+@Endpoint(id = "custom")
+public class CustomActuatorEndpoint {
+
+    @ReadOperation
+    public Map< String, Object> customEndpoint() {
+        Map< String, Object> details = new HashMap< >();
+        details.put("application", "My Custom App");
+        details.put("version", "1.0.0");
+        return details;
+    }
+
+    @WriteOperation
+    public void updateEndpoint(@Selector String param) {
+        // Custom write operation logic
+    }
+}</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Custom Health Indicators</h2>
+        <p>Create application-specific health checks:</p>
+        <pre class="code-block"><code>@Component
+public class DatabaseHealthIndicator implements HealthIndicator {
+
+    @Autowired
+    private DatabaseConnection dbConnection;
+
+    @Override
+    public Health health() {
+        try {
+            dbConnection.checkConnection();
+            return Health.up()
+                .withDetail("database", "Connection successful")
+                .build();
+        } catch (Exception e) {
+            return Health.down()
+                .withDetail("database", "Connection failed")
+                .withException(e)
+                .build();
+        }
+    }
+}</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Custom Metrics</h2>
+        <p>Implement custom application metrics:</p>
+        <pre class="code-block"><code>@Component
+public class CustomMetricsRegistrar {
+    private final MeterRegistry registry;
+
+    @Autowired
+    public CustomMetricsRegistrar(MeterRegistry registry) {
+        this.registry = registry;
+        registerCustomMetrics();
+    }
+
+    private void registerCustomMetrics() {
+        Gauge.builder("app.custom.metric", this,
+            CustomMetricsRegistrar::calculateCustomValue)
+            .description("Custom application metric")
+            .register(registry);
+    }
+
+    private double calculateCustomValue() {
+        // Custom metric calculation logic
+        return 42.0;
+    }
+}</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Advanced Extension Techniques</h2>
+        <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Create dynamic endpoints that adapt to application state</li>
+            <li><i class="fas fa-check-circle"></i> Implement security for custom endpoints</li>
+            <li><i class="fas fa-check-circle"></i> Use conditional endpoint exposure</li>
+            <li><i class="fas fa-check-circle"></i> Integrate with external monitoring systems</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Best Practices</h2>
+        <ul class="feature-list">
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Performance Considerations:</strong> Keep custom extensions lightweight
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Security:</strong> Always secure custom endpoints in production
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Clear Documentation:</strong> Document the purpose and usage of custom extensions
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Error Handling:</strong> Implement robust error handling in custom endpoints
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Conclusion</h2>
+        <p>
+            Extending Spring Boot Actuator provides powerful capabilities to customize monitoring
+            and management of your application. By creating custom endpoints, health indicators,
+            and metrics, you can gain deeper insights tailored to your specific requirements.
+        </p>
+    </div>
+</div>
+
+<style>
+
+    /* Additional styling if needed, inherits from external CSS */
+
+    .navigation-links {
+        text-align: center;
+        margin: 1rem 0 2rem;
+    }
+
+    .navigation-links .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navigation-links .btn i {
+        margin-right: 0.5rem;
+    }
+
+    /* Additional styling for theory page */
+    .navigation-links {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .feature-list li {
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .feature-list li i {
+        /*color: #28a745; !* Green color *!*/
+        color: #4361ee; /* Blue color */
+        margin-right: 0.75rem;
+    }
+
+</style>
+</body>
+</html>

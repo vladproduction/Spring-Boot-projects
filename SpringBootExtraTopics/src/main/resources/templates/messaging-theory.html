@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ActiveMQ Theory - Spring Boot Messaging</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<a href="/" class="return-button">
+    <i class="fas fa-arrow-left"></i> Return to Home
+</a>
+
+<div class="container">
+    <h1>Understanding ActiveMQ and Spring Boot Integration</h1>
+
+    <div class="description">
+        <p>
+            Asynchronous messaging is an essential pattern in modern software architecture. It enables
+            decoupling of services, allowing them to communicate without requiring synchronous responses.
+            This leads to improved scalability, reliability, and resilience in applications.
+            In this section, we will explore how to implement asynchronous messaging with Spring Boot
+            using ActiveMQ, a robust messaging system.
+        </p>
+    </div>
+
+    <div class="navigation-links">
+        <a href="/messaging" class="btn btn-primary">
+            <i class="fas fa-flask"></i> Try It Out
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>Required Dependencies</h2>
+        <p>Add these dependencies to your <code>pom.xml</code> file:</p>
+        <pre class="code-block"><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-activemq&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;!-- For JMS connection pooling --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.messaginghub&lt;/groupId&gt;
+    &lt;artifactId&gt;pooled-jms&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Configuration in application.properties</h2>
+        <p>Configure ActiveMQ connection settings in your <code>application.properties</code> file:</p>
+        <pre class="code-block"><code># ActiveMQ Connection Settings
+spring.activemq.broker-url=tcp://localhost:61616
+spring.activemq.user=admin
+spring.activemq.password=admin
+spring.activemq.packages.trust-all=true
+
+# Enable JMS connection pooling
+spring.activemq.pool.enabled=true
+spring.activemq.pool.max-connections=50
+
+# Define queue name
+app.jms.queue=message-queue</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Setting Up ActiveMQ on Your Machine</h2>
+        <h3>Prerequisites</h3>
+        <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Java 8 or higher installed</li>
+            <li><i class="fas fa-check-circle"></i> Download <a href="https://activemq.apache.org/components/classic/download/" target="_blank">ActiveMQ</a> from the official site</li>
+        </ul>
+
+        <h3>Installation Steps</h3>
+        <ol class="steps-list">
+            <li>
+                <span class="step-number">1</span>
+                <div class="step-content">
+                    <h4>Extract the downloaded archive</h4>
+                    <p>Unzip the downloaded file to a directory of your choice</p>
+                </div>
+            </li>
+            <li>
+                <span class="step-number">2</span>
+                <div class="step-content">
+                    <h4>Start the ActiveMQ broker</h4>
+                    <p>Navigate to the <code>bin</code> directory and run:</p>
+                    <pre class="code-block"><code>// For Windows
+activemq.bat start
+
+// For Linux/Mac
+./activemq start</code></pre>
+                </div>
+            </li>
+            <li>
+                <span class="step-number">3</span>
+                <div class="step-content">
+                    <h4>Verify the installation</h4>
+                    <p>Access the admin console at <a href="http://localhost:8161/admin" target="_blank">http://localhost:8161/admin</a></p>
+                    <p>Default credentials: admin/admin</p>
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>Creating JMS Components in Spring Boot</h2>
+
+        <h3>1. JMS Configuration Class</h3>
+        <pre class="code-block"><code>package com.example.messaging.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.annotation.EnableJms;
+import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
+import org.springframework.jms.support.converter.MessageConverter;
+import org.springframework.jms.support.converter.MessageType;
+
+import javax.jms.ConnectionFactory;
+
+@Configuration
+@EnableJms
+public class JmsConfig {
+
+    @Value("${app.jms.queue}")
+    private String messageQueue;
+
+    @Bean
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(
+            ConnectionFactory connectionFactory,
+            MessageConverter messageConverter) {
+        DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
+        factory.setConnectionFactory(connectionFactory);
+        factory.setMessageConverter(messageConverter);
+        factory.setConcurrency("3-10");  // min-max concurrency
+        return factory;
+    }
+
+    @Bean
+    public MessageConverter jacksonJmsMessageConverter() {
+        MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
+        converter.setTargetType(MessageType.TEXT);
+        converter.setTypeIdPropertyName("_type");
+        return converter;
+    }
+
+    @Bean
+    public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory,
+                                   MessageConverter messageConverter) {
+        JmsTemplate template = new JmsTemplate(connectionFactory);
+        template.setMessageConverter(messageConverter);
+        template.setDefaultDestinationName(messageQueue);
+        return template;
+    }
+}</code></pre>
+
+        <h3>2. Message Producer Service</h3>
+        <pre class="code-block"><code>package com.example.messaging.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MessageProducerService {
+
+    private final JmsTemplate jmsTemplate;
+    private final String messageQueue;
+
+    @Autowired
+    public MessageProducerService(JmsTemplate jmsTemplate,
+                                 @Value("${app.jms.queue}") String messageQueue) {
+        this.jmsTemplate = jmsTemplate;
+        this.messageQueue = messageQueue;
+    }
+
+    public void sendMessage(String message) {
+        System.out.println("Sending message: " + message);
+        jmsTemplate.convertAndSend(messageQueue, message);
+    }
+}</code></pre>
+
+        <h3>3. Message Consumer Service</h3>
+        <pre class="code-block"><code>package com.example.messaging.service;
+
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class MessageConsumerService {
+
+    private final List< String> receivedMessages = new ArrayList< >();
+
+    @JmsListener(destination = "${app.jms.queue}")
+    public void receiveMessage(String message) {
+        System.out.println("Received message: " + message);
+        synchronized (receivedMessages) {
+            receivedMessages.add(message);
+        }
+    }
+
+    public List< String> getReceivedMessages() {
+        synchronized (receivedMessages) {
+            return new ArrayList< >(receivedMessages);
+        }
+    }
+
+    public void clearMessages() {
+        synchronized (receivedMessages) {
+            receivedMessages.clear();
+        }
+    }
+}</code></pre>
+
+        <h3>4. REST Controller for Messaging</h3>
+        <pre class="code-block"><code>package com.example.messaging.controller;
+
+import com.example.messaging.service.MessageConsumerService;
+import com.example.messaging.service.MessageProducerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/messages")
+public class MessageController {
+
+    private final MessageProducerService messageProducerService;
+    private final MessageConsumerService messageConsumerService;
+
+    @Autowired
+    public MessageController(MessageProducerService messageProducerService,
+                             MessageConsumerService messageConsumerService) {
+        this.messageProducerService = messageProducerService;
+        this.messageConsumerService = messageConsumerService;
+    }
+
+    @PostMapping
+    public ResponseEntity< Void> sendMessage(@RequestBody String message) {
+        messageProducerService.sendMessage(message);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/received")
+    public ResponseEntity< List< String>> getReceivedMessages() {
+        return ResponseEntity.ok(messageConsumerService.getReceivedMessages());
+    }
+
+    @DeleteMapping("/clear")
+    public ResponseEntity< Void> clearMessages() {
+        messageConsumerService.clearMessages();
+        return ResponseEntity.ok().build();
+    }
+}</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Advanced Topics</h2>
+
+        <h3>Message Persistence</h3>
+        <p>ActiveMQ supports message persistence to ensure messages are not lost in case of broker restart:</p>
+        <pre class="code-block"><code>// In JmsTemplate configuration
+template.setDeliveryPersistent(true);</code></pre>
+
+        <h3>Message Acknowledgment Modes</h3>
+        <ul class="feature-list">
+            <li><i class="fas fa-check"></i> <strong>AUTO_ACKNOWLEDGE</strong>: Messages are automatically acknowledged when received</li>
+            <li><i class="fas fa-check"></i> <strong>CLIENT_ACKNOWLEDGE</strong>: Client must explicitly acknowledge messages</li>
+            <li><i class="fas fa-check"></i> <strong>DUPS_OK_ACKNOWLEDGE</strong>: Lazy acknowledgment with possible duplicates</li>
+            <li><i class="fas fa-check"></i> <strong>SESSION_TRANSACTED</strong>: Messages are acknowledged in transactions</li>
+        </ul>
+        <pre class="code-block"><code>// Setting acknowledgment mode
+factory.setSessionAcknowledgeMode(Session.CLIENT_ACKNOWLEDGE);</code></pre>
+
+        <h3>Message Selectors</h3>
+        <p>Filter messages based on message properties:</p>
+        <pre class="code-block"><code>@JmsListener(destination = "${app.jms.queue}",
+             selector = "priority > 5")</code></pre>
+
+        <h3>Dead Letter Queue</h3>
+        <p>Configure a dead letter queue for failed message processing:</p>
+        <pre class="code-block"><code>// In application.properties
+spring.activemq.non-blocking-redelivery=true
+spring.jms.listener.max-concurrency=10
+spring.jms.listener.max-attempts=5</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Best Practices</h2>
+        <ul class="feature-list">
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Connection Pooling</strong>: Always use connection pooling in production environments
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Error Handling</strong>: Implement proper error handling with retry logic
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Message TTL</strong>: Set appropriate time-to-live for messages
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Monitoring</strong>: Set up monitoring for queue depth and processing time
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <strong>Testing</strong>: Use embedded ActiveMQ for integration testing
+            </li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    /* Additional styling for theory page */
+    .code-block {
+        background-color: #f8f9fa;
+        border-radius: var(--border-radius);
+        padding: 1rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+        border: 1px solid #e9ecef;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .code-block code {
+        color: #212529;
+    }
+
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .feature-list li {
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .feature-list li i {
+        color: var(--primary);
+        margin-right: 0.75rem;
+        margin-top: 0.2rem;
+    }
+
+    .steps-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0;
+    }
+
+    .steps-list li {
+        display: flex;
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .step-number {
+        flex-shrink: 0;
+        width: 2rem;
+        height: 2rem;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 1rem;
+    }
+
+    .step-content {
+        flex-grow: 1;
+    }
+
+    .step-content h4 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .navigation-links {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    h3 {
+        margin-top: 1.5rem;
+        color: var(--dark);
+        font-weight: 600;
+        font-size: 1.4rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+</style>
+</body>
+</html>

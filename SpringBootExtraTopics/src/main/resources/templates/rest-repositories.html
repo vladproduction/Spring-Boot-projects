@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring REST repositories Theory - Spring Boot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<a href="/" class="return-button">
+    <i class="fas fa-arrow-left"></i> Return to Home
+</a>
+
+<div class="container">
+    <h1>Building Spring REST Repositories</h1>
+
+    <div class="description">
+        <p>
+            Building Spring REST repositories involves creating a RESTful API using Spring Boot and Spring Data JPA to interact with a database.
+            The process begins with setting up a Spring Boot project and configuring the database connection in the application properties.
+            Next, you define a JPA entity that represents your data model, which allows Spring to map database records to Java objects.
+            Following this, a repository interface is created by extending JpaRepository, enabling access to built-in CRUD operations without additional implementation.
+            A REST controller is then implemented to handle HTTP requests, providing endpoints for operations such as
+            retrieving, creating, updating, and deleting records from the database.
+            Finally, the application is run, and you can test the API using tools like Postman, Swagger.
+            This approach ensures a structured and efficient way to manage data in a Spring application through a RESTful interface.
+        </p>
+    </div>
+
+    <div class="navigation-links">
+        <a href="/rooms" class="btn btn-primary">
+            <i class="fas fa-flask"></i> Try It Out
+        </a>
+    </div>
+    <div class="navigation-links">
+        <a href="http://localhost:8080/swagger-ui/index.html#/" class="btn btn-primary">
+            <i class="fas fa-play"></i> Try Swagger UI
+        </a>
+    </div>
+
+
+    <div class="card">
+        <h2>Required Dependencies</h2>
+        <p>Add these dependencies to your <code>pom.xml</code> file:</p>
+        <pre class="code-block"><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;!--        H2 dependency--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+    &lt;artifactId&gt;h2&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;!--        mysql dependency--&gt;
+&lt;!--&lt;dependency&gt;--&gt;
+&lt;!--    &lt;groupId&gt;com.mysql&lt;/groupId&gt;--&gt;
+&lt;!--    &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;--&gt;
+&lt;!--&lt;/dependency&gt;--&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+    &lt;optional&gt;true&lt;/optional&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Configuration in application.properties</h2>
+        <p>Configure DataBase connection settings in your <code>application.properties</code> file:</p>
+        <pre class="code-block"><code>
+# common thymeleaf settings
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+
+# Database connection settings (MySql):
+#spring.datasource.url=jdbc:mysql://localhost:3306/roomdb (name of database)
+#spring.datasource.username=root
+#spring.datasource.password=11111111
+#spring.jpa.hibernate.ddl-auto=update
+#spring.jpa.show-sql=true
+
+# embedded H2 DB settings if chosen:
+# http://localhost:8080/h2-console (link to browser console)
+logging.level.org.springframework.jdbc.datasource.init.ScriptUtils=debug
+spring.h2.console.enabled=true
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+spring.sql.init.mode=always
+        </code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Essential steps to set up and build a REST repository using Spring Boot</h2>
+        <h3>Prerequisites</h3>
+        <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Java 11 or higher installed</li>
+            <li><i class="fas fa-check-circle"></i> Download <a href="https://start.spring.io/" target="_blank"> Spring Boot Project </a> from the official site</li>
+        </ul>
+
+        <h3>Installation Steps</h3>
+        <ol class="steps-list">
+            <li>
+                <span class="step-number">1</span>
+                <div class="step-content">
+                    <h4>Extract the downloaded project archive</h4>
+                    <p>Unzip the downloaded file to a directory of your choice</p>
+                </div>
+            </li>
+            <li>
+                <span class="step-number">2</span>
+                <div class="step-content">
+                    <h4>Configure <code>application.properties</code> and <code>pom.xml</code> as were mentioned before:</h4>
+                    <p>add needed dependencies and properties (NOTE: have to have one DataBase configurations)</p>
+                </div>
+            </li>
+            <li>
+                <span class="step-number">3</span>
+                <div class="step-content">
+                    <h4>Open project in your IDE</h4>
+                    <p>Navigate to the <code>src/main/java/com.vladproduction.springbootextratopics</code> directory and provide packages structure:</p>
+                    <pre class="code-block"><code>
+        // For Example
+        com.vladproduction.springbootextratopics
+        ├── config               // Configuration classes (e.g., security, application properties)
+        │   └── WebConfig.java (not yet implemented)
+        │
+        ├── controllers           // REST controllers for handling HTTP requests
+        │   └── RoomController.java (used for views in try link)
+        │   └── RoomRestController.java (used for Postman/Swagger)
+        │
+        ├── entity                // Data models and entity classes
+        │   └── Room.java // Entity class with the @Entity annotation and @Id annotation for Primary key
+        │
+        ├── repository           // Spring Data JPA repositories
+        │   └── RoomRepository.java (interface org.springframework.data.jpa.repository.JpaRepository)
+        │
+        ├── services              // Service classes for business logic
+        │   └── RoomService.java
+        │   └── impl  (package for implementation of business logic by RoomService.java)
+        │        └── RoomServiceImpl.java (implementation class)
+        │
+        ├── dto                  // Data Transfer Objects (optional)
+        │   └── RoomDTO.java (not yet implemented)
+        │
+        └── SpringBootExtraTopicsApplication.java // Main application class with the @SpringBootApplication annotation</code></pre>
+                </div>
+            </li>
+
+
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>Creating Components in Spring Boot</h2>
+
+        <h3>1. Entity Class</h3>
+        <pre class="code-block"><code>package com.vladproduction.springbootextratopics.entity;
+import jakarta.persistence.*;
+import java.util.Objects;
+
+@Entity
+public class Room {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String name;
+    private String description;
+    private int capacity;
+    private int price;
+
+    public Room() {
+    }
+
+    public Room(long id, String name, String description, int capacity, int price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.capacity = capacity;
+        this.price = price;
+    }
+
+    //getters & setters omitted
+    //equals & hashcode & toString (generated)
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return id == room.id && capacity == room.capacity && price == room.price && Objects.equals(name, room.name) && Objects.equals(description, room.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, capacity, price);
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", capacity=" + capacity +
+                ", price=" + price +
+                '}';
+    }
+}</code></pre>
+
+        <h3>2. Repository Interface</h3>
+        <pre class="code-block"><code>package com.vladproduction.springbootextratopics.repository;
+
+import com.vladproduction.springbootextratopics.entity.Room;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RoomRepository extends JpaRepository< Room, Long> {
+
+    // Additional query methods can be defined here if needed.
+
+}</code></pre>
+
+        <h3>3. Service Interface</h3>
+        <pre class="code-block"><code>package com.vladproduction.springbootextratopics.services;
+
+import com.vladproduction.springbootextratopics.entity.Room;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public interface RoomService {
+
+    List< Room> getAllRooms();
+    Optional< Room> getRoomById(Long id);
+    Room createRoom(Room room);
+    Optional< Room> updateRoom(Long id, Room roomDetails);
+    boolean deleteRoom(Long id);
+}</code></pre>
+
+        <h3>4. Service Implementation class</h3>
+        <pre class="code-block"><code>package com.vladproduction.springbootextratopics.services.impl;
+
+import com.vladproduction.springbootextratopics.entity.Room;
+import com.vladproduction.springbootextratopics.repository.RoomRepository;
+import com.vladproduction.springbootextratopics.services.RoomService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class RoomServiceImpl implements RoomService {
+
+    private final RoomRepository roomRepository;
+
+    public RoomServiceImpl(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
+    }
+
+    @Override
+    public List< Room> getAllRooms() {
+        return roomRepository.findAll();
+    }
+
+    @Override
+    public Optional< Room> getRoomById(Long id) {
+        return roomRepository.findById(id);
+    }
+
+    @Override
+    public Room createRoom(Room room) {
+        return roomRepository.save(room);
+    }
+
+    @Override
+    public Optional< Room> updateRoom(Long id, Room roomDetails) {
+        return roomRepository.findById(id).map(existingRoom -> {
+            existingRoom.setName(roomDetails.getName());
+            existingRoom.setDescription(roomDetails.getDescription());
+            existingRoom.setCapacity(roomDetails.getCapacity());
+            existingRoom.setPrice(roomDetails.getPrice());
+
+            return roomRepository.save(existingRoom);
+        });
+    }
+
+    @Override
+    public boolean deleteRoom(Long id) {
+        try {
+            if (roomRepository.existsById(id)) {
+                roomRepository.deleteById(id);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            //logging if needed
+            return false;
+        }
+    }
+}</code></pre>
+
+        <h3>5. Rest Controller class</h3>
+        <pre class="code-block"><code>package com.vladproduction.springbootextratopics.controllers;
+
+import com.vladproduction.springbootextratopics.entity.Room;
+import com.vladproduction.springbootextratopics.repository.RoomRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/rooms")
+public class RoomRestController {
+
+    //service layer omitted for the RoomRestController
+
+    private final RoomRepository roomRepository;
+
+    public RoomRestController(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
+    }
+
+    @GetMapping
+    public List< Room> getAllRooms() {
+        return roomRepository.findAll(); // Fetch all rooms
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity< Room> getRoomById(@PathVariable Long id) {
+        return roomRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build()); // Get room by ID
+    }
+
+    @PostMapping
+    public Room createRoom(@RequestBody Room room) {
+        return roomRepository.save(room); // Create a new room
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity< Room> updateRoom(@PathVariable Long id, @RequestBody Room roomDetails) {
+        return roomRepository.findById(id)
+                .map(room -> {
+                    room.setName(roomDetails.getName());
+                    room.setDescription(roomDetails.getDescription());
+                    room.setCapacity(roomDetails.getCapacity());
+                    room.setPrice(roomDetails.getPrice());
+                    Room updatedRoom = roomRepository.save(room);
+                    return ResponseEntity.ok(updatedRoom);
+                })
+                .orElse(ResponseEntity.notFound().build()); // Update an existing room
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity< Object> deleteRoom(@PathVariable Long id) {
+        return roomRepository.findById(id)
+                .map(room -> {
+                    roomRepository.delete(room);
+                    return ResponseEntity.ok().build(); // Delete room
+                })
+                .orElse(ResponseEntity.notFound().build()); // Room not found
+    }
+}</code></pre>
+
+        <h3>5. Controller class (implementation of 'Try It Out' section)</h3>
+        <pre class="code-block"><code>package com.vladproduction.springbootextratopics.controllers;
+
+import com.vladproduction.springbootextratopics.entity.Room;
+import com.vladproduction.springbootextratopics.services.RoomService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+import java.util.Optional;
+
+@Controller
+@RequestMapping("/rooms")
+public class RoomController {
+
+    private final RoomService roomService;
+
+    public RoomController(RoomService roomService) {
+        this.roomService = roomService;
+    }
+
+    @GetMapping
+    public String getAllRooms(Model model) {
+        List< Room> rooms = roomService.getAllRooms();
+        model.addAttribute("rooms", rooms);
+        return "rooms";
+    }
+
+    @GetMapping("/{id}")
+    public String getRoomById(@PathVariable Long id, Model model) {
+        Optional< Room> room = roomService.getRoomById(id);
+        if (room.isPresent()) {
+            model.addAttribute("room", room.get());
+            return "room-details";
+        } else {
+            return "redirect:/rooms";
+        }
+    }
+
+    @GetMapping("/create")
+    public String showCreateRoomForm(Model model) {
+        model.addAttribute("room", new Room());
+        return "create-room";
+    }
+
+    @PostMapping
+    public String createRoom(@ModelAttribute Room room, RedirectAttributes redirectAttributes) {
+        roomService.createRoom(room);
+        redirectAttributes.addFlashAttribute("successMessage", "Room created successfully!");
+        return "redirect:/rooms";
+    }
+
+    @GetMapping("/update/{id}")
+    public String showUpdateRoomForm(@PathVariable Long id, Model model) {
+        Optional< Room> room = roomService.getRoomById(id);
+        if (room.isPresent()) {
+            model.addAttribute("room", room.get());
+            return "update-room";
+        } else {
+            return "redirect:/rooms";
+        }
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateRoom(@PathVariable Long id, @ModelAttribute Room roomDetails, RedirectAttributes redirectAttributes) {
+        roomService.updateRoom(id, roomDetails);
+        redirectAttributes.addFlashAttribute("successMessage", "Room updated successfully!");
+        return "redirect:/rooms";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteRoom(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        boolean deleted = roomService.deleteRoom(id);
+        if (deleted) {
+            redirectAttributes.addFlashAttribute("successMessage", "Room deleted successfully!");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Room could not be deleted.");
+        }
+        return "redirect:/rooms";
+    }
+
+    @GetMapping("/search")
+    public String searchRoomById(@RequestParam Long id, Model model) {
+        Optional< Room> room = roomService.getRoomById(id);
+        if (room.isPresent()) {
+            model.addAttribute("rooms", List.of(room.get()));
+        } else {
+            model.addAttribute("message", "Room not found!");
+        }
+        return "rooms";
+    }
+
+}</code></pre>
+
+    </div>
+
+    <div class="card">
+        <h2>Advanced Topics in Spring REST Repositories</h2>
+
+        <h3>Pagination and Sorting</h3>
+        <p>Enhance your API with pagination and sorting capabilities:</p>
+        <pre class="code-block"><code>Page< Room> findAll(Pageable pageable);</code></pre>
+
+        <h3>Custom Query Methods</h3>
+        <p>Define custom query methods in the repository interface:</p>
+        <pre class="code-block"><code>List< Room> findByDescription(String description);</code></pre>
+
+        <h3>ResponseEntity for HTTP Responses</h3>
+        <p>Use <code>ResponseEntity</code> for flexible HTTP responses:</p>
+        <pre class="code-block"><code>return ResponseEntity.ok(room);</code></pre>
+
+        <h3>Exception Handling with @ControllerAdvice</h3>
+        <p>Global exception handling for better error management:</p>
+        <pre class="code-block"><code>@ControllerAdvice
+public class GlobalExceptionHandler {
+    @ExceptionHandler(RoomNotFoundException.class)
+    public ResponseEntity< String> handleRoomNotFound(RoomNotFoundException e) { ... }
+}
+</code></pre>
+
+        <h3>Validation in Requests</h3>
+        <p>Implement input validation using <code>@Valid</code>:</p>
+        <pre class="code-block"><code>public Room createRoom(@Valid @RequestBody Room room) { ... }</code></pre>
+    </div>
+
+
+    <div class="card">
+        <h2>Best Practices for Spring REST Repositories</h2>
+
+        <h3>Use Proper HTTP Status Codes</h3>
+        <p>Return appropriate HTTP status codes to indicate the result of operations:</p>
+        <pre class="code-block"><code>return ResponseEntity.status(HttpStatus.CREATED).body(user);</code></pre>
+
+        <h3>Implement HATEOAS Principles</h3>
+        <p>Incorporate HATEOAS to provide discoverability in your API:</p>
+        <pre class="code-block"><code>Link link = linkTo(UserController.class).slash(user.getId()).withSelfRel();</code></pre>
+
+        <h3>Version Your API</h3>
+        <p>Maintain backward compatibility by versioning your REST API:</p>
+        <pre class="code-block"><code>@RequestMapping("/api/v1/users")</code></pre>
+
+        <h3>Documentation with Swagger</h3>
+        <p>Use Swagger/OpenAPI for automatic API documentation:</p>
+        <pre class="code-block"><code>springfox.documentation swagger; // Add dependencies for Swagger</code></pre>
+
+        <h3>Monitor and Log API Requests</h3>
+        <p>Implement logging and monitoring to track API usage and performance:</p>
+        <pre class="code-block"><code>logger.info("User accessed: {}", userId);</code></pre>
+    </div>
+</div>
+
+<style>
+    /* Additional styling for theory page */
+    .code-block {
+        background-color: #f8f9fa;
+        border-radius: var(--border-radius);
+        padding: 1rem;
+        margin: 1rem 0;
+        overflow-x: auto;
+        border: 1px solid #e9ecef;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .code-block code {
+        color: #212529;
+    }
+
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .feature-list li {
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .feature-list li i {
+        color: var(--primary);
+        margin-right: 0.75rem;
+        margin-top: 0.2rem;
+    }
+
+    .steps-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0;
+    }
+
+    .steps-list li {
+        display: flex;
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .step-number {
+        flex-shrink: 0;
+        width: 2rem;
+        height: 2rem;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 1rem;
+    }
+
+    .step-content {
+        flex-grow: 1;
+    }
+
+    .step-content h4 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .navigation-links {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    h3 {
+        margin-top: 1.5rem;
+        color: var(--dark);
+        font-weight: 600;
+        font-size: 1.4rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+</style>
+</body>
+</html>

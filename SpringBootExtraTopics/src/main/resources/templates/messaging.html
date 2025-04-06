@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous Messaging - ActiveMQ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<a href="/" class="return-button">
+    <i class="fas fa-arrow-left"></i> Return to Home
+</a>
+
+<div class="container">
+    <h1>Asynchronous Messaging with ActiveMQ</h1>
+
+    <div class="navigation-links">
+        <a href="/messaging-theory" class="btn btn-primary">
+            <i class="fas fa-book"></i> View Theory & Implementation Guide
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>Send Message</h2>
+        <form id="sendMessageForm">
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <input type="text" id="message" name="message" placeholder="Type your message here..." required>
+            </div>
+            <button type="submit" id="sendMessageButton" class="btn btn-success">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+        </form>
+        <div class="notification notification-success" id="notification"></div>
+    </div>
+
+    <div class="card">
+        <h2>Received Messages</h2>
+        <ul class="message-list" id="receivedMessages"></ul>
+        <button id="clearMessagesButton" class="btn btn-danger btn-sm">
+            <i class="fas fa-trash"></i> Clear Messages
+        </button>
+    </div>
+</div>
+
+<style>
+    .navigation-links {
+        text-align: center;
+        margin: 1rem 0 2rem;
+    }
+
+    .navigation-links .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navigation-links .btn i {
+        margin-right: 0.5rem;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const receivedMessages = new Set(); // Use a Set to track unique messages
+
+        document.getElementById('sendMessageForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const message = document.getElementById('message').value;
+
+            fetch('/messages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(message),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Display success notification
+                        const notification = document.getElementById('notification');
+                        notification.innerText = 'Message sent: ' + message;
+                        notification.style.display = 'block';
+
+                        setTimeout(() => {
+                            notification.style.display = 'none';
+                        }, 3000); // Hide after 3 seconds
+
+                        // Clear the message input field
+                        document.getElementById('message').value = '';
+                    } else {
+                        alert('Failed to send message. Please try again.'); // User-friendly error
+                    }
+                })
+                .catch(error => {
+                    console.error('Error sending message:', error);
+                    alert('An error occurred while sending the message. Please check your connection and try again.');
+                });
+        });
+
+        function fetchMessages() {
+            fetch('/messages/received')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch messages'); // Throw error if response is not ok
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const messageList = document.getElementById('receivedMessages');
+                    data.forEach(msg => {
+                        if (!receivedMessages.has(msg)) { // Check if message is not already displayed
+                            receivedMessages.add(msg); // Store unique message
+                            const listItem = document.createElement('li');
+                            listItem.className = 'message-item';
+                            listItem.textContent = msg;
+                            messageList.appendChild(listItem);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching messages:', error);
+                });
+        }
+
+        // Fetch messages every few seconds
+        setInterval(fetchMessages, 5000); // Update every 5 seconds
+
+        document.getElementById('clearMessagesButton').addEventListener('click', function () {
+            fetch('/messages/clear', { method: 'DELETE' })
+                .then(() => {
+                    // Clear the displayed messages on the frontend
+                    document.getElementById('receivedMessages').innerHTML = '';
+                    receivedMessages.clear(); // Clear the Set
+
+                    // Show notification
+                    const notification = document.getElementById('notification');
+                    notification.innerText = 'All messages have been cleared';
+                    notification.style.display = 'block';
+
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                    }, 3000); // Hide after 3 seconds
+                })
+                .catch(error => {
+                    console.error('Error clearing messages:', error);
+                });
+        });
+    });
+</script>
+</body>
+</html>

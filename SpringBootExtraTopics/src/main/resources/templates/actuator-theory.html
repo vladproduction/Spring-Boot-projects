@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Using Spring Actuator - Spring Boot Extra Topics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<a href="/" class="return-button">
+  <i class="fas fa-arrow-left"></i> Return to Home
+</a>
+
+<div class="container">
+  <h1>Understanding Spring Boot Actuator</h1>
+
+  <div class="description">
+    <p>
+      Spring Boot Actuator provides production-ready features to help you monitor and manage your application.
+      It offers built-in endpoints to gather metrics, health checks, and provide insights into your application's runtime behavior.
+    </p>
+  </div>
+
+  <div class="navigation-links">
+    <a href="/actuator" class="btn btn-primary">
+      <i class="fas fa-heartbeat"></i> Explore Actuator
+    </a>
+  </div>
+
+  <div class="card">
+    <h2>Required Dependencies</h2>
+    <p>Add this dependency to your <code>pom.xml</code> file:</p>
+    <pre class="code-block"><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>Enabling Actuator Endpoints</h2>
+    <p>Configure your <code>application.properties</code> or <code>application.yml</code>:</p>
+    <pre class="code-block"><code># Expose all endpoints
+management.endpoints.web.exposure.include=*
+
+# Or expose specific endpoints
+management.endpoints.web.exposure.include=health,info,metrics</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>Default Actuator Endpoints</h2>
+    <p>You can explore default actuator endpoints implementation by:</p>
+    <ul class="feature-list">
+      <li><i class="fas fa-check-circle"></i> <code>/health </code>&nbsp;  :Shows application health information </li>
+      <li><i class="fas fa-check-circle"></i> <code>/info </code>&nbsp;  :Displays arbitrary application info </li>
+      <li><i class="fas fa-check-circle"></i> <code>/metrics </code>&nbsp;  :Provides runtime metrics of the application </li>
+      <li><i class="fas fa-check-circle"></i> <code>/env </code>&nbsp;  :Shows current environment and configuration properties </li>
+      <li><i class="fas fa-check-circle"></i> <code>/loggers </code>&nbsp;  :Allows viewing and modifying log levels </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Custom Health Indicators</h2>
+    <p>Create a custom health indicator to provide application-specific health checks:</p>
+    <pre class="code-block"><code>@Component
+public class CustomHealthIndicator implements HealthIndicator {
+    @Override
+    public Health health() {
+        // Perform custom health checks
+        boolean isHealthy = checkCustomCondition();
+
+        if (isHealthy) {
+            return Health.up().build();
+        }
+        return Health.down()
+            .withDetail("Error", "Custom health check failed")
+            .build();
+    }
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>Best Practices</h2>
+    <ul class="feature-list">
+      <li>
+        <i class="fas fa-lightbulb"></i>
+        <strong>Secure Actuator Endpoints:</strong> Always protect sensitive endpoints in production
+      </li>
+      <li>
+        <i class="fas fa-lightbulb"></i>
+        <strong>Selective Exposure:</strong> Only expose necessary endpoints in production
+      </li>
+      <li>
+        <i class="fas fa-lightbulb"></i>
+        <strong>Monitor Performance:</strong> Use metrics and health endpoints for continuous monitoring
+      </li>
+      <li>
+        <i class="fas fa-lightbulb"></i>
+        <strong>Custom Metrics:</strong> Implement custom metrics for application-specific monitoring
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Conclusion</h2>
+    <p>
+      Spring Boot Actuator provides powerful tools for monitoring and managing your application.
+      By leveraging its endpoints and customization capabilities, you can gain deep insights into your application's runtime behavior.
+    </p>
+  </div>
+</div>
+
+<style>
+
+  /* Additional styling if needed, inherits from external CSS */
+
+  .navigation-links {
+    text-align: center;
+    margin: 1rem 0 2rem;
+  }
+
+  .navigation-links .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navigation-links .btn i {
+    margin-right: 0.5rem;
+  }
+
+  /* Additional styling for theory page */
+  .navigation-links {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .feature-list li {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .feature-list li i {
+    /*color: #28a745; !* Green color *!*/
+    color: #4361ee; /* Blue color */
+    margin-right: 0.75rem;
+  }
+
+</style>
+
+
+</body>
+</html>

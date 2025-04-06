@@ -1,0 +1,42 @@
+
+    <div class="navigation-links">
+        <a href="http://localhost:8080/swagger-ui/index.html#/" class="btn btn-primary">
+            <i class="fas fa-file-alt"></i> Try Swagger UI
+        </a>
+    </div>
+
+    <div class="navigation-links">
+        <a href="http://localhost:8080/swagger-ui/index.html#/" class="btn btn-primary">
+            <i class="fas fa-cogs"></i> Try Swagger UI
+        </a>
+    </div>
+
+    <div class="navigation-links">
+        <a href="http://localhost:8080/swagger-ui/index.html#/" class="btn btn-primary">
+            <i class="fas fa-rocket"></i> Try Swagger UI
+        </a>
+    </div>
+
+    <div class="navigation-links">
+        <a href="http://localhost:8080/swagger-ui/index.html#/" class="btn btn-primary">
+            <i class="fas fa-lightbulb"></i> Try Swagger UI
+        </a>
+    </div>
+
+    <div class="navigation-links">
+        <a href="http://localhost:8080/swagger-ui/index.html#/" class="btn btn-primary">
+            <i class="fas fa-puzzle-piece"></i> Try Swagger UI
+        </a>
+    </div>
+
+    <div class="navigation-links">
+        <a href="http://localhost:8080/swagger-ui/index.html#/" class="btn btn-primary">
+            <i class="fas fa-life-ring"></i> Try Swagger UI
+        </a>
+    </div>
+
+    <div class="navigation-links">
+        <a href="http://localhost:8080/swagger-ui/index.html#/" class="btn btn-primary">
+            <i class="fas fa-wrench"></i> Try Swagger UI
+        </a>
+    </div>
